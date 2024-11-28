@@ -1,0 +1,8 @@
+﻿  Source.cpp
+LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+  22 of 35 functions (62.9%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Guardians of the Sunshine OpenGl.vcxproj -> C:\Users\actac\OneDrive\Documents\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\x64\Release\Guardians of the Sunshine OpenGl.exe
