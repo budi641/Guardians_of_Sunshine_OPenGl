@@ -1,10 +1,29 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\",
+  "WorkspaceRootPath": "D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\src\\AssetManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\AssetManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\src\\AssetManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\AssetManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\src\\SceneDeserializer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\SceneDeserializer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\src\\SceneDeserializer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\SceneDeserializer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\assets\\scenes\\sample_scene.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +38,79 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AssetManager.cpp",
+              "DocumentMoniker": "D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\src\\AssetManager.cpp",
+              "RelativeDocumentMoniker": "src\\AssetManager.cpp",
+              "ToolTip": "D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\src\\AssetManager.cpp",
+              "RelativeToolTip": "src\\AssetManager.cpp",
+              "ViewState": "AQIAACoAAAAAAAAAAAAAADwAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-02T17:54:55.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AssetManager.h",
+              "DocumentMoniker": "D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\src\\AssetManager.h",
+              "RelativeDocumentMoniker": "src\\AssetManager.h",
+              "ToolTip": "D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\src\\AssetManager.h",
+              "RelativeToolTip": "src\\AssetManager.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-02T17:51:30.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Source.cpp",
-              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Source.cpp",
+              "DocumentMoniker": "D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Source.cpp",
               "RelativeDocumentMoniker": "Source.cpp",
-              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Source.cpp*",
-              "RelativeToolTip": "Source.cpp*",
-              "ViewState": "AQIAABYAAAAAAAAAAAAIwC8AAAAAAAAA",
+              "ToolTip": "D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Source.cpp",
+              "RelativeToolTip": "Source.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-27T21:00:22.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SceneDeserializer.cpp",
+              "DocumentMoniker": "D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\src\\SceneDeserializer.cpp",
+              "RelativeDocumentMoniker": "src\\SceneDeserializer.cpp",
+              "ToolTip": "D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\src\\SceneDeserializer.cpp",
+              "RelativeToolTip": "src\\SceneDeserializer.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-02T17:59:46.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SceneDeserializer.h",
+              "DocumentMoniker": "D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\src\\SceneDeserializer.h",
+              "RelativeDocumentMoniker": "src\\SceneDeserializer.h",
+              "ToolTip": "D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\src\\SceneDeserializer.h",
+              "RelativeToolTip": "src\\SceneDeserializer.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-02T17:55:24.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "sample_scene.json",
+              "DocumentMoniker": "D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\assets\\scenes\\sample_scene.json",
+              "RelativeDocumentMoniker": "..\\assets\\scenes\\sample_scene.json",
+              "ToolTip": "D:\\Work\\Learning\\coourses\\Y3 S1\\graphics course\\Proj Graphivs\\Guardians_of_Sunshine_OPenGl\\assets\\scenes\\sample_scene.json",
+              "RelativeToolTip": "..\\assets\\scenes\\sample_scene.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-02T18:22:15.347Z",
               "EditorCaption": ""
             }
           ]

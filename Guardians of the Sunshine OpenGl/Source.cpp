@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+
 void FramebufferSizeCallback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
 }

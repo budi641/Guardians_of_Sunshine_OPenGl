@@ -79,11 +79,11 @@
     <LibraryPath>$(SolutionDir)Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libraries\include;D:\Work\Learning\coourses\Y3 S1\graphics course\Proj Graphivs\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\src;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libraries\include;D:\Work\Learning\coourses\Y3 S1\graphics course\Proj Graphivs\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\src;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
