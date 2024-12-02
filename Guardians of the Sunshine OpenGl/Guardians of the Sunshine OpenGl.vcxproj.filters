@@ -13,6 +13,39 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{abf453e0-7fe2-40f3-a19b-32d67bd390d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core">
+      <UniqueIdentifier>{01688549-cf8f-4e9f-8a9c-ab00b427582d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Rendering">
+      <UniqueIdentifier>{f875a820-4db3-4fc9-9d91-02dc6ae2a66b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core\Header Files">
+      <UniqueIdentifier>{05829fa4-faa7-47f5-9250-a461d1168a97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core\Source">
+      <UniqueIdentifier>{18e9c140-ec65-4388-afb4-4dd971d268c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Rendering\Header Files">
+      <UniqueIdentifier>{d6c63be6-1c21-418b-964f-3e5e141a9f37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Rendering\Source">
+      <UniqueIdentifier>{8c216861-8080-4d44-bd8f-443d82328061}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utilities">
+      <UniqueIdentifier>{25995665-dfd3-4ceb-bcd1-169250e8cdd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core\Components">
+      <UniqueIdentifier>{c85ce355-870b-49ae-a210-dc559c29798c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core\Components\Head Files">
+      <UniqueIdentifier>{a6b45870-7af8-49af-84c2-99a04cd5e005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core\Components\Source">
+      <UniqueIdentifier>{34e316be-8af9-4f58-90cf-54d49a8d7302}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -21,5 +54,73 @@
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Engine\Core\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Engine\Core\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Engine\Core\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Engine\Core\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Engine\Rendering\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="ForwardRenderer.cpp">
+      <Filter>Engine\Rendering\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Engine\Rendering\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Engine\Rendering\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Engine\Rendering\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Engine\Rendering\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformComponent.cpp">
+      <Filter>Engine\Core\Components\Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Entity.h">
+      <Filter>Engine\Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Engine\Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Engine\Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Engine\Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Engine\Rendering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ForwardRenderer.h">
+      <Filter>Engine\Rendering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Engine\Rendering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Engine\Rendering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Engine\Rendering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Engine\Rendering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>Engine\Core\Components\Head Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
