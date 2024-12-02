@@ -39,8 +39,6 @@ int main() {
     world.GetWorldMatrix(&ameen);
 
 
-  
-
     PrintMat4(world.GetWorldMatrix(&test));
 
 
