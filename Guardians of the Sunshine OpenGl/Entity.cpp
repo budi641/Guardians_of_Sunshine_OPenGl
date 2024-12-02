@@ -5,24 +5,22 @@
 
 Entity::Entity(const std::string& entityName)
 {
-	name = entityName;
-
-    transform = new TransformComponent();
+    name = entityName;
     AddComponent(transform);
 
 }
 
 Entity::~Entity()
 {
- 
+
     for (auto component : components)
     {
-        delete component; 
+        delete component;
     }
 
     for (auto child : children)
     {
-        delete child; 
+        delete child;
     }
 
 }
@@ -148,4 +146,9 @@ void Entity::Update(float deltaTime)
 TransformComponent* Entity::GetTransformComponent()
 {
     return transform;
+}
+
+std::string Entity::GetName()
+{
+    return name;
 }

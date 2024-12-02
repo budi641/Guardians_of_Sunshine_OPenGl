@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include <glm/gtc/matrix_transform.hpp>  // For matrix transformations
 #include <glm/gtc/quaternion.hpp>        // For quaternion math
+#include <iostream>
 
 TransformComponent::TransformComponent(const glm::vec3& initPosition,
     const glm::vec3& initRotation,  // Euler angles in degrees
@@ -18,19 +19,13 @@ void TransformComponent::Update(float deltaTime)
     // For example: Update position based on velocity, or rotate over time
 }
 
-glm::mat4 TransformComponent::GetTransformMatrix() const
-{
-    // First, create a translation matrix based on position
+glm::mat4 TransformComponent::GetTransformMatrix() const {
     glm::mat4 transform = glm::translate(glm::mat4(1.0f), position);
-
-    // Apply rotation using the quaternion
-    transform *= glm::mat4_cast(rotation);  // Converts quaternion to matrix
-
-    // Apply scaling
+    transform *= glm::mat4_cast(rotation);
     transform = glm::scale(transform, scale);
-
-    return transform;
+    return glm::transpose(transform);
 }
+
 
 
 

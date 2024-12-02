@@ -14,7 +14,7 @@ protected:
     std::vector<Entity*> children;  
     Entity* parent = nullptr;  
     bool isEnabled = true;
-    TransformComponent* transform;
+    TransformComponent* transform = new TransformComponent();;
 
 
 public:
@@ -38,6 +38,8 @@ public:
     void Update(float deltaTime);
 
     TransformComponent* GetTransformComponent();
+
+    std::string GetName();
 
     
 
