@@ -1,186 +1,154 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "Shader.h"
 #include <iostream>
-#include <glm/ext/matrix_transform.hpp>
-#include <glm/ext/matrix_clip_space.hpp>
-#include<chrono>
+#include <string>
+#include <vector>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include "Shader.h"
+#include "Texture.h"
+#include "Mesh.h"
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-    glViewport(0, 0, width, height);
-}
+// Window dimensions
+const GLuint WIDTH = 800, HEIGHT = 600;
 
-int main() {
-    // Initialize GLFW
+// Set up OpenGL context and load shaders
+GLFWwindow* InitOpenGL() {
     if (!glfwInit()) {
-        std::cerr << "Failed to initialize GLFW" << std::endl;
-        return -1;
+        std::cerr << "Failed to initialize GLFW!" << std::endl;
+        return nullptr;
     }
 
-    // Configure GLFW
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    // Create a window
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "Test", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Textured Cube", nullptr, nullptr);
     if (!window) {
-        std::cerr << "Failed to create GLFW window" << std::endl;
+        std::cerr << "Failed to create GLFW window!" << std::endl;
         glfwTerminate();
-        return -1;
+        return nullptr;
     }
 
     glfwMakeContextCurrent(window);
+    glfwSetFramebufferSizeCallback(window, [](GLFWwindow*, int width, int height) {
+        glViewport(0, 0, width, height);
+        });
 
-    // Initialize GLAD
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        std::cerr << "Failed to initialize GLAD" << std::endl;
-        return -1;
+        std::cerr << "Failed to initialize GLAD!" << std::endl;
+        return nullptr;
     }
 
-    // Set viewport
-    glViewport(0, 0, 1280, 720);
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glEnable(GL_DEPTH_TEST);  // Enable depth testing for 3D rendering
+    return window;
+}
 
-    float vertices[] = {
-        // Positions          // Colors
-        -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  // Bottom-left-back
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  // Bottom-right-back
-         0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  // Top-right-back
-         0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  // Top-right-back
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  // Top-left-back
-        -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  // Bottom-left-back
-
-        -0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,  // Bottom-left-front
-         0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 1.0f,  // Bottom-right-front
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  // Top-right-front
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  // Top-right-front
-        -0.5f,  0.5f,  0.5f,  0.5f, 0.5f, 0.5f,  // Top-left-front
-        -0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,  // Bottom-left-front
-
-        -0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 0.0f,  // Top-left-front
-        -0.5f,  0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  // Top-left-back
-        -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  // Bottom-left-back
-        -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  // Bottom-left-back
-        -0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,  // Bottom-left-front
-        -0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 0.0f,  // Top-left-front
-
-         0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.5f,  // Top-right-front
-         0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  // Top-right-back
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  // Bottom-right-back
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  // Bottom-right-back
-         0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 1.0f,  // Bottom-right-front
-         0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.5f,  // Top-right-front
-
-        -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  // Bottom-left-back
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  // Bottom-right-back
-         0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 1.0f,  // Bottom-right-front
-         0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 1.0f,  // Bottom-right-front
-        -0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,  // Bottom-left-front
-        -0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  // Bottom-left-back
-
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  // Top-left-back
-         0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.5f,  // Top-right-back
-         0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.5f,  // Top-right-front
-         0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 0.5f,  // Top-right-front
-        -0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 0.0f,  // Top-left-front
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f   // Top-left-back
+// Function to set up a simple cube mesh
+Mesh SetupCube() {
+    // Vertices for a simple cube
+    std::vector<Vertex> vertices = {
+        {{-0.5f, -0.5f, -0.5f}, {0.0f, 0.0f}},  // 0
+        {{ 0.5f, -0.5f, -0.5f}, {1.0f, 0.0f}},  // 1
+        {{ 0.5f,  0.5f, -0.5f}, {1.0f, 1.0f}},  // 2
+        {{-0.5f,  0.5f, -0.5f}, {0.0f, 1.0f}},  // 3
+        {{-0.5f, -0.5f,  0.5f}, {0.0f, 0.0f}},  // 4
+        {{ 0.5f, -0.5f,  0.5f}, {1.0f, 0.0f}},  // 5
+        {{ 0.5f,  0.5f,  0.5f}, {1.0f, 1.0f}},  // 6
+        {{-0.5f,  0.5f,  0.5f}, {0.0f, 1.0f}},  // 7
     };
 
+    std::vector<GLuint> indices = {
+        0, 1, 2,  2, 3, 0,  // Front face
+        4, 5, 6,  6, 7, 4,  // Back face
+        4, 5, 1,  1, 0, 4,  // Bottom face
+        7, 6, 2,  2, 3, 7,  // Top face
+        4, 0, 3,  3, 7, 4,  // Left face
+        1, 5, 6,  6, 2, 1   // Right face
+    };
 
-    GLuint VAO, VBO;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
+    return Mesh(vertices, indices);
+}
 
-    // Bind the VAO and VBO
-    glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    // Position attribute (location 0)
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    // Color attribute (location 1)
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-
-    // Unbind VAO and VBO
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
-
-
-
-    // Shader source code
-    const std::string vertexShaderSource = R"(
+const char* vertexShaderSource = R"(
 #version 330 core
-layout(location = 0) in vec3 aPos;   // Vertex position
-layout(location = 1) in vec3 aColor; // Vertex color
-uniform mat4 model;
-uniform mat4 view;
-uniform mat4 projection;
-out vec3 fragColor;  // Color to pass to the fragment shader
+layout(location = 0) in vec3 a_Position;
+layout(location = 1) in vec2 a_TexCoord;
+
+out vec2 TexCoord;
+
+uniform mat4 u_Model;
+uniform mat4 u_View;
+uniform mat4 u_Projection;
 
 void main()
 {
-    gl_Position = projection * view * model * vec4(aPos, 1.0f);
-    fragColor = aColor;  // Pass color to fragment shader
+    TexCoord = a_TexCoord;
+    gl_Position = u_Projection * u_View * u_Model * vec4(a_Position, 1.0);
 }
+)";
 
-    )";
 
-    const std::string fragmentShaderSource = R"(
+const char* fragmentShaderSource = R"(
 #version 330 core
-in vec3 fragColor;  // Incoming color from the vertex shader
+in vec2 TexCoord;
 out vec4 FragColor;
 
+uniform sampler2D u_Texture;
+
 void main()
 {
-    FragColor = vec4(fragColor, 1.0f);  // Set the color of the fragment
+    FragColor = texture(u_Texture, TexCoord);
 }
+)";
 
-    )";
+// Main function
+int main() {
+    // Initialize OpenGL and create window
+    GLFWwindow* window = InitOpenGL();
+    if (!window) return -1;
 
+
+    // Create and load shaders
     Shader shader(vertexShaderSource, fragmentShaderSource);
 
-    glm::mat4 modelMatrix = glm::mat4(1.0f);
+    // Load texture
+    Texture texture("texture.jpg");
 
+    // Set up the cube mesh
+    Mesh cube = SetupCube();
 
+    // Transformation matrices
+    glm::mat4 model = glm::mat4(1.0f);
+    glm::mat4 view = glm::lookAt(glm::vec3(3.0f, 3.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 projection = glm::perspective(glm::radians(45.f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
 
-    // Render loop
+    // Main loop
     while (!glfwWindowShouldClose(window)) {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        float time = (float)glfwGetTime();
 
-        float angle =  0.0f; 
-        modelMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f)); // Rotate around Y-axis
-        // Input
-        if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-            glfwSetWindowShouldClose(window, true);
+        model = glm::rotate(glm::mat4(1.0f), glm::radians(45.0f), glm::vec3(0.5f, 1.0f, 0.0f));  // Rotate cube
 
-        // Clear the screen
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        glm::mat4 view = glm::lookAt(glm::vec3(3.0f, 1.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        glm::mat4 projection = glm::perspective(glm::radians(60.0f), 1280.0f / 720.0f, 0.1f, 100.0f);
-
+        // Use shader and set uniform values
         shader.Bind();
-        shader.SetUniform("model", modelMatrix);
-        shader.SetUniform("view", view);
-        shader.SetUniform("projection", projection);
+        shader.SetUniform("u_Model", model);
+        shader.SetUniform("u_View", view);
+        shader.SetUniform("u_Projection", projection);
 
-        glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        // Bind texture
+        texture.Bind(0);
+        shader.SetUniform("u_Texture", 0); // Set texture unit
 
+        // Render the cube mesh
+        cube.Draw(shader);
 
-        // Swap buffers and poll events
+        // Swap buffers and check for events
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-
-    // Cleanup
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
 
     glfwTerminate();
     return 0;

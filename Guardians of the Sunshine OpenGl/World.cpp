@@ -53,3 +53,8 @@ void World::Render() {
         // entity->Render();
     }
 }
+
+std::vector<Entity*> World::GetAllEntities()
+{
+    return entities;
+}

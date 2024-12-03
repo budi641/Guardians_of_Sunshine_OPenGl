@@ -2,10 +2,11 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <glad/glad.h>  // OpenGL loader
+#include <glad/glad.h>  
 
 Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource) {
-    programID = CreateProgram(vertexSource, fragmentSource);
+    programID = CreateProgram("Vertex_Shader.vert", "Fragment_Shader.frag");
+
 }
 
 Shader::~Shader() {
