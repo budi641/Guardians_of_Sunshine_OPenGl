@@ -9,6 +9,7 @@
 #include "Shader.h"
 #include "Texture.h"
 #include "Mesh.h"
+#include "World.h"
 
 // Window dimensions
 const GLuint WIDTH = 1280, HEIGHT = 720;
@@ -119,10 +120,44 @@ int main() {
     // Set up the cube mesh
     Mesh cube = SetupCube();
 
+    World world;
+
+    Entity cube1("cube1");
+
+    Entity cube2("cube2");
+
+    Entity cube3("cube3");
+
+
+    world.AddEntity(&cube1);
+
+    world.AddEntity(&cube2);
+
+    world.AddEntity(&cube3);
+
+    cube1.AddChild(&cube2);
+
+
+
+
+
     // Transformation matrices
-    glm::mat4 model = glm::mat4(1.0f);
-    glm::mat4 view = glm::lookAt(glm::vec3(3.0f, 3.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 view = glm::lookAt(glm::vec3(5.0f, 3.0f, 5.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glm::mat4 projection = glm::perspective(glm::radians(45.f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
+
+
+    cube1.GetTransformComponent()->SetPosition(glm::vec3(3.0f, -1.0f, 0.0f));
+
+    cube1.GetTransformComponent()->SetScale(glm::vec3(1,3,1));
+
+    cube1.GetTransformComponent()->SetRotation(glm::vec3(0,45,0));
+
+    cube2.GetTransformComponent()->SetPosition(glm::vec3(2.0f, 0.0f, 0.0f));
+
+    cube2.GetTransformComponent()->SetScale(glm::vec3(0.3f, 0.3f, 0.3f));
+
+    cube3.GetTransformComponent()->SetScale(glm::vec3(1, 2, 1));
+
 
     // Main loop
     while (!glfwWindowShouldClose(window)) {
@@ -130,11 +165,11 @@ int main() {
 
         float time = (float)glfwGetTime();
 
-        model = glm::rotate(glm::mat4(1.0f), glm::radians(time*45.0f), glm::vec3(0.0f, 1.0f, 0.0f));  // Rotate cube
+        view = glm::rotate(view, time * 0.001f, glm::vec3(0, 1, 0));
 
         // Use shader and set uniform values
         shader.Bind();
-        shader.SetUniform("u_Model", model);
+
         shader.SetUniform("u_View", view);
         shader.SetUniform("u_Projection", projection);
 
@@ -142,8 +177,12 @@ int main() {
         texture.Bind(0);
         shader.SetUniform("u_Texture", 0); // Set texture unit
 
-        // Render the cube mesh
-        cube.Draw(shader);
+        for (auto entity : world.GetAllEntities())
+        {
+            shader.SetUniform("u_Model", world.GetWorldMatrix(entity));
+            cube.Draw(shader);
+
+        }
 
         // Swap buffers and check for events
         glfwSwapBuffers(window);
