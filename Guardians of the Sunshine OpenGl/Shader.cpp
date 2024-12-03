@@ -5,8 +5,7 @@
 #include <glad/glad.h>  
 
 Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource) {
-    programID = CreateProgram("Vertex_Shader.vert", "Fragment_Shader.frag");
-
+    programID = CreateProgram(vertexSource, fragmentSource);
 }
 
 Shader::~Shader() {

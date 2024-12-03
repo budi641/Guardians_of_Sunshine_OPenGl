@@ -11,7 +11,7 @@
 #include "Mesh.h"
 
 // Window dimensions
-const GLuint WIDTH = 800, HEIGHT = 600;
+const GLuint WIDTH = 1920, HEIGHT = 1080;
 
 // Set up OpenGL context and load shaders
 GLFWwindow* InitOpenGL() {
@@ -24,7 +24,7 @@ GLFWwindow* InitOpenGL() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Textured Cube", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Test", nullptr, nullptr);
     if (!window) {
         std::cerr << "Failed to create GLFW window!" << std::endl;
         glfwTerminate();
@@ -130,7 +130,7 @@ int main() {
 
         float time = (float)glfwGetTime();
 
-        model = glm::rotate(glm::mat4(1.0f), glm::radians(45.0f), glm::vec3(0.5f, 1.0f, 0.0f));  // Rotate cube
+        model = glm::rotate(glm::mat4(1.0f), glm::radians(time*45.0f), glm::vec3(0.0f, 1.0f, 0.0f));  // Rotate cube
 
         // Use shader and set uniform values
         shader.Bind();
