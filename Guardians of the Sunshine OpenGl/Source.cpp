@@ -11,7 +11,7 @@
 #include "Mesh.h"
 
 // Window dimensions
-const GLuint WIDTH = 1920, HEIGHT = 1080;
+const GLuint WIDTH = 1280, HEIGHT = 720;
 
 // Set up OpenGL context and load shaders
 GLFWwindow* InitOpenGL() {
