@@ -123,4 +123,7 @@
       <Filter>Engine\Core\Components\Head Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="wolrd.json" />
+  </ItemGroup>
 </Project>

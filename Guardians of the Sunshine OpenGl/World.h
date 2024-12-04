@@ -11,14 +11,15 @@ private:
 public:
     World() = default;
     ~World();
-
+    const std::vector<Entity*>& GetEntities() const { return entities; }
     // Add and remove entities from the world
     void AddEntity(Entity* entity);
     void RemoveEntity(Entity* entity);
 
     // Calculate the world transformation matrix of an entity recursively
     glm::mat4 GetWorldMatrix(Entity* entity) const;
-
+    void Serialize(nlohmann::json& jsonData) const;
+    void Deserialize(const std::string& filepath);
     // Update all entities in the world (called once per frame)
     void Update(float deltaTime);
 

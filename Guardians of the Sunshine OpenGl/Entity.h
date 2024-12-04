@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "TransformComponent.h"
+#include <json/json.h>
 
 class Component;
 
@@ -36,7 +37,8 @@ public:
 
     // Update all components
     void Update(float deltaTime);
-
+    void Serialize(nlohmann::json& jsonData) const;
+    void Deserialize(const nlohmann::json& jsonData);
     TransformComponent* GetTransformComponent();
 
     std::string GetName();
