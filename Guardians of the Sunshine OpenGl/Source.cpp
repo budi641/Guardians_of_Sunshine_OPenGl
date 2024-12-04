@@ -10,6 +10,7 @@
 #include "Texture.h"
 #include "Mesh.h"
 #include "World.h"
+#include<json/json.h>
 
 // Window dimensions
 const GLuint WIDTH = 1280, HEIGHT = 720;
@@ -122,21 +123,8 @@ int main() {
 
     World world;
 
-    Entity cube1("cube1");
 
-    Entity cube2("cube2");
-
-    Entity floor("floor");
-
-
-    world.AddEntity(&cube1);
-
-    world.AddEntity(&cube2);
-
-    world.AddEntity(&floor);
-
-    cube1.AddChild(&cube2);
-
+    world.Deserialize("wolrd.json");
 
 
 
@@ -146,21 +134,6 @@ int main() {
     glm::mat4 projection = glm::perspective(glm::radians(45.f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
 
 
-    cube1.GetTransformComponent()->SetPosition(glm::vec3(3.0f, -1.0f, 0.0f));
-
-    cube1.GetTransformComponent()->SetScale(glm::vec3(1,1,1));
-
-    cube1.GetTransformComponent()->SetRotation(glm::vec3(0,45,0));
-
-    cube2.GetTransformComponent()->SetPosition(glm::vec3(2.0f, 0.0f, 0.0f));
-
-    cube2.GetTransformComponent()->SetScale(glm::vec3(0.3f, 0.3f, 0.3f));
-
-    floor.GetTransformComponent()->SetScale(glm::vec3(50, 50, 0.2));
-
-    floor.GetTransformComponent()->SetPosition(glm::vec3(0, -2, 0));
-
-    floor.GetTransformComponent()->SetRotation(glm::vec3(90, 0, 0));
 
 
     // Main loop

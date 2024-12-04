@@ -8,7 +8,7 @@
           "type": "TransformComponent",
           "position": [ 0, 0, 0 ],
           "rotation": [ 0, 0, 0 ],
-          "scale": [ 1, 1, 1 ]
+          "scale": [ 1, 2, 1 ]
         }
       ],
       "children": [
@@ -20,13 +20,13 @@
               "type": "TransformComponent",
               "position": [ 1, 0, 0 ],
               "rotation": [ 0, 0, 0 ],
-              "scale": [ 0.5, 0.5, 0.5 ]
+              "scale": [ 0.5, 0.25, 0.5 ]
             }
           ]
         },
         {
           "name": "Child Entity 2",
-          "enabled": false,
+          "enabled": true,
           "components": [
             {
               "type": "TransformComponent",

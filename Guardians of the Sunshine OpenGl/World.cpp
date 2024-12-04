@@ -55,6 +55,10 @@ void World::Serialize(nlohmann::json& jsonData) const {
         Entity* entity = new Entity(entityJson.value("name", "Unnamed Entity")); // Ensure name is passed
         entity->Deserialize(entityJson); // Deserialize the entity and its components/children
         AddEntity(entity); // Add the deserialized entity to the world
+        for (auto child : entity->GetChildren())
+        {
+            AddEntity(child);
+        }
     }
 }
 
