@@ -24,4 +24,6 @@ public:
 
     // Render all entities in the world (called once per frame)
     void Render();
+
+    std::vector<Entity*> GetAllEntities();
 };

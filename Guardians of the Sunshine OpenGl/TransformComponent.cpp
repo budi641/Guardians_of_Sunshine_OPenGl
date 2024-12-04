@@ -20,10 +20,10 @@ void TransformComponent::Update(float deltaTime)
 }
 
 glm::mat4 TransformComponent::GetTransformMatrix() const {
-    glm::mat4 transform = glm::translate(glm::mat4(1.0f), position);
-    transform *= glm::mat4_cast(rotation);
-    transform = glm::scale(transform, scale);
-    return glm::transpose(transform);
+
+    return glm::translate(glm::mat4(1.0f), position) *
+        glm::mat4_cast(rotation) *
+        glm::scale(glm::mat4(1.0f), scale);
 }
 
 

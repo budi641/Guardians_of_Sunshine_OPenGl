@@ -46,6 +46,15 @@
     <Filter Include="Engine\Core\Components\Source">
       <UniqueIdentifier>{34e316be-8af9-4f58-90cf-54d49a8d7302}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{9fefda4f-a6f1-4beb-ae3e-7043aadd0d1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Shaders">
+      <UniqueIdentifier>{7ecfb9a1-6ee1-4a45-b2a2-b72eae6cc6e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Textures">
+      <UniqueIdentifier>{dfe8243e-8cf9-4af1-b67f-9289ede94e57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -87,6 +96,12 @@
     <ClCompile Include="TransformComponent.cpp">
       <Filter>Engine\Core\Components\Source</Filter>
     </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>Engine\Rendering\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Engine\Rendering\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -122,5 +137,27 @@
     <ClInclude Include="TransformComponent.h">
       <Filter>Engine\Core\Components\Head Files</Filter>
     </ClInclude>
+    <ClInclude Include="RenderManager.h">
+      <Filter>Engine\Rendering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Engine\Rendering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Engine\Rendering\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Vertex_Shader.vert">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Fragment_Shader.frag">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="texture.jpg">
+      <Filter>Assets\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>
