@@ -59,3 +59,7 @@ Guardians of the Sunshine OpenGl/Guardian.4827888f/x64/Debug
 *.vsidx
 /Guardians of the Sunshine OpenGl/.vs
 *.exe
+*.pdb
+*.exe
+*.pdb
+*.opendb
