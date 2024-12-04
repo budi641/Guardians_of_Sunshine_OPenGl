@@ -24,8 +24,27 @@ Entity::~Entity()
     }
 
 }
+void Entity::Serialize(nlohmann::json& jsonData) const {
+    jsonData["name"] = name;
+    jsonData["enabled"] = isEnabled;
 
-void Entity::AddComponent(Component* component)
+    // Serialize components
+    jsonData["components"] = nlohmann::json::array();
+    for (const Component* component : components) {
+        nlohmann::json componentData;
+        component->Serialize(componentData);  // Assuming components have Serialize function
+        jsonData["components"].push_back(componentData);
+    }
+
+    // Serialize children
+    jsonData["children"] = nlohmann::json::array();
+    for (const Entity* child : children) {
+        nlohmann::json childData;
+        child->Serialize(childData);  // Recursively serialize child entities
+        jsonData["children"].push_back(childData);
+    }
+}
+void Entity::AddComponent(Component * component)
 {
     if (component != nullptr)
     {
@@ -34,7 +53,37 @@ void Entity::AddComponent(Component* component)
         component->SetParentEntity(this);
     }
 }
+void Entity::Deserialize(const nlohmann::json& jsonData) {
+    // Set the name from the JSON data, with a fallback to "Unnamed Entity"
+    name = jsonData.value("name", "Unnamed Entity");
 
+    // Deserialize the components
+    if (jsonData.contains("components")) {
+        for (const auto& componentJson : jsonData["components"]) {
+            std::string type = componentJson.value("type", "");
+
+            // Handle specific components, like TransformComponent
+            if (type == "TransformComponent") {
+                if (!transform) {
+                    transform = new TransformComponent();
+                    AddComponent(transform);
+                }
+                transform->Deserialize(componentJson);  // Deserialize the specific component
+            }
+            // Add more components here if necessary (for example, RenderComponent, PhysicsComponent, etc.)
+        }
+    }
+
+    // Deserialize children entities
+    if (jsonData.contains("children")) {
+        for (const auto& childJson : jsonData["children"]) {
+            // Create a new child entity and recursively deserialize it
+            Entity* child = new Entity(childJson.value("name", "Unnamed Entity")); // Pass name to constructor
+            child->Deserialize(childJson); // Deserialize the child entity
+            AddChild(child); // Add child to this entity
+        }
+    }
+}
 void Entity::RemoveComponent(Component* component)
 {
     auto it = std::find(components.begin(), components.end(), component);

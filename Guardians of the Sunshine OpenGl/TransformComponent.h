@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
-#include <glm/glm.hpp>  
+#include <glm/glm.hpp>
+#include <json/json.h>
 #include <glm/gtc/matrix_transform.hpp>  
 #include <glm/gtc/quaternion.hpp>  
 
@@ -28,7 +29,12 @@ public:
     glm::vec3 GetPosition() const;
     glm::vec3 GetRotation() const;
     glm::vec3 GetScale() const;
-
+    void Serialize(nlohmann::json& jsonData) const override {
+        jsonData["type"] = "TransformComponent";
+        jsonData["position"] = { position.x, position.y, position.z };
+        jsonData["rotation"] = { rotation.x, rotation.y, rotation.z };
+        jsonData["scale"] = { scale.x, scale.y, scale.z };
+    }    void Deserialize(const nlohmann::json& jsonData) override;
 
 };
 

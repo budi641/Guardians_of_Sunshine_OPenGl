@@ -1,0 +1,42 @@
+{
+  "entities": [
+    {
+      "name": "Parent Entity",
+      "enabled": true,
+      "components": [
+        {
+          "type": "TransformComponent",
+          "position": [ 0, 0, 0 ],
+          "rotation": [ 0, 0, 0 ],
+          "scale": [ 1, 1, 1 ]
+        }
+      ],
+      "children": [
+        {
+          "name": "Child Entity 1",
+          "enabled": true,
+          "components": [
+            {
+              "type": "TransformComponent",
+              "position": [ 1, 0, 0 ],
+              "rotation": [ 0, 0, 0 ],
+              "scale": [ 0.5, 0.5, 0.5 ]
+            }
+          ]
+        },
+        {
+          "name": "Child Entity 2",
+          "enabled": false,
+          "components": [
+            {
+              "type": "TransformComponent",
+              "position": [ -1, 0, 0 ],
+              "rotation": [ 0, 0, 0 ],
+              "scale": [ 0.5, 0.5, 0.5 ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

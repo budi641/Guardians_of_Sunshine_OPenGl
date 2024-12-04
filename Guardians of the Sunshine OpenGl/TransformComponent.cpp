@@ -3,6 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>  // For matrix transformations
 #include <glm/gtc/quaternion.hpp>        // For quaternion math
 #include <iostream>
+#include <json/json.h>
 
 TransformComponent::TransformComponent(const glm::vec3& initPosition,
     const glm::vec3& initRotation,  // Euler angles in degrees
@@ -27,6 +28,32 @@ glm::mat4 TransformComponent::GetTransformMatrix() const {
 }
 
 
+
+void TransformComponent::Deserialize(const nlohmann::json& jsonData) {
+    if (jsonData.contains("position")) {
+        position = glm::vec3(
+            jsonData["position"][0],
+            jsonData["position"][1],
+            jsonData["position"][2]
+        );
+    }
+
+    if (jsonData.contains("rotation")) {
+        rotation = glm::quat(glm::radians(glm::vec3(
+            jsonData["rotation"][0],
+            jsonData["rotation"][1],
+            jsonData["rotation"][2]
+        )));
+    }
+
+    if (jsonData.contains("scale")) {
+        scale = glm::vec3(
+            jsonData["scale"][0],
+            jsonData["scale"][1],
+            jsonData["scale"][2]
+        );
+    }
+}
 
 
 void TransformComponent::SetPosition(const glm::vec3& newPosition)
