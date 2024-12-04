@@ -89,7 +89,20 @@ void World::Update(float deltaTime) {
         entity->Update(deltaTime);
     }
 }
-
+void World::SERIALIZE(const std::string& name)
+{
+    nlohmann::json worldJson;
+    this->Serialize(worldJson);
+    std::ofstream outFile(name);
+    if (outFile.is_open()) {
+        outFile << worldJson.dump(4);  // Write with pretty formatting
+        outFile.close();
+        std::cout << "World serialized successfully to " + name + ".json" << std::endl;
+    }
+    else {
+        std::cout << "Error opening file for writing!" << std::endl;
+    }
+}
 void World::Render() {
     // Iterate through all entities and render them
     for (auto entity : entities) {
