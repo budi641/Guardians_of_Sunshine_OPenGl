@@ -22,6 +22,7 @@ public:
     void Deserialize(const std::string& filepath);
     // Update all entities in the world (called once per frame)
     void Update(float deltaTime);
+    void SERIALIZE(const std::string& name);
 
     // Render all entities in the world (called once per frame)
     void Render();
