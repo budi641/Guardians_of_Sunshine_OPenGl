@@ -126,14 +126,14 @@ int main() {
 
     Entity cube2("cube2");
 
-    Entity cube3("cube3");
+    Entity floor("floor");
 
 
     world.AddEntity(&cube1);
 
     world.AddEntity(&cube2);
 
-    world.AddEntity(&cube3);
+    world.AddEntity(&floor);
 
     cube1.AddChild(&cube2);
 
@@ -142,13 +142,13 @@ int main() {
 
 
     // Transformation matrices
-    glm::mat4 view = glm::lookAt(glm::vec3(5.0f, 3.0f, 5.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 view = glm::lookAt(glm::vec3(7.0f, 5.0f, 7.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glm::mat4 projection = glm::perspective(glm::radians(45.f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
 
 
     cube1.GetTransformComponent()->SetPosition(glm::vec3(3.0f, -1.0f, 0.0f));
 
-    cube1.GetTransformComponent()->SetScale(glm::vec3(1,3,1));
+    cube1.GetTransformComponent()->SetScale(glm::vec3(1,1,1));
 
     cube1.GetTransformComponent()->SetRotation(glm::vec3(0,45,0));
 
@@ -156,7 +156,11 @@ int main() {
 
     cube2.GetTransformComponent()->SetScale(glm::vec3(0.3f, 0.3f, 0.3f));
 
-    cube3.GetTransformComponent()->SetScale(glm::vec3(1, 2, 1));
+    floor.GetTransformComponent()->SetScale(glm::vec3(50, 50, 0.2));
+
+    floor.GetTransformComponent()->SetPosition(glm::vec3(0, -2, 0));
+
+    floor.GetTransformComponent()->SetRotation(glm::vec3(90, 0, 0));
 
 
     // Main loop
