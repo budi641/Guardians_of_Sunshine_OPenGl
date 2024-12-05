@@ -11,6 +11,7 @@
 #include "Mesh.h"
 #include "World.h"
 #include<json/json.h>
+#include "Light.h"
 
 // Window dimensions
 const GLuint WIDTH = 1280, HEIGHT = 720;
@@ -52,7 +53,7 @@ Mesh SetupCube() {
     // Vertices for a simple cube
     std::vector<Vertex> vertices = {
         {{-0.5f, -0.5f, -0.5f}, {0.0f, 0.0f}},  // 0
-        {{ 0.5f, -0.5f, -0.5f}, {1.0f, 0.0f}},  // 1
+        {{ 0.5f, -0.5f, -0.5f}, {.0f, 0.0f}},  // 1
         {{ 0.5f,  0.5f, -0.5f}, {1.0f, 1.0f}},  // 2
         {{-0.5f,  0.5f, -0.5f}, {0.0f, 1.0f}},  // 3
         {{-0.5f, -0.5f,  0.5f}, {0.0f, 0.0f}},  // 4
@@ -73,37 +74,6 @@ Mesh SetupCube() {
     return Mesh(vertices, indices);
 }
 
-const char* vertexShaderSource = R"(
-#version 330 core
-layout(location = 0) in vec3 a_Position;
-layout(location = 1) in vec2 a_TexCoord;
-
-out vec2 TexCoord;
-
-uniform mat4 u_Model;
-uniform mat4 u_View;
-uniform mat4 u_Projection;
-
-void main()
-{
-    TexCoord = a_TexCoord;
-    gl_Position = u_Projection * u_View * u_Model * vec4(a_Position, 1.0);
-}
-)";
-
-
-const char* fragmentShaderSource = R"(
-#version 330 core
-in vec2 TexCoord;
-out vec4 FragColor;
-
-uniform sampler2D u_Texture;
-
-void main()
-{
-    FragColor = texture(u_Texture, TexCoord);
-}
-)";
 
 // Main function
 int main() {
@@ -113,7 +83,7 @@ int main() {
 
 
     // Create and load shaders
-    Shader shader(vertexShaderSource, fragmentShaderSource);
+    Shader shader("Vertex_Shader.glsl", "Fragment_Shader.glsl");
 
     // Load texture
     Texture texture("texture.jpg");
@@ -136,19 +106,24 @@ int main() {
 
 
 
+
     // Main loop
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         float time = (float)glfwGetTime();
 
-        view = glm::rotate(view, time * 0.001f, glm::vec3(0, 1, 0));
+        //view = glm::rotate(view, time * 0.001f, glm::vec3(0, 1, 0));
 
         // Use shader and set uniform values
+
+        world.GetEntities()[0]->GetTransformComponent()->SetRotation(glm::vec3(0, time * 45, 0));
+
         shader.Bind();
 
         shader.SetUniform("u_View", view);
         shader.SetUniform("u_Projection", projection);
+
 
         // Bind texture
         texture.Bind(0);
@@ -157,7 +132,7 @@ int main() {
         for (auto entity : world.GetAllEntities())
         {
             shader.SetUniform("u_Model", world.GetWorldMatrix(entity));
-            cube.Draw(shader);
+            cube.Draw();
 
         }
 

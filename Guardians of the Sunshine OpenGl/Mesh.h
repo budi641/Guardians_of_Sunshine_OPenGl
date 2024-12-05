@@ -17,5 +17,5 @@ public:
 
     void Bind() const;     // Binds the VAO
     void Unbind() const;   // Unbinds the VAO
-    void Draw(const Shader& shader) const;     // Issues the draw call
+    void Draw() const;     // Issues the draw call
 };

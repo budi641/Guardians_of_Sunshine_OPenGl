@@ -26,4 +26,5 @@ public:
 private:
     unsigned int CompileShader(unsigned int type, const std::string& source);
     unsigned int CreateProgram(const std::string& vertexSource, const std::string& fragmentSource);
+    std::string GetFileContents(const std::string& filename);
 };
