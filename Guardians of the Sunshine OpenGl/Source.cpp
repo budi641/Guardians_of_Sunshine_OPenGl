@@ -11,6 +11,7 @@
 #include "World.h"
 #include "Light.h"
 #include "Material.h"
+#include "Camera.h"
 
 
 const GLuint WIDTH = 1280, HEIGHT = 720;
@@ -48,68 +49,105 @@ GLFWwindow* InitOpenGL() {
 }
 
 std::vector<Vertex> vertices = {
-    // Positions          Colors              Normals         Texture Coords
-    {{-0.5f, -0.5f, -0.5f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f, -1.0f}, {0.0f, 0.0f}},
-    {{ 0.5f, -0.5f, -0.5f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f, -1.0f}, {1.0f, 0.0f}},
-    {{ 0.5f,  0.5f, -0.5f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f, -1.0f}, {1.0f, 1.0f}},
-    {{-0.5f,  0.5f, -0.5f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f, -1.0f}, {0.0f, 1.0f}},
-    {{-0.5f, -0.5f,  0.5f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f,  1.0f}, {0.0f, 0.0f}},
-    {{ 0.5f, -0.5f,  0.5f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f,  1.0f}, {1.0f, 0.0f}},
-    {{ 0.5f,  0.5f,  0.5f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f,  1.0f}, {1.0f, 1.0f}},
-    {{-0.5f,  0.5f,  0.5f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f,  1.0f}, {0.0f, 1.0f}}
+    // Front face
+    {{-0.5f, -0.5f,  0.5f}, {}, {0.0f,  0.0f,  1.0f}, {0.0f, 0.0f}}, // Bottom-left
+    {{ 0.5f, -0.5f,  0.5f}, {}, {0.0f,  0.0f,  1.0f}, {1.0f, 0.0f}}, // Bottom-right
+    {{ 0.5f,  0.5f,  0.5f}, {}, {0.0f,  0.0f,  1.0f}, {1.0f, 1.0f}}, // Top-right
+    {{-0.5f,  0.5f,  0.5f}, {}, {0.0f,  0.0f,  1.0f}, {0.0f, 1.0f}}, // Top-left
+
+    // Back face
+    {{ 0.5f, -0.5f, -0.5f}, {}, {0.0f,  0.0f, -1.0f}, {0.0f, 0.0f}}, // Bottom-left
+    {{-0.5f, -0.5f, -0.5f}, {}, {0.0f,  0.0f, -1.0f}, {1.0f, 0.0f}}, // Bottom-right
+    {{-0.5f,  0.5f, -0.5f}, {}, {0.0f,  0.0f, -1.0f}, {1.0f, 1.0f}}, // Top-right
+    {{ 0.5f,  0.5f, -0.5f}, {}, {0.0f,  0.0f, -1.0f}, {0.0f, 1.0f}}, // Top-left
+
+    // Left face
+    {{-0.5f, -0.5f, -0.5f}, {}, {-1.0f,  0.0f,  0.0f}, {0.0f, 0.0f}}, // Bottom-left
+    {{-0.5f, -0.5f,  0.5f}, {}, {-1.0f,  0.0f,  0.0f}, {1.0f, 0.0f}}, // Bottom-right
+    {{-0.5f,  0.5f,  0.5f}, {}, {-1.0f,  0.0f,  0.0f}, {1.0f, 1.0f}}, // Top-right
+    {{-0.5f,  0.5f, -0.5f}, {}, {-1.0f,  0.0f,  0.0f}, {0.0f, 1.0f}}, // Top-left
+
+    // Right face
+    {{ 0.5f, -0.5f,  0.5f}, {}, {1.0f,  0.0f,  0.0f}, {0.0f, 0.0f}}, // Bottom-left
+    {{ 0.5f, -0.5f, -0.5f}, {}, {1.0f,  0.0f,  0.0f}, {1.0f, 0.0f}}, // Bottom-right
+    {{ 0.5f,  0.5f, -0.5f}, {}, {1.0f,  0.0f,  0.0f}, {1.0f, 1.0f}}, // Top-right
+    {{ 0.5f,  0.5f,  0.5f}, {}, {1.0f,  0.0f,  0.0f}, {0.0f, 1.0f}}, // Top-left
+
+    // Top face
+    {{-0.5f,  0.5f,  0.5f}, {}, {0.0f,  1.0f,  0.0f}, {0.0f, 0.0f}}, // Bottom-left
+    {{ 0.5f,  0.5f,  0.5f}, {}, {0.0f,  1.0f,  0.0f}, {1.0f, 0.0f}}, // Bottom-right
+    {{ 0.5f,  0.5f, -0.5f}, {}, {0.0f,  1.0f,  0.0f}, {1.0f, 1.0f}}, // Top-right
+    {{-0.5f,  0.5f, -0.5f}, {}, {0.0f,  1.0f,  0.0f}, {0.0f, 1.0f}}, // Top-left
+
+    // Bottom face
+    {{-0.5f, -0.5f, -0.5f}, {}, {0.0f, -1.0f,  0.0f}, {0.0f, 0.0f}}, // Bottom-left
+    {{ 0.5f, -0.5f, -0.5f}, {}, {0.0f, -1.0f,  0.0f}, {1.0f, 0.0f}}, // Bottom-right
+    {{ 0.5f, -0.5f,  0.5f}, {}, {0.0f, -1.0f,  0.0f}, {1.0f, 1.0f}}, // Top-right
+    {{-0.5f, -0.5f,  0.5f}, {}, {0.0f, -1.0f,  0.0f}, {0.0f, 1.0f}}, // Top-left
 };
 
-// Define the indices for the cube
 std::vector<unsigned int> indices = {
-    0, 1, 2, 2, 3, 0,  // Front face
-    4, 5, 6, 6, 7, 4,  // Back face
-    0, 1, 5, 5, 4, 0,  // Bottom face
-    3, 2, 6, 6, 7, 3,  // Top face
-    0, 3, 7, 7, 4, 0,  // Left face
-    1, 2, 6, 6, 5, 1   // Right face
+    0, 1, 2, 2, 3, 0,       // Front face
+    4, 5, 6, 6, 7, 4,       // Back face
+    8, 9, 10, 10, 11, 8,    // Left face
+    12, 13, 14, 14, 15, 12, // Right face
+    16, 17, 18, 18, 19, 16, // Top face
+    20, 21, 22, 22, 23, 20  // Bottom face
 };
+
 
 
 int main() {
     GLFWwindow* window = InitOpenGL();
     if (!window) return -1;
+
     Shader shader("Vertex_Shader.glsl", "Fragment_Shader.glsl");
 
     World world;
-    //world.Deserialize("world.json");
+    //world.Deserialize("world-Copy.json");
 
     Entity me("name");
+    Entity floor("floor");
+
+    world.AddEntity(&floor);
+
+    floor.GetTransformComponent()->SetScale(glm::vec3(10, 0.1, 10));
+    floor.GetTransformComponent()->SetPosition(glm::vec3(0, -1, 0));
 
     world.AddEntity(&me);
 
-    Material material("container2.png", "container2_specular.png", glm::vec3(0.1f), glm::vec3(0.8f), glm::vec3(1.0f), 32.0f);
-
+    Material material("container2.png", "container2_specular.png", glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.3f);
     Mesh cube(vertices, indices, &material);
 
-    glm::mat4 view = glm::lookAt(glm::vec3(3.0f, 4.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-    glm::mat4 projection = glm::perspective(glm::radians(45.f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
+    // Create the camera
+    Camera camera(CameraType::Perspective,WIDTH, HEIGHT);  
+
+    camera.SetPosition(glm::vec3(1, 3, 5));
+
+    camera.SetPitch(-45);
+
+
+
+
 
     Light light(glm::vec3(1.0f, 1.0f, 1.0f), 5.0f, glm::vec3(-3.0f, -3.0f, 0.0f));
 
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        // Rotate the entity over time (you can adjust this as needed)
         float time = (float)glfwGetTime();
-        world.GetEntities()[0]->GetTransformComponent()->SetRotation(glm::vec3(0, time *45, 0));
+        world.GetEntities()[1]->GetTransformComponent()->SetRotation(glm::vec3(0, time * 45, 0));
 
         shader.Bind();
 
+        // Update view and projection matrices based on the camera
+        camera.UpdateProjection(shader); 
 
-        glm::vec3 viewPos = glm::vec3(3.0f, 4.0f, 3.0f); 
-
-
-        shader.SetUniform("view", view);
-        shader.SetUniform("projection", projection);
 
 
         for (auto entity : world.GetAllEntities()) {
-            cube.Draw(shader, world.GetWorldMatrix(entity), viewPos, light);
-
+            cube.Draw(shader, world.GetWorldMatrix(entity), camera.GetPosition(), light);
         }
 
         glfwSwapBuffers(window);

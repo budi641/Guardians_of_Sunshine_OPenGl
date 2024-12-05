@@ -33,7 +33,7 @@ void main()
     // Diffuse
     vec3 norm = normalize(Normal);
     vec3 lightDir = normalize(-light.direction); // Assuming light.direction is from light to object
-    float diff = max(dot(norm, lightDir), 0.0);
+    float diff = max(dot(norm, lightDir), 0.3);
     vec3 diffuse = material.diffuse * diff * light.color * light.intensity;
 
     // Specular
