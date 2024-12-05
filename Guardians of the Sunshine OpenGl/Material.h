@@ -1,11 +1,10 @@
-// material.h
 #pragma once
 #include <glm/glm.hpp>
 #include <string>
 #include "Texture.h"
 
-class Material {
-public:
+struct Material{
+
     glm::vec3 ambient;   // Ambient color
     glm::vec3 diffuse;   // Diffuse color
     glm::vec3 specular;  // Specular color

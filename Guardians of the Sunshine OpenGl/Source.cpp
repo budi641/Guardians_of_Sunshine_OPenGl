@@ -103,51 +103,6 @@ int main() {
     glm::mat4 view = glm::lookAt(glm::vec3(7.0f, 5.0f, 7.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glm::mat4 projection = glm::perspective(glm::radians(45.f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
 
-    // Define a light
-    Light directionalLight(LightType::Directional, glm::vec3(1.0f, 1.0f, 1.0f), 2.0f, {}, glm::vec3(-1.0f, -1.0f, 0.0f));
-
-    GLuint depthMapFBO;
-    GLuint depthMap;
-
-    glGenFramebuffers(1, &depthMapFBO);
-
-    // Generate depth texture
-    glGenTextures(1, &depthMap);
-    glBindTexture(GL_TEXTURE_2D, depthMap);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, 1024, 1024, 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-    // Attach the depth texture to the framebuffer
-    glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
-    glDrawBuffer(GL_NONE);
-    glReadBuffer(GL_NONE);
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-
-
-    // Setup light's view and projection matrix
-    glm::mat4 lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, 1.0f, 20.0f); // Orthographic projection for directional light
-    glm::mat4 lightView = glm::lookAt(glm::vec3(10.0f, 10.0f, 10.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-    glm::mat4 lightSpaceMatrix = lightProjection * lightView;
-
-    // Bind depth framebuffer and render the scene
-    glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
-    glClear(GL_DEPTH_BUFFER_BIT);
-    shader.Bind();
-    shader.SetUniform("u_LightSpaceMatrix", lightSpaceMatrix);
-
-    // Draw the scene (e.g., objects in the scene)
-    for (auto entity : world.GetAllEntities()) {
-        shader.SetUniform("u_Model", world.GetWorldMatrix(entity));
-        cube.Draw();  // or other meshes
-    }
-
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
 
 
 
@@ -166,16 +121,9 @@ int main() {
 
         shader.Bind();
 
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, depthMap);
-        shader.SetUniform("u_DepthMap", 1);
-
         shader.SetUniform("u_View", view);
         shader.SetUniform("u_Projection", projection);
-        shader.SetUniform("u_Light.type", static_cast<int>(directionalLight.type));
-        shader.SetUniform("u_Light.color", directionalLight.color);
-        shader.SetUniform("u_Light.intensity", directionalLight.intensity);
-        shader.SetUniform("u_Light.direction", directionalLight.direction);
+
 
         // Bind texture
         texture.Bind(0);
