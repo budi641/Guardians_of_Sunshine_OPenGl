@@ -153,7 +153,6 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="ForwardRenderer.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -161,7 +160,6 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -170,22 +168,23 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="ForwardRenderer.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skybox.h" />
-    <ClInclude Include="Texture.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Fragment_Shader.frag" />
-    <None Include="Vertex_Shader.vert" />
+    <None Include="Fragment_Shader.glsl" />
+    <None Include="Vertex_Shader.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="container2.png" />
+    <Image Include="container2_specular.png" />
     <Image Include="texture.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

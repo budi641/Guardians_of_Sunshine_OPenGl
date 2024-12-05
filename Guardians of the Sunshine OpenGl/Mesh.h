@@ -1,21 +1,26 @@
 #pragma once
-#include "Vertex.h"
-#include <glad/glad.h>
 #include <vector>
-#include "Shader.h"
+#include <glad/glad.h>
+#include <glm/glm.hpp>
+#include "Material.h"
+#include "Vertex.h"  
+#include "Shader.h"  
+#include "Light.h"
 
 class Mesh {
-private:
-    GLuint vao;       // Vertex Array Object
-    GLuint vbo;       // Vertex Buffer Object
-    GLuint ebo;       // Element Buffer Object
-    size_t indexCount;
-
 public:
-    Mesh(const std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices);
-    ~Mesh();
+   
+    std::vector<Vertex> vertices; 
+    std::vector<unsigned int> indices;  
+    Material* material;  
 
-    void Bind() const;     // Binds the VAO
-    void Unbind() const;   // Unbinds the VAO
-    void Draw() const;     // Issues the draw call
+    GLuint VAO, VBO, EBO;
+
+    Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* material);
+
+    void Draw(Shader& shader, const glm::mat4& modelMatrix, const glm::vec3& viewPos, const Light& light);
+
+private:
+
+    void setupMesh();
 };

@@ -78,9 +78,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Engine\Rendering\Source</Filter>
     </ClCompile>
-    <ClCompile Include="ForwardRenderer.cpp">
-      <Filter>Engine\Rendering\Source</Filter>
-    </ClCompile>
     <ClCompile Include="Material.cpp">
       <Filter>Engine\Rendering\Source</Filter>
     </ClCompile>
@@ -99,9 +96,6 @@
     <ClCompile Include="RenderManager.cpp">
       <Filter>Engine\Rendering\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Engine\Rendering\Source</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -117,9 +111,6 @@
       <Filter>Engine\Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Engine\Rendering\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ForwardRenderer.h">
       <Filter>Engine\Rendering\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Material.h">
@@ -143,15 +134,15 @@
     <ClInclude Include="Vertex.h">
       <Filter>Engine\Rendering\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
+    <ClInclude Include="Light.h">
       <Filter>Engine\Rendering\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Vertex_Shader.vert">
+    <None Include="Vertex_Shader.glsl">
       <Filter>Assets\Shaders</Filter>
     </None>
-    <None Include="Fragment_Shader.frag">
+    <None Include="Fragment_Shader.glsl">
       <Filter>Assets\Shaders</Filter>
     </None>
   </ItemGroup>
@@ -159,8 +150,11 @@
     <Image Include="texture.jpg">
       <Filter>Assets\Textures</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="wolrd.json" />
+    <Image Include="container2.png">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="container2_specular.png">
+      <Filter>Assets\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

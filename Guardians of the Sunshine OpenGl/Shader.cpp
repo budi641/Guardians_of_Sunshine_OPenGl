@@ -52,6 +52,13 @@ void Shader::SetUniform(const std::string& name, const glm::mat4& value) {
     glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &value[0][0]);
 }
 
+
+void Shader::SetUniform(const std::string& name, const unsigned int value) {
+    GLint location = glGetUniformLocation(GetUniformLocation(name), name.c_str());
+    glUniform1i(location, value);
+}
+
+
 unsigned int Shader::CompileShader(unsigned int type, const std::string& source) {
     unsigned int id = glCreateShader(type);
     const char* src = source.c_str();

@@ -17,11 +17,13 @@ public:
     void Bind() const;    // Use the shader program
     void Unbind() const;  // Stop using the shader program
 
-    // Set uniform values
     void SetUniform(const std::string& name, int value);
     void SetUniform(const std::string& name, float value);
     void SetUniform(const std::string& name, const glm::vec3& value);
     void SetUniform(const std::string& name, const glm::mat4& value);
+    void SetUniform(const std::string& name, const unsigned int value);
+
+
 
 private:
     unsigned int CompileShader(unsigned int type, const std::string& source);

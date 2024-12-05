@@ -1,44 +1,52 @@
 #version 330 core
 
+struct Light {
+    vec3 color;
+    float intensity;
+    vec3 direction;
+};
+
+struct Material {
+    sampler2D diffuseTex;
+    sampler2D specularTex;
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+    float shininess;
+};
+
 in vec3 FragPos;
 in vec3 Normal;
-in vec4 FragPosLightSpace;  // Fragment position in light space
+in vec2 TexCoord;
+
+uniform Light light;
+uniform Material material;
+uniform vec3 viewPos;
 
 out vec4 FragColor;
 
-uniform sampler2D u_Texture;
-uniform sampler2D u_DepthMap;
-uniform mat4 u_LightSpaceMatrix;
+void main()
+{
+    // Ambient
+    vec3 ambient = material.ambient * light.color * light.intensity;
 
-struct Light {
-    int type;          // Type of light (e.g., directional, point, etc.)
-    vec3 color;        // Light color
-    float intensity;   // Light intensity
-    vec3 direction;    // Direction of the light (for directional lights)
-};
+    // Diffuse
+    vec3 norm = normalize(Normal);
+    vec3 lightDir = normalize(-light.direction); // Assuming light.direction is from light to object
+    float diff = max(dot(norm, lightDir), 0.0);
+    vec3 diffuse = material.diffuse * diff * light.color * light.intensity;
 
-uniform Light u_Light;
+    // Specular
+    vec3 viewDir = normalize(viewPos - FragPos);
+    vec3 reflectDir = reflect(-lightDir, norm);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    vec3 specular = material.specular * spec * light.color * light.intensity;
 
-void main() {
-    // Fetch the texture color
-    vec3 texColor = texture(u_Texture, FragPos.xy).rgb;
+    // Texture sampling
+    vec4 diffuseTex = texture(material.diffuseTex, TexCoord);
+    vec4 specularTex = texture(material.specularTex, TexCoord);
 
-    // Shadow computation logic
-    float shadow = 0.0;
-
-    // Get depth value from depth map (light's point of view)
-    float closestDepth = texture(u_DepthMap, FragPosLightSpace.xy).r;
-
-    // Current depth from fragment position in light space
-    float currentDepth = FragPosLightSpace.z / FragPosLightSpace.w;
-
-    // Shadow comparison: if current depth is greater than the closest depth, it's in shadow
-    if (currentDepth > closestDepth + 0.005) {
-        shadow = 1.0;  // In shadow
-    }
-
-    // Lighting calculation (example: diffuse + shadow)
-    vec3 lighting = texColor * (1.0 - shadow) * u_Light.color * u_Light.intensity;
-
-    FragColor = vec4(lighting, 1.0);
+    // Combine results
+    vec3 result = ambient + diffuse * diffuseTex.rgb + specular * specularTex.rgb;
+    FragColor = vec4(result, 1.0);
 }
