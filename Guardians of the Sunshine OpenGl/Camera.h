@@ -9,7 +9,8 @@ enum class ProjectionType {
     Orthographic
 };
 
-class Camera : public Component{
+class Camera {
+
 private:
     glm::vec3 position = {};   
     float pitch = 0.0f, yaw = 0.0f;  
@@ -24,6 +25,9 @@ private:
     float rotateSpeed = 0.05f;
 
 public:
+
+    
+    Camera();
 
     float get_move_speed();
     float get_rotate_speed();
