@@ -82,6 +82,24 @@ glm::mat4 Camera::get_projection_matrix(int width, int height) const {
     }
 }
 
+float Camera::get_move_speed()
+{
+    return moveSpeed;
+}
+float Camera::get_rotate_speed()
+{
+    return rotateSpeed;
+}
+void Camera::set_move_speed(float new_move_speed)
+{
+    moveSpeed = new_move_speed;
+}
+void Camera::get_rotate_speed(float new_rotate_speed)
+{
+    rotateSpeed = new_rotate_speed;
+}
+
+
 void Camera::set_clipping_planes(float nearPlane, float farPlane) {
     near = nearPlane;
     far = farPlane;
@@ -97,6 +115,18 @@ void Camera::move_right(float deltaTime) {
 
 void Camera::move_up(float deltaTime) {
     position.y += moveSpeed * deltaTime;
+}
+
+void Camera::move_backward(float deltaTime) {
+    position -= get_forward() * moveSpeed * deltaTime;
+}
+
+void Camera::move_left(float deltaTime) {
+    position -= get_right() * moveSpeed * deltaTime;
+}
+
+void Camera::move_down(float deltaTime) {
+    position.y -= moveSpeed * deltaTime;
 }
 
 void Camera::zoom_in(float deltaTime) {

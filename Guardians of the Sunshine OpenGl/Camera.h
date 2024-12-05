@@ -24,6 +24,12 @@ private:
     float rotateSpeed = 0.05f;
 
 public:
+
+    float get_move_speed();
+    float get_rotate_speed();
+    void set_move_speed(float new_move_speed);
+    void get_rotate_speed(float new_rotate_speed);
+        
     
     glm::vec3 get_position() const;
     void set_position(const glm::vec3& newPosition);
@@ -65,6 +71,14 @@ public:
 
     
     void move_up(float deltaTime);
+
+    void move_backward(float deltaTime);
+
+
+    void move_left(float deltaTime);
+
+
+    void move_down(float deltaTime);
 
     
     void zoom_in(float deltaTime);
