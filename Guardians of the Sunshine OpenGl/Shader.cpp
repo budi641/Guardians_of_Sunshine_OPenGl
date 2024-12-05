@@ -5,7 +5,11 @@
 #include <glad/glad.h>  
 
 Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource) {
-    programID = CreateProgram(vertexSource, fragmentSource);
+   
+    std::string vertexCode = GetFileContents(vertexSource);
+    std::string fragmentCode = GetFileContents(fragmentSource);
+    
+    programID = CreateProgram(vertexCode, fragmentCode);
 }
 
 Shader::~Shader() {
@@ -88,4 +92,20 @@ unsigned int Shader::CreateProgram(const std::string& vertexSource, const std::s
     glDeleteShader(fs);
 
     return program;
+}
+
+std::string Shader::GetFileContents(const std::string& filename)
+{
+    std::ifstream in(filename, std::ios::binary);
+    if (in)
+    {
+        std::string contents;
+        in.seekg(0, std::ios::end);
+        contents.resize(in.tellg());
+        in.seekg(0, std::ios::beg);
+        in.read(&contents[0], contents.size());
+        in.close();
+        return contents;
+    }
+    throw(errno);
 }

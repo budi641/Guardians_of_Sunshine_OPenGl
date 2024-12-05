@@ -50,9 +50,8 @@ void Mesh::Unbind() const {
     glBindVertexArray(0);
 }
 
-void Mesh::Draw(const Shader& shader) const {
+void Mesh::Draw() const {
     // Bind the shader program
-    shader.Bind();
 
     // Bind the vertex array object (VAO)
     glBindVertexArray(vao);
