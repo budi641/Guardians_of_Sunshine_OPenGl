@@ -102,9 +102,6 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Engine\Rendering\Source</Filter>
     </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
-      <Filter>Engine\Core\Source</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -149,9 +146,6 @@
     <ClInclude Include="Texture.h">
       <Filter>Engine\Rendering\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InputHandler.h">
-      <Filter>Engine\Core\Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vertex_Shader.vert">
@@ -165,5 +159,8 @@
     <Image Include="texture.jpg">
       <Filter>Assets\Textures</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wolrd.json" />
   </ItemGroup>
 </Project>

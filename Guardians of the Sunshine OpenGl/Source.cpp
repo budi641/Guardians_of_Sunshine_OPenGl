@@ -12,8 +12,6 @@
 #include "World.h"
 #include<json/json.h>
 #include "Light.h"
-#include "Camera.h"
-#include "InputHandler.h"
 
 // Window dimensions
 const GLuint WIDTH = 1280, HEIGHT = 720;
@@ -95,13 +93,9 @@ int main() {
 
     World world;
 
-    Camera camera;
-
-    InputHandler inputHandler;
 
     world.Deserialize("wolrd.json");
 
-    
 
 
 
@@ -118,12 +112,11 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         float time = (float)glfwGetTime();
-        float deltaTime = 0.016f;
 
         //view = glm::rotate(view, time * 0.001f, glm::vec3(0, 1, 0));
 
-        
-       
+        // Use shader and set uniform values
+
         world.GetEntities()[0]->GetTransformComponent()->SetRotation(glm::vec3(0, time * 45, 0));
 
         shader.Bind();
@@ -144,15 +137,6 @@ int main() {
         }
 
         // Swap buffers and check for events
-
-        inputHandler.handleInput(window);
-        inputHandler.updateCameraMovement(camera, deltaTime);
-        inputHandler.updateCameraRotation(window, camera);
-
-        glm::mat4 view = camera.get_view_matrix();
-        //
-        glm::mat4 projection = camera.get_projection_matrix(800,600);
-
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
