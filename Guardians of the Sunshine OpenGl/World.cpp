@@ -5,7 +5,6 @@
 #include <sstream>
 #include <iostream>
 World::~World() {
-    // Clean up all entities in the world to avoid memory leaks
     for (auto entity : entities) {
         delete entity;
     }
@@ -13,7 +12,7 @@ World::~World() {
 
 void World::AddEntity(Entity* entity) {
     if (entity) {
-        entities.push_back(entity);  // Add entity to the world
+        entities.push_back(entity);  
         for (auto child : entity->GetChildren())
         {
             AddEntity(child);
@@ -21,12 +20,11 @@ void World::AddEntity(Entity* entity) {
     }
 }
 void World::Serialize(nlohmann::json& jsonData) const {
-    jsonData["entities"] = nlohmann::json::array();  // Initialize the "entities" array in the JSON data
+    jsonData["entities"] = nlohmann::json::array();  
 
-    // Serialize each entity and add it to the "entities" array
     for (const Entity* entity : entities) {
         nlohmann::json entityData;
-        entity->Serialize(entityData);  // Serialize each entity
+        entity->Serialize(entityData); 
         jsonData["entities"].push_back(entityData);
     }
 }void World::Deserialize(const std::string& filePath) {
@@ -83,9 +81,7 @@ glm::mat4 World::GetWorldMatrix(Entity* entity) const {
 }
 
 void World::Update(float deltaTime) {
-    // Iterate through all entities in the world and update them
     for (auto entity : entities) {
-        // Here we could update components like Physics, AI, etc. For now, we just call Update on each entity
         entity->Update(deltaTime);
     }
 }
@@ -104,14 +100,10 @@ void World::SERIALIZE(const std::string& name)
     }
 }
 void World::Render() {
-    // Iterate through all entities and render them
     for (auto entity : entities) {
         glm::mat4 worldMatrix = GetWorldMatrix(entity);
 
-        // Render logic here: For example, you would send worldMatrix to the shader for each entity
-        // Example:
-        // shader.SetMat4("model", worldMatrix);
-        // entity->Render();
+
     }
 }
 

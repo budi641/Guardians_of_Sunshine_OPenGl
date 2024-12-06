@@ -1,21 +1,20 @@
 #pragma once
-#include <string>
-#include <vector>
 #include <glad/glad.h>
 #include <glm/glm.hpp>
-#include "Shader.h"
+#include <string>
+#include <vector>
+#include <stb/stb_image.h>
+#include "Shader.h" 
 
 class Skybox {
-private:
-    unsigned int VAO, VBO, cubemapTexture;
-    Shader* shader;
-
-    unsigned int LoadCubemap(const std::string& path);
-    void SetupSkybox();
-
 public:
-    Skybox(const std::string& cubemapPath, const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
-    ~Skybox();
+    // Constructor takes in shader file paths for vertex and fragment shaders
+    Skybox(const std::vector<std::string>& faces, const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
+    void Draw(const glm::mat4& view, const glm::mat4& projection);
 
-    void Render(const glm::mat4& projection, const glm::mat4& view);
+private:
+    GLuint loadCubemap(const std::vector<std::string>& faces); // Load cube map texture from 6 images
+    GLuint skyboxVAO, skyboxVBO;
+    GLuint cubemapTexture;
+    Shader* skyboxShader; 
 };

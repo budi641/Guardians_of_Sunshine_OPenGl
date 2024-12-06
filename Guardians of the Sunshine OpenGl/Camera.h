@@ -32,10 +32,10 @@ public:
 private:
     CameraType type;
     float aspectRatio;
-    float fov;           // For Perspective camera
+    float fov;       
     float nearPlane;
     float farPlane;
-    float orthoHeight;   // For Orthographic camera
+    float orthoHeight; 
 
     glm::vec3 position;
     glm::vec3 target;

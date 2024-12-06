@@ -12,6 +12,7 @@
 #include "Light.h"
 #include "Material.h"
 #include "Camera.h"
+#include "Skybox.h"
 
 
 const GLuint WIDTH = 1280, HEIGHT = 720;
@@ -44,7 +45,7 @@ GLFWwindow* InitOpenGL() {
         return nullptr;
     }
 
-    glEnable(GL_DEPTH_TEST);  // Enable depth testing for 3D rendering
+    glEnable(GL_DEPTH_TEST);  
     return window;
 }
 
@@ -107,48 +108,45 @@ int main() {
     //world.Deserialize("world-Copy.json");
 
     Entity me("name");
-    Entity floor("floor");
-
-    world.AddEntity(&floor);
-
-    floor.GetTransformComponent()->SetScale(glm::vec3(10, 0.1, 10));
-    floor.GetTransformComponent()->SetPosition(glm::vec3(0, -1, 0));
 
     world.AddEntity(&me);
 
-    Material material("container2.png", "container2_specular.png", glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.3f);
+    Material material("container2.png", "container2_specular.png", glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
+
     Mesh cube(vertices, indices, &material);
 
-    // Create the camera
     Camera camera(CameraType::Perspective,WIDTH, HEIGHT);  
 
-    camera.SetPosition(glm::vec3(1, 3, 5));
-
-    camera.SetPitch(-45);
-
+    camera.SetPosition(glm::vec3(0, 1, 5));
 
 
 
 
     Light light(glm::vec3(1.0f, 1.0f, 1.0f), 5.0f, glm::vec3(-3.0f, -3.0f, 0.0f));
 
+    std::vector<std::string> faces = {
+    "right.jpg", "left.jpg", "top.jpg", "bottom.jpg", "front.jpg", "back.jpg"
+    };
+
+    Skybox skybox(faces,"SkySphere_Vertex.glsl", "SkySphere_Fragment.glsl");
+
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Rotate the entity over time (you can adjust this as needed)
+        skybox.Draw(camera.GetViewMatrix(), camera.GetProjectionMatrix());
+
         float time = (float)glfwGetTime();
-        world.GetEntities()[1]->GetTransformComponent()->SetRotation(glm::vec3(0, time * 45, 0));
+        world.GetEntities()[0]->GetTransformComponent()->SetRotation(glm::vec3(0, time * 45, 0));
 
         shader.Bind();
 
-        // Update view and projection matrices based on the camera
         camera.UpdateProjection(shader); 
-
-
 
         for (auto entity : world.GetAllEntities()) {
             cube.Draw(shader, world.GetWorldMatrix(entity), camera.GetPosition(), light);
         }
+
+        //camera.SetYaw(camera.GetYaw() + 0.1);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
