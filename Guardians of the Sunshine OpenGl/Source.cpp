@@ -136,8 +136,8 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         inputHandler.handleInput(window);  
-        inputHandler.updateCameraMovement(camera, deltaTime);  
-        inputHandler.updateCameraRotation(window, camera); 
+        inputHandler.updateCameraMovement(window,camera);  
+        
 
         // Rotate the entity over time
         float time = (float)glfwGetTime();

@@ -24,6 +24,7 @@ public:
 
     float GetYaw();
     float GetPitch();
+    
 
     void SetFov(float newFov);
     float GetFov();
@@ -34,10 +35,15 @@ public:
 
     void SetPosition(glm::vec3 position);
 
+    void SetDef();
+
+    std::tuple<glm::vec3, glm::vec3, glm::vec3> UpdateCameraVectors();
+
 private:
     CameraType type;
     float aspectRatio;
     float fov;           // For Perspective camera
+    float def_fov;
     float nearPlane;
     float farPlane;
     float orthoHeight;   // For Orthographic camera
@@ -45,11 +51,15 @@ private:
     glm::vec3 position;
     glm::vec3 target;
     glm::vec3 up;
-
+    glm::vec3 def_position;
     glm::mat4 viewMatrix;
     glm::mat4 projectionMatrix;
     float speed = 5.0f;
     float yaw;
     float pitch;
-    void UpdateCameraVectors();
+    float def_pitch;
+    float def_yaw;
+    
+    
+    
 };

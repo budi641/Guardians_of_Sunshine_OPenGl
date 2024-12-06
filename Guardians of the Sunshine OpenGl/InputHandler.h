@@ -15,6 +15,8 @@ private:
         bool sprint = false;
         bool zoom_in = false;
         bool zoom_out = false;
+        bool rotate = false;
+        bool focus = false;
     };
 
     InputState inputState;
@@ -25,6 +27,6 @@ public:
 
     InputHandler();
     void handleInput(GLFWwindow* window);
-    void updateCameraMovement(Camera& camera, float deltaTime);
+    void updateCameraMovement(GLFWwindow* window, Camera& camera);
     void updateCameraRotation(GLFWwindow* window, Camera& camera);
 };
