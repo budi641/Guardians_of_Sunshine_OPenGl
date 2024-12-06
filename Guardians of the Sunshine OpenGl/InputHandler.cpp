@@ -1,30 +1,45 @@
 #include "InputHandler.h"
+#include <glm/glm.hpp>
+#include <SDL2/SDL.h>
 
 InputHandler::InputHandler() {}
 
+void InputHandler::handleInput(SDL_Event& event) {
+    switch (event.type) {
+    case SDL_QUIT:
+        break;
+    case SDL_KEYDOWN:
+        if (event.key.keysym.scancode == SDL_SCANCODE_W) inputState.forward = true;
+        if (event.key.keysym.scancode == SDL_SCANCODE_S) inputState.back = true;
+        if (event.key.keysym.scancode == SDL_SCANCODE_A) inputState.left = true;
+        if (event.key.keysym.scancode == SDL_SCANCODE_D) inputState.right = true;
+        if (event.key.keysym.scancode == SDL_SCANCODE_Q) inputState.up = true;
+        if (event.key.keysym.scancode == SDL_SCANCODE_E) inputState.down = true;
+        if (event.key.keysym.scancode == SDL_SCANCODE_LSHIFT) inputState.sprint = true;
+        if (event.key.keysym.scancode == SDL_SCANCODE_Z) inputState.zoom_in = true;
+        if (event.key.keysym.scancode == SDL_SCANCODE_X) inputState.zoom_out = true;
+        break;
 
-void InputHandler::handleInput(GLFWwindow* window) {
-    
-    inputState.forward = inputState.back = inputState.left = inputState.right = false;
-    inputState.up = inputState.down = false;
-    inputState.sprint = false;
-    inputState.zoom_in = inputState.zoom_out = false;
+    case SDL_KEYUP:
+        if (event.key.keysym.scancode == SDL_SCANCODE_W) inputState.forward = false;
+        if (event.key.keysym.scancode == SDL_SCANCODE_S) inputState.back = false;
+        if (event.key.keysym.scancode == SDL_SCANCODE_A) inputState.left = false;
+        if (event.key.keysym.scancode == SDL_SCANCODE_D) inputState.right = false;
+        if (event.key.keysym.scancode == SDL_SCANCODE_Q) inputState.up = false;
+        if (event.key.keysym.scancode == SDL_SCANCODE_E) inputState.down = false;
+        if (event.key.keysym.scancode == SDL_SCANCODE_LSHIFT) inputState.sprint = false;
+        if (event.key.keysym.scancode == SDL_SCANCODE_Z) inputState.zoom_in = false;
+        if (event.key.keysym.scancode == SDL_SCANCODE_X) inputState.zoom_out = false;
+        break;
 
-   
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) inputState.forward = true;
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) inputState.back = true;
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) inputState.left = true;
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) inputState.right = true;
-    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) inputState.up = true;
-    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) inputState.down = true;
-    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) inputState.sprint = true;
-    if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) inputState.zoom_in = true;
-    if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) inputState.zoom_out = true;
+    default:
+        break;
+    }
 }
 
 void InputHandler::updateCameraMovement(Camera& camera, float deltaTime) {
 
-    if (inputState.sprint) camera.set_move_speed(camera.get_move_speed() + sprint_val);
+    if (inputState.sprint) camera.set_move_speed(camera.get_move_speed() + 1.0f);
     if (inputState.forward) camera.move_forward(deltaTime);
     if (inputState.back) camera.move_backward(deltaTime);
     if (inputState.left) camera.move_left(deltaTime);
@@ -33,24 +48,14 @@ void InputHandler::updateCameraMovement(Camera& camera, float deltaTime) {
     if (inputState.down) camera.move_down(deltaTime);
     if (inputState.zoom_in) camera.zoom_in(deltaTime);
     if (inputState.zoom_out) camera.zoom_out(deltaTime);
+    
 }
 
-void InputHandler::updateCameraRotation(GLFWwindow* window, Camera& camera) {
-    double mouseX, mouseY;
-
+void InputHandler::updateCameraRotation(Camera& camera) {
+    int mouseX, mouseY;
     
-    glfwGetCursorPos(window, &mouseX, &mouseY);
-
-    static double lastMouseX = mouseX;
-    static double lastMouseY = mouseY;
-
+    SDL_GetRelativeMouseState(&mouseX, &mouseY);
     
-    double deltaX = mouseX - lastMouseX;
-    double deltaY = mouseY - lastMouseY;
-
-
-    camera.rotate(static_cast<float>(deltaX), static_cast<float>(deltaY));
-
-    lastMouseX = mouseX;
-    lastMouseY = mouseY;
+    camera.rotate(mouseX, mouseY);
+    
 }
