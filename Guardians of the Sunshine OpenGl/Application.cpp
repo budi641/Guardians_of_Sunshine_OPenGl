@@ -44,7 +44,7 @@ void Application::Run()
     renderer->skybox = new Skybox(skyCubeMap, "SkySphere_Vertex.glsl", "SkySphere_Fragment.glsl");
 
     renderer->camera = new Camera(CameraType::Perspective, renderer->width, renderer->height);
-    renderer->camera->SetPosition(glm::vec3(0, 1, 0));
+    renderer->camera->SetPosition(glm::vec3(0, 0, 4));
 
     renderer->light = new Light(glm::vec3(1.0f, 1.0f, 1.0f), 5.0f, glm::vec3(-3.0f, -3.0f, 0.0f));
 

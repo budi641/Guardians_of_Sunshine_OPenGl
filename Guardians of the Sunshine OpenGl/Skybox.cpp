@@ -78,7 +78,7 @@ void Skybox::Draw(const glm::mat4& view, const glm::mat4& projection)
     skyboxShader->SetUniform("view", glm::mat4(glm::mat3(view))); 
     skyboxShader->SetUniform("projection", projection);
 
-   
+ 
     glBindVertexArray(skyboxVAO);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     glBindVertexArray(0);

@@ -53,6 +53,7 @@ RenderManager::~RenderManager() {
 void RenderManager::SetUpOpenGL() {
     if (enableDepthTest) {
         glEnable(GL_DEPTH_TEST);
+
     }
 
     if (enableBackFaceCulling) {
