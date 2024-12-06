@@ -12,6 +12,7 @@
 #include "Light.h"
 #include "Material.h"
 #include "Camera.h"
+#include "InputHandler.h"
 
 
 const GLuint WIDTH = 1280, HEIGHT = 720;
@@ -104,7 +105,6 @@ int main() {
     Shader shader("Vertex_Shader.glsl", "Fragment_Shader.glsl");
 
     World world;
-    //world.Deserialize("world-Copy.json");
 
     Entity me("name");
     Entity floor("floor");
@@ -120,31 +120,31 @@ int main() {
     Mesh cube(vertices, indices, &material);
 
     // Create the camera
-    Camera camera(CameraType::Perspective,WIDTH, HEIGHT);  
-
+    Camera camera(CameraType::Perspective, WIDTH, HEIGHT);
     camera.SetPosition(glm::vec3(1, 3, 5));
-
     camera.SetPitch(-45);
 
-
-
-
+    
+    InputHandler inputHandler;
 
     Light light(glm::vec3(1.0f, 1.0f, 1.0f), 5.0f, glm::vec3(-3.0f, -3.0f, 0.0f));
 
     while (!glfwWindowShouldClose(window)) {
+
+        float deltaTime = (float)glfwGetTime(); 
+
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Rotate the entity over time (you can adjust this as needed)
+        inputHandler.handleInput(window);  
+        inputHandler.updateCameraMovement(camera, deltaTime);  
+        inputHandler.updateCameraRotation(window, camera); 
+
+        // Rotate the entity over time
         float time = (float)glfwGetTime();
         world.GetEntities()[1]->GetTransformComponent()->SetRotation(glm::vec3(0, time * 45, 0));
 
         shader.Bind();
-
-        // Update view and projection matrices based on the camera
-        camera.UpdateProjection(shader); 
-
-
+        camera.UpdateProjection(shader);
 
         for (auto entity : world.GetAllEntities()) {
             cube.Draw(shader, world.GetWorldMatrix(entity), camera.GetPosition(), light);

@@ -96,6 +96,9 @@
     <ClCompile Include="RenderManager.cpp">
       <Filter>Engine\Rendering\Source</Filter>
     </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>Engine\Core\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -136,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="Light.h">
       <Filter>Engine\Rendering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Engine\Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

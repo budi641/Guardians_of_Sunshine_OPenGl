@@ -39,12 +39,14 @@ void Camera::UpdateProjection(Shader& shader) {
 
 void Camera::SetYaw(float newYaw) {
     yaw = newYaw;
+    if (yaw > 180.0f) yaw -= 360.0f;
+    if (yaw < -180.0f) yaw += 360.0f;
     UpdateCameraVectors();
 }
 
 void Camera::SetPitch(float newPitch) {
     pitch = newPitch;
-    // Constrain pitch to avoid flipping upside down
+    
     if (pitch > 89.0f) pitch = 89.0f;
     if (pitch < -89.0f) pitch = -89.0f;
     UpdateCameraVectors();
@@ -70,6 +72,24 @@ void Camera::SetPosition(glm::vec3 position)
     this->position = position;
 }
 
+void Camera::SetFov(float newFov) {
+   
+    fov = newFov;
+    if (fov > 100.0f) fov=100.0f;
+    if (fov < 0.01f) fov = 0.01f;
+
+    
+}
+
+float Camera::GetFov()
+{
+    return fov;
+}
+
+glm::vec3 Camera::GetUp() {
+    return up;
+}
+
 void Camera::UpdateCameraVectors() {
     glm::vec3 front;
     front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
@@ -77,4 +97,5 @@ void Camera::UpdateCameraVectors() {
     front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 
     target = glm::normalize(front);
+
 }

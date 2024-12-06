@@ -25,6 +25,11 @@ public:
     float GetYaw();
     float GetPitch();
 
+    void SetFov(float newFov);
+    float GetFov();
+
+    glm::vec3 GetUp();
+
     glm::vec3 GetPosition();
 
     void SetPosition(glm::vec3 position);
@@ -43,7 +48,7 @@ private:
 
     glm::mat4 viewMatrix;
     glm::mat4 projectionMatrix;
-
+    float speed = 5.0f;
     float yaw;
     float pitch;
     void UpdateCameraVectors();
