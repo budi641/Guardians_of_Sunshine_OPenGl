@@ -8,12 +8,11 @@
 
 class Skybox {
 public:
-    // Constructor takes in shader file paths for vertex and fragment shaders
     Skybox(const std::vector<std::string>& faces, const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
     void Draw(const glm::mat4& view, const glm::mat4& projection);
 
 private:
-    GLuint loadCubemap(const std::vector<std::string>& faces); // Load cube map texture from 6 images
+    GLuint loadCubemap(const std::vector<std::string>& faces); 
     GLuint skyboxVAO, skyboxVBO;
     GLuint cubemapTexture;
     Shader* skyboxShader; 

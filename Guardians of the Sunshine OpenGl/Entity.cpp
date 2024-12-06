@@ -2,6 +2,7 @@
 #include "Component.h"
 #include <algorithm>
 #include "TransformComponent.h"
+#include "MeshRenderer.h"
 
 Entity::Entity(const std::string& entityName)
 {
@@ -40,7 +41,7 @@ void Entity::Serialize(nlohmann::json& jsonData) const {
     jsonData["children"] = nlohmann::json::array();
     for (const Entity* child : children) {
         nlohmann::json childData;
-        child->Serialize(childData);  // Recursively serialize child entities
+        child->Serialize(childData); 
         jsonData["children"].push_back(childData);
     }
 }
@@ -107,7 +108,7 @@ Component* Entity::GetComponent(const std::string& componentName) const
 
 void Entity::SetParent(Entity* newParent)
 {
-    // Remove this entity from its current parent's children list
+   
     if (parent != nullptr)
     {
         parent->RemoveChild(this);
@@ -115,7 +116,7 @@ void Entity::SetParent(Entity* newParent)
 
     parent = newParent;
 
-    // Add this entity to the new parent's children list
+
     if (parent != nullptr)
     {
         parent->AddChild(this);
@@ -154,13 +155,13 @@ void Entity::SetEnabled(bool enabled)
 {
     isEnabled = enabled;
 
-    // Propagate the state change to each component
+
     for (auto component : components)
     {
         component->SetIsEnabled(enabled);
     }
 
-    // Update all children if any
+
     for (auto child : children)
     {
         child->SetEnabled(enabled);
@@ -176,16 +177,14 @@ void Entity::Update(float deltaTime)
 {
     if (!isEnabled) return;
 
-    // Update all components
     for (auto component : components)
     {
         if (component->GetIsEnabled())
         {
-            component->Update(deltaTime);  // Update only enabled components
+            component->Update(deltaTime);  
         }
     }
 
-    // Update all children if any
     for (auto child : children)
     {
         child->Update(deltaTime);
@@ -200,4 +199,20 @@ TransformComponent* Entity::GetTransformComponent()
 std::string Entity::GetName()
 {
     return name;
+}
+
+std::vector<Component*> Entity::GetMeshRenderComponents()
+{
+    std::vector<Component*> Meshcomponents;
+
+    for (auto component : this->components)
+    {
+        if (dynamic_cast<MeshRenderer*>(component))
+        {
+            Meshcomponents.push_back(component);
+        }
+
+    }
+
+    return Meshcomponents;
 }

@@ -6,6 +6,8 @@
 
 class Component;
 
+class World;
+
 class Entity
 {
 
@@ -26,6 +28,9 @@ public:
     void RemoveComponent(Component* component);
     Component* GetComponent(const std::string& componentName) const;
 
+
+    std::string GetName();
+
     void SetParent(Entity* newParent);
     Entity* GetParent() const;
     void AddChild(Entity* child);
@@ -35,14 +40,13 @@ public:
     void SetEnabled(bool enabled);
     bool IsEnabled() const;
 
-    // Update all components
     void Update(float deltaTime);
     void Serialize(nlohmann::json& jsonData) const;
     void Deserialize(const nlohmann::json& jsonData);
     TransformComponent* GetTransformComponent();
+    std::vector<Component*> GetMeshRenderComponents();
 
-    std::string GetName();
-
+    World* world;
     
 
 

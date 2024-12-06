@@ -1,7 +1,6 @@
 #pragma once
 #include <glm/glm.hpp>
 
-// Represents an RGBA color
 struct Color {
     float r, g, b, a;
 

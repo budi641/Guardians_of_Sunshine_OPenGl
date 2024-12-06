@@ -3,17 +3,17 @@
 
 Component::Component()
 {
-    // Constructor logic (if needed)
+
 }
 
 Component::~Component()
 {
-    // Destructor logic (if needed)
+
 }
 
 void Component::Update(float deltaTime)
 {
-    // Update logic for derived components
+  
 }
 
 Entity* Component::GetParentEntity() const

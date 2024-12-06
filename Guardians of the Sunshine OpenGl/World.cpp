@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include "MeshRenderer.h"
 World::~World() {
     for (auto entity : entities) {
         delete entity;
@@ -13,6 +14,9 @@ World::~World() {
 void World::AddEntity(Entity* entity) {
     if (entity) {
         entities.push_back(entity);  
+
+        entity->world = this;
+
         for (auto child : entity->GetChildren())
         {
             AddEntity(child);
@@ -64,8 +68,8 @@ void World::Serialize(nlohmann::json& jsonData) const {
 void World::RemoveEntity(Entity* entity) {
     auto it = std::find(entities.begin(), entities.end(), entity);
     if (it != entities.end()) {
-        entities.erase(it);  // Remove entity from the vector
-        delete entity;       // Clean up the memory
+        entities.erase(it);  
+        delete entity;       
     }
 }
 
@@ -73,7 +77,6 @@ glm::mat4 World::GetWorldMatrix(Entity* entity) const {
     glm::mat4 worldMatrix = entity->GetTransformComponent()->GetTransformMatrix();
 
     if (entity->GetParent() != nullptr) {
-        // If the entity has a parent, we multiply its world matrix by the parent's world matrix
         worldMatrix = GetWorldMatrix(entity->GetParent()) * worldMatrix;
     }
 
@@ -91,7 +94,7 @@ void World::SERIALIZE(const std::string& name)
     this->Serialize(worldJson);
     std::ofstream outFile(name);
     if (outFile.is_open()) {
-        outFile << worldJson.dump(4);  // Write with pretty formatting
+        outFile << worldJson.dump(4);  
         outFile.close();
         std::cout << "World serialized successfully to " + name + ".json" << std::endl;
     }
@@ -99,9 +102,21 @@ void World::SERIALIZE(const std::string& name)
         std::cout << "Error opening file for writing!" << std::endl;
     }
 }
-void World::Render() {
-    for (auto entity : entities) {
-        glm::mat4 worldMatrix = GetWorldMatrix(entity);
+void World::Render(RenderManager* Renderer) 
+{
+    for (auto entity : entities) 
+    {
+        for (auto component : entity->GetMeshRenderComponents())
+        {
+            MeshRenderer* meshRenderer = dynamic_cast<MeshRenderer*>(component);
+
+            if(meshRenderer)
+            {
+                meshRenderer->Render(Renderer);
+            }
+
+            
+        }
 
 
     }
