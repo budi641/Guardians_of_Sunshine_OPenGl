@@ -110,10 +110,9 @@ void World::Render(RenderManager* Renderer)
         {
             MeshRenderer* meshRenderer = dynamic_cast<MeshRenderer*>(component);
 
-            if(meshRenderer)
-            {
+   
                 meshRenderer->Render(Renderer, GetWorldMatrix(entity));
-            }
+
 
             
         }

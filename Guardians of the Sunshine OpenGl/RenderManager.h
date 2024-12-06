@@ -15,7 +15,7 @@ public:
     GLFWwindow* window = nullptr;
     int width, height;  // Changed to int for consistency with GLFW
     bool enableDepthTest = true;
-    bool enableBackFaceCulling = true;
+    bool enableBackFaceCulling = false;
 
     Light* light = nullptr;
     Skybox* skybox = nullptr;

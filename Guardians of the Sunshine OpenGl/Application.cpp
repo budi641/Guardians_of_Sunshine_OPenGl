@@ -34,7 +34,7 @@ void Application::Run()
     world->AddEntity(entity);
     entity->GetTransformComponent()->SetScale(glm::vec3(1));
 
-    entity->GetTransformComponent()->SetPosition(glm::vec3(0,-1,0));
+    entity->GetTransformComponent()->SetPosition(glm::vec3(0,0,0));
 
     renderer->shader = new Shader("Vertex_Shader.glsl", "Fragment_Shader.glsl");
 
@@ -44,7 +44,7 @@ void Application::Run()
     renderer->skybox = new Skybox(skyCubeMap, "SkySphere_Vertex.glsl", "SkySphere_Fragment.glsl");
 
     renderer->camera = new Camera(CameraType::Perspective, renderer->width, renderer->height);
-    renderer->camera->SetPosition(glm::vec3(0, 0, 0));
+    renderer->camera->SetPosition(glm::vec3(0, 1, 0));
 
     renderer->light = new Light(glm::vec3(1.0f, 1.0f, 1.0f), 5.0f, glm::vec3(-3.0f, -3.0f, 0.0f));
 
@@ -59,7 +59,6 @@ void Application::Run()
         renderer->Render();
         world->Render(renderer);
 
-
         entity->GetTransformComponent()->SetRotation(glm::vec3(0, 1*currentTime, 1*currentTime));
 
 
@@ -68,6 +67,7 @@ void Application::Run()
 
     }
 
+    Quit();
     return;
 }
 
