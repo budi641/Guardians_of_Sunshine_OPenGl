@@ -1,23 +1,21 @@
 #pragma once
 #include "World.h"
-class Application
-{
+#include "RenderManager.h"
+
+class Application {
 private:
+    World* world = nullptr;
+    RenderManager* renderer = nullptr;
+    bool shouldRun = false;
 
-	World* world;
-	RenderManager* renderer;
-	bool shouldRun;
-	void Serlize(const std::string& name);
+    void SerializeApp(const std::string& name);
 
+    std::string worldPath;
 
 public:
+    Application(const std::string& worldPath);
+    ~Application();
 
-	Application(const std::string& path);
-	~Application();
-
-	void Run();
-
-	void Quit();
-
+    void Run();
+    void Quit();
 };
-

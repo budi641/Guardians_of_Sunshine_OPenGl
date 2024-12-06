@@ -6,7 +6,7 @@ RenderManager::RenderManager(int width, int height, const char* windowTitle)
     // Initialize GLFW
     if (!glfwInit()) {
         std::cerr << "Failed to initialize GLFW!" << std::endl;
-        exit(EXIT_FAILURE);  // Terminate the program if GLFW fails
+        throw std::runtime_error("GLFW initialization failed");
     }
 
     // Set GLFW window hints (OpenGL version and profile)
@@ -18,16 +18,17 @@ RenderManager::RenderManager(int width, int height, const char* windowTitle)
     window = glfwCreateWindow(width, height, windowTitle, nullptr, nullptr);
     if (!window) {
         std::cerr << "Failed to create GLFW window!" << std::endl;
-        glfwTerminate();  
-        exit(EXIT_FAILURE);  
+        glfwTerminate();
+        throw std::runtime_error("GLFW window creation failed");
     }
 
     glfwMakeContextCurrent(window);
 
-
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cerr << "Failed to initialize GLAD!" << std::endl;
-        exit(EXIT_FAILURE); 
+        glfwDestroyWindow(window);
+        glfwTerminate();
+        throw std::runtime_error("GLAD initialization failed");
     }
 
     glfwSetFramebufferSizeCallback(window, [](GLFWwindow*, int width, int height) {
@@ -37,8 +38,19 @@ RenderManager::RenderManager(int width, int height, const char* windowTitle)
     SetUpOpenGL();
 }
 
-void RenderManager::SetUpOpenGL() {
+RenderManager::~RenderManager() {
+    delete skybox;
+    delete camera;
+    delete shader;
+    delete light;
 
+    if (window) {
+        glfwDestroyWindow(window);
+        glfwTerminate();
+    }
+}
+
+void RenderManager::SetUpOpenGL() {
     if (enableDepthTest) {
         glEnable(GL_DEPTH_TEST);
     }
@@ -46,27 +58,30 @@ void RenderManager::SetUpOpenGL() {
     if (enableBackFaceCulling) {
         glEnable(GL_CULL_FACE);
         glCullFace(GL_BACK);
-        glFrontFace(GL_CCW);  
+        glFrontFace(GL_CCW);
     }
 
-
     glViewport(0, 0, width, height);
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // Default background color
 }
 
-
-
 void RenderManager::Render() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
+    if (skybox && camera) {
+        skybox->Draw(camera->GetViewMatrix(), camera->GetProjectionMatrix());
+    }
 
-    skybox->Draw(camera->GetViewMatrix(), camera->GetProjectionMatrix());
+    if (shader) {
+        shader->Bind();
+    }
 
-    shader->Bind();
-    camera->UpdateProjection(*shader);
+    if (camera && shader) {
+        camera->UpdateProjection(*shader);
+    }
 
     glfwSwapBuffers(window);
     glfwPollEvents();
-
 }
 
 void RenderManager::EnableDepthTest(bool enable) {
@@ -76,6 +91,7 @@ void RenderManager::EnableDepthTest(bool enable) {
     else {
         glDisable(GL_DEPTH_TEST);
     }
+    enableDepthTest = enable;
 }
 
 void RenderManager::EnableBackFaceCulling(bool enable) {
@@ -85,6 +101,5 @@ void RenderManager::EnableBackFaceCulling(bool enable) {
     else {
         glDisable(GL_CULL_FACE);
     }
+    enableBackFaceCulling = enable;
 }
-
-
