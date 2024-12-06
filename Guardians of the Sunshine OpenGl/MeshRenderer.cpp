@@ -1,4 +1,6 @@
 #include "MeshRenderer.h"
+#include <iostream>
+#include <iomanip>
 
 MeshRenderer::MeshRenderer(const std::string& modelPath,
     const std::string& diffuseTexturePath,
@@ -9,8 +11,6 @@ MeshRenderer::MeshRenderer(const std::string& modelPath,
     float shininess)
 {
     name = "Mesh renderer";
-
-    modelMatrix = parent->world->GetWorldMatrix(parent);
 
     this->modelPath = modelPath;
 
@@ -74,11 +74,6 @@ Material* MeshRenderer::GetMaterial() const {
 }
 
 
-const glm::mat4& MeshRenderer::GetModelMatrix() const {
-    return modelMatrix;
-}
-
-
 const std::string& MeshRenderer::GetModelPath() const {
     return modelPath;
 }
@@ -108,8 +103,20 @@ float MeshRenderer::GetShininess() const {
 
 
 
-void MeshRenderer::Render(RenderManager* Renderer)
+void MeshRenderer::Render(RenderManager* Renderer, glm::mat4 modelMatrix)
 {
+    //glm::mat4 matrix = modelMatrix;
+
+    //std::cout << std::fixed << std::setprecision(2);
+    //for (int row = 0; row < 4; ++row) {
+    //    for (int col = 0; col < 4; ++col) {
+    //        std::cout << std::setw(8) << matrix[row][col] << " ";
+    //    }
+    //    std::cout << std::endl;
+    //}
+    /*std::cout << std::endl;*/
+
+
     mesh->Draw(*Renderer->shader, modelMatrix, Renderer->camera->GetPosition(), *Renderer->light);
 }
 

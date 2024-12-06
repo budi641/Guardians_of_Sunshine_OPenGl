@@ -44,7 +44,6 @@ void Camera::SetYaw(float newYaw) {
 
 void Camera::SetPitch(float newPitch) {
     pitch = newPitch;
-    // Constrain pitch to avoid flipping upside down
     if (pitch > 89.0f) pitch = 89.0f;
     if (pitch < -89.0f) pitch = -89.0f;
     UpdateCameraVectors();

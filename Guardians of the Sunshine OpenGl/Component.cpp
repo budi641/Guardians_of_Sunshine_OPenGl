@@ -13,7 +13,7 @@ Component::~Component()
 
 void Component::Update(float deltaTime)
 {
-  
+
 }
 
 Entity* Component::GetParentEntity() const

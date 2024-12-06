@@ -80,11 +80,10 @@ void RenderManager::Render() {
         camera->UpdateProjection(*shader);
     }
 
-    glfwSwapBuffers(window);
-    glfwPollEvents();
+
 }
 
-void RenderManager::EnableDepthTest(bool enable) {
+void RenderManager::SetDepthTest(bool enable) {
     if (enable) {
         glEnable(GL_DEPTH_TEST);
     }
@@ -94,7 +93,7 @@ void RenderManager::EnableDepthTest(bool enable) {
     enableDepthTest = enable;
 }
 
-void RenderManager::EnableBackFaceCulling(bool enable) {
+void RenderManager::SetBackFaceCulling(bool enable) {
     if (enable) {
         glEnable(GL_CULL_FACE);
     }

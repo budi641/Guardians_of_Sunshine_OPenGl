@@ -11,9 +11,7 @@
 
 class MeshRenderer : public Component {
 private:
-    Mesh* mesh;
-
-    glm::mat4 modelMatrix;
+    Mesh* mesh = nullptr;
 
     std::string modelPath;
 
@@ -29,12 +27,7 @@ public:
 
     Mesh* GetMesh() const;
 
-
     Material* GetMaterial() const;
-
-
-    const glm::mat4& GetModelMatrix() const;
-
 
     const std::string& GetModelPath() const;
 
@@ -47,7 +40,7 @@ public:
     float GetShininess() const;
 
 
-    void Render(RenderManager* Renderer);
+    void Render(RenderManager* Renderer, glm::mat4 modelMatrix);
 
 
     void Serialize(nlohmann::json& jsonData) const override;

@@ -112,7 +112,7 @@ void World::Render(RenderManager* Renderer)
 
             if(meshRenderer)
             {
-                meshRenderer->Render(Renderer);
+                meshRenderer->Render(Renderer, GetWorldMatrix(entity));
             }
 
             

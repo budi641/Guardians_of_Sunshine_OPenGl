@@ -28,6 +28,6 @@ public:
     void SetUpOpenGL();
     void Render();
 
-    void EnableDepthTest(bool enable);
-    void EnableBackFaceCulling(bool enable);
+    void SetDepthTest(bool enable);
+    void SetBackFaceCulling(bool enable);
 };
