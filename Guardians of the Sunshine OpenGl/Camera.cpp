@@ -105,37 +105,38 @@ glm::vec3 Camera::GetUp() {
 }
 
 std::tuple<glm::vec3, glm::vec3, glm::vec3> Camera::UpdateCameraVectors() {
-    // Calculate the front vector based on yaw and pitch
+  
     glm::vec3 front;
     front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
     front.y = sin(glm::radians(pitch));
     front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 
-    // Normalize the front vector
+    
     front = glm::normalize(front);
 
-    // Calculate the right vector based on yaw
-    glm::vec3 right;
-    right.x = sin(glm::radians(yaw) + glm::pi<float>() / 2.0f);
-    right.y = 0;  // No pitch effect on the right vector
-    right.z = cos(glm::radians(yaw) + glm::pi<float>() / 2.0f);
+ 
+    glm::vec3 up;
+    up.x = sin(glm::radians(yaw) + glm::pi<float>() / 2.0f);
+    up.y = 0;  
+    up.z = cos(glm::radians(yaw) + glm::pi<float>() / 2.0f);
 
     // Normalize the right vector
-    right = glm::normalize(right);
-
-    // Calculate the up vector based on pitch and yaw
-    glm::vec3 up;
-    up.x = -sin(glm::radians(pitch)) * sin(glm::radians(yaw));
-    up.y = cos(glm::radians(pitch));
-    up.z = sin(glm::radians(pitch)) * cos(glm::radians(yaw));
-
-    // Normalize the up vector
     up = glm::normalize(up);
 
-    // Set the target (or front vector) for the camera (this is typically the direction the camera is facing)
+ 
+    glm::vec3 right;
+    right.x = -sin(glm::radians(pitch)) * sin(glm::radians(yaw));
+    //.y = cos(glm::radians(pitch));
+    right.z = sin(glm::radians(pitch)) * cos(glm::radians(yaw));
+    right.y = 0;
+
+
+    right = glm::normalize(right);
+
+   
     target = front;
 
-    // Return the right vector (you can also return up if needed)
+
     return std::make_tuple(front, right , up);
 }
 

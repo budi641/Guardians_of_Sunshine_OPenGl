@@ -14,12 +14,12 @@ void InputHandler::handleInput(GLFWwindow* window) {
     inputState.focus = false;
     
     // Check for input keys
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) inputState.forward = true;
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) inputState.back = true;
+    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) inputState.forward = true;
+    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) inputState.back = true;
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) inputState.left = true;
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) inputState.right = true;
-    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) inputState.up = true;
-    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) inputState.down = true;
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) inputState.up = true;
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) inputState.down = true;
     if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) inputState.sprint = true;
     if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) inputState.zoom_in = true;
     if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) inputState.zoom_out = true;
@@ -68,7 +68,7 @@ void InputHandler::updateCameraMovement(GLFWwindow* window, Camera& camera) {
     }
     if (inputState.down)
     {
-        camera.SetPosition(camera.GetPosition() + std::get<2>(vectors) * movement_factor);
+        camera.SetPosition(camera.GetPosition() - std::get<2>(vectors) * movement_factor);
     }
     
 
