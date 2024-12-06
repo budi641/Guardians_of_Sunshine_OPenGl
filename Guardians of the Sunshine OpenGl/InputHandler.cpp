@@ -25,20 +25,21 @@ void InputHandler::handleInput(GLFWwindow* window) {
 
 void InputHandler::updateCameraMovement(Camera& camera, float deltaTime) {
   
+    float movement_factor = movement_val;
     if (inputState.sprint) {
-        camera.SetYaw(camera.GetYaw() + sprint_val);  
+        movement_factor += sprint_val;
     }
 
     // Camera movement
-    if (inputState.forward) camera.SetPosition({ camera.GetPosition().x, camera.GetPosition().y,camera.GetPosition().z-.1f });
-    if (inputState.back) camera.SetPosition({camera.GetPosition().x, camera.GetPosition().y,camera.GetPosition().z+0.1f });
-    if (inputState.left) camera.SetPosition({ camera.GetPosition().x-0.1f, camera.GetPosition().y,camera.GetPosition().z });
-    if (inputState.right) camera.SetPosition({ camera.GetPosition().x+0.1f, camera.GetPosition().y,camera.GetPosition().z });
-    if (inputState.up) camera.SetPosition({ camera.GetPosition().x, camera.GetPosition().y+0.1f,camera.GetPosition().z });
-    if (inputState.down) camera.SetPosition({ camera.GetPosition().x, camera.GetPosition().y-0.1f,camera.GetPosition().z });
+    if (inputState.forward) camera.SetPosition({ camera.GetPosition().x, camera.GetPosition().y,camera.GetPosition().z- movement_factor });
+    if (inputState.back) camera.SetPosition({camera.GetPosition().x, camera.GetPosition().y,camera.GetPosition().z+ movement_factor });
+    if (inputState.left) camera.SetPosition({ camera.GetPosition().x- movement_factor, camera.GetPosition().y,camera.GetPosition().z });
+    if (inputState.right) camera.SetPosition({ camera.GetPosition().x+ movement_factor, camera.GetPosition().y,camera.GetPosition().z });
+    if (inputState.up) camera.SetPosition({ camera.GetPosition().x, camera.GetPosition().y+ movement_factor,camera.GetPosition().z });
+    if (inputState.down) camera.SetPosition({ camera.GetPosition().x, camera.GetPosition().y- movement_factor,camera.GetPosition().z });
 
-    if (inputState.zoom_in) camera.SetFov(abs(camera.GetFov() - 0.2f)); 
-    if (inputState.zoom_out) camera.SetFov(abs(camera.GetFov() + 0.2f)); 
+    if (inputState.zoom_in) camera.SetFov(abs(camera.GetFov() - movement_factor));
+    if (inputState.zoom_out) camera.SetFov(abs(camera.GetFov() + movement_factor));
 
     //std::cout << "Camera Position: " << camera.GetPosition().x << ", " << camera.GetPosition().y << ", " << camera.GetPosition().z << std::endl;
     //std::cout << "Camera Fov: " << camera.GetFov();

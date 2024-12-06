@@ -76,7 +76,7 @@ void Camera::SetFov(float newFov) {
    
     fov = newFov;
     if (fov > 100.0f) fov=100.0f;
-    if (fov < 0.01f) fov = 0.01f;
+    if (fov < 1.0f) fov = 1.0f;
 
     
 }
