@@ -61,7 +61,7 @@ void Application::Run()
         inputHandler.updateCameraMovement(renderer->window, *renderer->camera);
 
         renderer->Render();
-        world->Render(renderer);
+        world->RenderWorld(renderer);
 
         entity->GetTransformComponent()->SetRotation(glm::vec3(0, 1*currentTime, 1*currentTime));
 

@@ -73,7 +73,7 @@ void World::RemoveEntity(Entity* entity) {
     }
 }
 
-glm::mat4 World::GetWorldMatrix(Entity* entity) const {
+glm::mat4 World::GetWorldMatrix(Entity* entity){
     glm::mat4 worldMatrix = entity->GetTransformComponent()->GetTransformMatrix();
 
     if (entity->GetParent() != nullptr) {
@@ -102,22 +102,12 @@ void World::SERIALIZE(const std::string& name)
         std::cout << "Error opening file for writing!" << std::endl;
     }
 }
-void World::Render(RenderManager* Renderer) 
+void World::RenderWorld(RenderManager* Renderer) 
 {
     for (auto entity : entities) 
     {
-        for (auto component : entity->GetMeshRenderComponents())
-        {
-            MeshRenderer* meshRenderer = dynamic_cast<MeshRenderer*>(component);
-
-   
-                meshRenderer->Render(Renderer, GetWorldMatrix(entity));
-
-
-            
-        }
-
-
+        entity->RenderEntity(Renderer);
+    
     }
 }
 

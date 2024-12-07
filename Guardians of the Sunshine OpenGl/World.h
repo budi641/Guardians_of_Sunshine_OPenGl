@@ -18,15 +18,14 @@ public:
     void RemoveEntity(Entity* entity);
 
 
-    glm::mat4 GetWorldMatrix(Entity* entity) const;
+    glm::mat4 GetWorldMatrix(Entity* entity);
     void Serialize(nlohmann::json& jsonData) const;
     void Deserialize(const std::string& filepath);
 
     void Update(float deltaTime);
     void SERIALIZE(const std::string& name);
 
-
-    void Render(RenderManager* Renderer);
+    void RenderWorld(RenderManager* Renderer);
 
     std::vector<Entity*> GetAllEntities();
 };

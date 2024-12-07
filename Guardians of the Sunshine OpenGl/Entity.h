@@ -8,6 +8,10 @@ class Component;
 
 class World;
 
+class MeshRenderer;
+
+class RenderManager;
+
 class Entity
 {
 
@@ -46,7 +50,7 @@ public:
     TransformComponent* GetTransformComponent();
     std::vector<Component*> GetMeshRenderComponents();
 
-    void Render()
+    void RenderEntity(RenderManager* renderer);
 
     World* world;
     
