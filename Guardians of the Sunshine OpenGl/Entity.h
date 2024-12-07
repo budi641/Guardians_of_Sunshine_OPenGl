@@ -46,7 +46,7 @@ public:
     TransformComponent* GetTransformComponent();
     std::vector<Component*> GetMeshRenderComponents();
 
-    void Render()
+  
 
     World* world;
     
