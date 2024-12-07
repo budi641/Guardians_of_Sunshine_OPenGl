@@ -42,9 +42,19 @@ void Application::SerializeApp(const std::string& filename) {
         std::cerr << "Failed to write to file: " << filename << std::endl;
     }
 }
-Application::Application(const std::string& path) : worldPath(path)
+Application::Application(const std::string& path, const char* windowTitle) : worldPath(path)
 {
     world = new World;
+    std::ifstream inFile(path);
+    if (!inFile.is_open()) {
+        std::cerr << "Failed to open the file: " << path << std::endl;
+        return;
+    }
+    json appJson;
+    inFile >> appJson;
+    int width = appJson["RenderManager"]["width"].get<int>();
+    int height = appJson["RenderManager"]["height"].get<int>();
+    renderer = new RenderManager(width, height, windowTitle);
     renderer->Deserialize(path);
     world->Deserialize(path);
 
