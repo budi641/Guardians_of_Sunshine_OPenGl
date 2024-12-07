@@ -55,7 +55,7 @@ Application::Application(const std::string& path, const char* windowTitle) : wor
     int width = appJson["RenderManager"]["width"].get<int>();
     int height = appJson["RenderManager"]["height"].get<int>();
     renderer = new RenderManager(width, height, windowTitle);
-    renderer->Deserialize(path);
+    renderer->Deserialize(appJson);
     world->Deserialize(path);
 
 }
