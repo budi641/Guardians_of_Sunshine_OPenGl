@@ -13,6 +13,8 @@ struct Material{
     vec3 diffuse;
     vec3 specular;
     float shininess;
+    float alpha;
+    bool transparent;
 };
 
 in vec3 FragPos;
@@ -48,5 +50,17 @@ void main()
 
     // Combine results
     vec3 result = ambient + diffuse * diffuseTex.rgb + specular * specularTex.rgb;
-    FragColor = vec4(result, 1.0);
+
+    float a;
+
+    if(material.transparent)
+    {
+      a = material.alpha;
+    }
+    else
+    {
+      a =  diffuseTex.a;
+    }
+    
+    FragColor = vec4(result,a);
 }

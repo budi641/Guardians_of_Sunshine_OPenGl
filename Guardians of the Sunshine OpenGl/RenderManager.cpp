@@ -62,6 +62,9 @@ void RenderManager::SetUpOpenGL() {
         glFrontFace(GL_CCW);
     }
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     glViewport(0, 0, width, height);
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // Default background color
 }
