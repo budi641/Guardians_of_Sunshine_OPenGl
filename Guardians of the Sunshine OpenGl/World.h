@@ -22,6 +22,7 @@ public:
 
     glm::mat4 GetWorldMatrix(Entity* entity);
     glm::vec3 GetWorldPosition(Entity* entity);
+    glm::mat4 GetWorldMatrix(Entity* entity) const;
     void Serialize(nlohmann::json& jsonData) const;
     void Deserialize(const std::string& filepath);
 
@@ -30,4 +31,8 @@ public:
 
     void RenderWorld(RenderManager* Renderer);
 
+
+    void Render(RenderManager* Renderer);
+
+    std::vector<Entity*> GetAllEntities();
 };

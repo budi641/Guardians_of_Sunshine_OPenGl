@@ -2,6 +2,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "Shader.h"
+#include<json/json.h>
+using json = nlohmann::json;
 
 enum class CameraType {
     Perspective,
@@ -19,6 +21,7 @@ public:
     void UpdateProjection(Shader& shader);
 
 
+    void Serialize(nlohmann::json& jsonData);
     void SetYaw(float newYaw);
     void SetPitch(float newPitch);
 
@@ -44,6 +47,7 @@ private:
     float aspectRatio;
     float fov;           // For Perspective camera
     float def_fov;
+    float fov;       
     float nearPlane;
     float farPlane;
     float orthoHeight; 
@@ -59,7 +63,6 @@ private:
     float pitch = 0;
     float def_pitch;
     float def_yaw;
-
 
 
 };

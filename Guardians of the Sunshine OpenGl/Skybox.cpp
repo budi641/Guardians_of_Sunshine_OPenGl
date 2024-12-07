@@ -49,6 +49,7 @@ float skyboxVertices[] = {
 
 Skybox::Skybox(const std::vector<std::string>& faces, const std::string& vertexShaderPath, const std::string& fragmentShaderPath)
 {
+    : faces(faces), vertexShaderPath(vertexShaderPath), fragmentShaderPath(fragmentShaderPath) {
  
     cubemapTexture = loadCubemap(faces);
 
@@ -84,6 +85,18 @@ void Skybox::Draw(const glm::mat4& view, const glm::mat4& projection)
     glBindVertexArray(0);
 
     glDepthMask(GL_TRUE);
+}
+
+void Skybox::Serialize(nlohmann::json& jsonData) const
+{
+    jsonData["faces"] = nlohmann::json::array();
+    for (const auto& face : faces) {
+        jsonData["faces"].push_back(face);  // Add each texture path to the array
+    }
+
+    // Serialize shader paths
+    jsonData["vertexShaderPath"] = vertexShaderPath;
+    jsonData["fragmentShaderPath"] = fragmentShaderPath;
 }
 
 GLuint Skybox::loadCubemap(const std::vector<std::string>& faces)

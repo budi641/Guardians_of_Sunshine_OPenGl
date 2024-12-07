@@ -2,6 +2,8 @@
 #include <string>
 #include <unordered_map>
 #include <glm/glm.hpp>
+#include<json/json.h>
+using json = nlohmann::json;
 
 class Shader {
 private:
@@ -10,6 +12,8 @@ private:
 
     int GetUniformLocation(const std::string& name);  
 
+    std::string vertexSource;  // Shader source code for vertex shader
+    std::string fragmentSource;
 public:
     Shader(const std::string& vertexSource, const std::string& fragmentSource);
     ~Shader();
@@ -23,6 +27,7 @@ public:
     void SetUniform(const std::string& name, const glm::mat4& value);
     void SetUniform(const std::string& name, const unsigned int value);
 
+    void Serialize(nlohmann::json& jsonData) const;
 
 
 private:

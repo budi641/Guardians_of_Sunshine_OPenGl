@@ -5,6 +5,63 @@
 Application::Application(const std::string& path) : worldPath(path) 
 {
     world = new World;
+#include <json/json.h>
+using json = nlohmann::json;
+
+#include <fstream>
+
+using json = nlohmann::json;
+
+void Application::SerializeApp(const std::string& filename) {
+    json appJson;
+
+    if (world) {
+        json worldJson;
+        world->Serialize(worldJson);
+        appJson["World"] = worldJson;
+    }
+    else {
+        appJson["World"] = json::object(); 
+    }
+
+    if (renderer) {
+        json rendererJson;
+        renderer->Serialize(rendererJson);
+        appJson["RenderManager"] = rendererJson;
+    }
+    else {
+        appJson["RenderManager"] = json::object(); 
+    }
+
+    appJson["ShouldRun"] = shouldRun;
+    appJson["WorldPath"] = worldPath;
+
+    std::ofstream outFile(filename);
+    if (outFile.is_open()) {
+        outFile << appJson.dump(4); 
+        outFile.close();
+        std::cout << "Serialized Application data to file: " << filename << std::endl;
+    }
+    else {
+        std::cerr << "Failed to write to file: " << filename << std::endl;
+    }
+}
+Application::Application(const std::string& path, const char* windowTitle) : worldPath(path)
+{
+    world = new World;
+    std::ifstream inFile(path);
+    if (!inFile.is_open()) {
+        std::cerr << "Failed to open the file: " << path << std::endl;
+        return;
+    }
+    json appJson;
+    inFile >> appJson;
+    int width = appJson["RenderManager"]["width"].get<int>();
+    int height = appJson["RenderManager"]["height"].get<int>();
+    renderer = new RenderManager(width, height, windowTitle);
+    renderer->Deserialize(appJson);
+    world->Deserialize(path);
+
 }
 
 Application::~Application() 
@@ -42,12 +99,24 @@ void Application::Run()
     entity3->GetTransformComponent()->SetPosition(glm::vec3(0, 0, -2));
 
     renderer->SetBackFaceCulling(true);
+    auto* entity2 = new Entity("Player2");
+
+    entity->AddChild(entity2);
+    auto* meshComp = new MeshRenderer("path to model", "container2.png", "container2_specular.png",
+        glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
+    entity->AddComponent(meshComp);
+
+    renderer->SetBackFaceCulling(false);
 
     renderer->SetDepthTest(true);
 
 
 
     entity->GetTransformComponent()->SetPosition(glm::vec3(0,0,1));
+    world->AddEntity(entity);
+    entity->GetTransformComponent()->SetScale(glm::vec3(1));
+
+    entity->GetTransformComponent()->SetPosition(glm::vec3(0,0,0));
 
     renderer->shader = new Shader("Vertex_Shader.glsl", "Fragment_Shader.glsl");
 
@@ -85,6 +154,15 @@ void Application::Run()
             std::cerr << "OpenGL Error: " << error << std::endl;
         }
 
+
+        renderer->Render();
+        world->Render(renderer);
+
+        entity->GetTransformComponent()->SetRotation(glm::vec3(0, 1*currentTime, 1*currentTime));
+
+
+        glfwSwapBuffers(renderer->window);
+        glfwPollEvents();
 
     }
 

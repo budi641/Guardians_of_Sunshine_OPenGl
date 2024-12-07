@@ -9,6 +9,8 @@
 #include "Camera.h"
 #include "Light.h"
 #include "Skybox.h"
+#include<json/json.h>
+using json = nlohmann::json;
 
 class RenderManager {
 public:
@@ -28,6 +30,10 @@ public:
     void SetUpOpenGL();
     void Render();
 
+    void Serialize(nlohmann::json& jsonData) ;
+    void SetUpOpenGL();
+    void Render();
+    void Deserialize(const nlohmann::json& jsonData);  
     void SetDepthTest(bool enable);
     void SetBackFaceCulling(bool enable);
 };

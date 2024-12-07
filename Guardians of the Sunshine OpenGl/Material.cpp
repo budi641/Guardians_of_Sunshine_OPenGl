@@ -5,6 +5,7 @@
 
 Material::Material(const std::string& diffusePath, const std::string& specularPath, glm::vec3 ambient, glm::vec3 diffuse, glm::vec3 specular, float shininess)
     : ambient(ambient), diffuse(diffuse), specular(specular), shininess(shininess) {
+    : ambient(ambient), diffuse(diffuse), specular(specular), shininess(shininess), diffusePath(diffusePath), specularPath(specularPath){
     diffuseTex = loadTexture(diffusePath);
     specularTex = loadTexture(specularPath);
 }

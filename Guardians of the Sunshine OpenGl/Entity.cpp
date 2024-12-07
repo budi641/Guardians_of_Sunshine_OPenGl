@@ -87,6 +87,24 @@ void Entity::Deserialize(const nlohmann::json& jsonData) {
     }
 }
 void Entity::RemoveComponent(Component* component)
+            if (type == "MeshRenderer Component") {
+
+                // Add more components here if necessary (for example, RenderComponent, PhysicsComponent, etc.)
+            }
+        }
+
+        // Deserialize children entities
+        if (jsonData.contains("children")) {
+            for (const auto& childJson : jsonData["children"]) {
+                // Create a new child entity and recursively deserialize it
+                Entity* child = new Entity(childJson.value("name", "Unnamed Entity")); // Pass name to constructor
+                child->Deserialize(childJson); // Deserialize the child entity
+                AddChild(child); // Add child to this entity
+            }
+        }
+    }
+}
+ void Entity::RemoveComponent(Component* component)
 {
     auto it = std::find(components.begin(), components.end(), component);
     if (it != components.end())

@@ -1,9 +1,9 @@
 #include "Application.h"
 int main() 
 {
-    Application app("world.json");
+    Application app("testforworldfromapp");
 
     app.Run();
-
+    
     return 0;
 }

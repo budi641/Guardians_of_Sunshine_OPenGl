@@ -6,6 +6,9 @@
 
 class Material {
 public:
+    std::string diffusePath;
+    std::string specularPath;
+
     GLuint diffuseTex;
     GLuint specularTex;
     glm::vec3 ambient;

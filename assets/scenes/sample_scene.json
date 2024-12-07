@@ -1,0 +1,37 @@
+{
+  "shaders": {
+    "vertex": "../../assets/shaders/default.vert",
+    "fragment": "../../assets/shaders/default.frag"
+  },
+  "textures": {
+    "diffuse": "../../assets/textures/container.jpg"
+  },
+  "models": {
+    "cube": "../../assets/models/cube.obj"
+  },
+  "entities": [
+    {
+      "name": "Cube1",
+      "components": {
+        "transform": {
+          "position": [ 0.0, 0.0, 0.0 ],
+          "rotation": [ 0.0, 0.0, 0.0 ],
+          "scale": [ 1.0, 1.0, 1.0 ]
+        },
+        "renderer": {
+          "mesh": "cube",
+          "shader": {
+            "vertex": "vertex",
+            "fragment": "fragment"
+          },
+          "texture": "diffuse"
+        }
+      }
+    }
+  ],
+  "rendering": {
+    "backface_culling": true,
+    "depth_testing": true,
+    "blending": true
+  }
+}

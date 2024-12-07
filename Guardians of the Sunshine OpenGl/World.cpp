@@ -32,6 +32,16 @@ void World::Serialize(nlohmann::json& jsonData) const {
         jsonData["entities"].push_back(entityData);
     }
 }void World::Deserialize(const std::string& filePath) {
+    jsonData["entities"] = nlohmann::json::array();
+
+    for (const Entity* entity : entities) {
+        nlohmann::json entityData;
+        entity->Serialize(entityData);
+        jsonData["entities"].push_back(entityData);
+    }
+
+}
+void World::Deserialize(const std::string& filePath) {
     // Open the file and check for errors
     std::ifstream file(filePath);
     if (!file.is_open()) {
@@ -51,6 +61,7 @@ void World::Serialize(nlohmann::json& jsonData) const {
 
     // Check if the "entities" key exists and is an array
     if (!jsonData.contains("entities") || !jsonData["entities"].is_array()) {
+    if (!jsonData.contains("World") || !jsonData["World"].contains("entities") || !jsonData["World"]["entities"].is_array()) {
         std::cerr << "Invalid JSON format: Missing or invalid 'entities' key.\n";
         return;
     }
@@ -74,6 +85,7 @@ void World::RemoveEntity(Entity* entity) {
 }
 
 glm::mat4 World::GetWorldMatrix(Entity* entity){
+glm::mat4 World::GetWorldMatrix(Entity* entity) const {
     glm::mat4 worldMatrix = entity->GetTransformComponent()->GetTransformMatrix();
 
     if (entity->GetParent() != nullptr) {
@@ -133,3 +145,26 @@ void World::SortEntitiesByDistance(RenderManager* renderer)
 }
 
 
+void World::Render(RenderManager* Renderer) 
+{
+    for (auto entity : entities) 
+    {
+        for (auto component : entity->GetMeshRenderComponents())
+        {
+            MeshRenderer* meshRenderer = dynamic_cast<MeshRenderer*>(component);
+
+   
+                meshRenderer->Render(Renderer, GetWorldMatrix(entity));
+
+
+            
+        }
+
+
+    }
+}
+
+std::vector<Entity*> World::GetAllEntities()
+{
+    return entities;
+}

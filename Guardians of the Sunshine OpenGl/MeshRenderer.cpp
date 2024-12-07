@@ -2,6 +2,8 @@
 #include <iostream>
 #include <iomanip>
 
+#include<json/json.h>
+using json = nlohmann::json;
 MeshRenderer::MeshRenderer(const std::string& modelPath,
     const std::string& diffuseTexturePath,
     const std::string& specularTexturePath,
@@ -131,4 +133,63 @@ void MeshRenderer::Deserialize(const nlohmann::json& jsonData) {
 
 }
 
+
+    jsonData["type"] = "MeshRenderer Component";
+
+        jsonData["modelPath"] = modelPath;
+        jsonData["diffuseTexturePath"] = mesh->material->diffusePath;
+        jsonData["specularTexturePath"] = mesh->material->specularPath;
+
+        jsonData["ambient"] = { mesh->material->ambient.x, mesh->material->ambient.y, mesh->material->ambient.z };
+        jsonData["diffuse"] = { mesh->material->diffuse.x, mesh->material->diffuse.y, mesh->material->diffuse.z };
+        jsonData["specular"] = { mesh->material->specular.x, mesh->material->specular.y, mesh->material->specular.z };
+
+        jsonData["shininess"] = mesh->material->shininess;
+    }
+
+
+
+void MeshRenderer::Deserialize(const nlohmann::json& jsonData) {
+    // Deserialize model path
+    std::string modelPath = jsonData.contains("modelPath") ? jsonData["modelPath"] : "";
+
+    // Deserialize material properties
+    glm::vec3 ambient(0.0f), diffuse(0.0f), specular(0.0f);
+    float shininess = 0.0f;
+
+    if (jsonData.contains("ambient")) {
+        ambient = glm::vec3(
+            jsonData["ambient"][0],
+            jsonData["ambient"][1],
+            jsonData["ambient"][2]
+        );
+    }
+
+    if (jsonData.contains("diffuse")) {
+        diffuse = glm::vec3(
+            jsonData["diffuse"][0],
+            jsonData["diffuse"][1],
+            jsonData["diffuse"][2]
+        );
+    }
+
+    if (jsonData.contains("specular")) {
+        specular = glm::vec3(
+            jsonData["specular"][0],
+            jsonData["specular"][1],
+            jsonData["specular"][2]
+        );
+    }
+
+    if (jsonData.contains("shininess")) {
+        shininess = jsonData["shininess"];
+    }
+
+    // Deserialize texture paths
+    std::string diffuseTexturePath = jsonData.contains("diffuseTexturePath") ? jsonData["diffuseTexturePath"] : "";
+    std::string specularTexturePath = jsonData.contains("specularTexturePath") ? jsonData["specularTexturePath"] : "";
+
+    // Reinitialize MeshRenderer
+    *this = MeshRenderer(modelPath, diffuseTexturePath, specularTexturePath, ambient, diffuse, specular, shininess);
+}
 

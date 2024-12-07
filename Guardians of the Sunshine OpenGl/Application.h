@@ -4,6 +4,7 @@
 #include "Timer.h"
 #include "InputHandler.h"
 
+#include <json/json.h>
 class Application {
 private:
     World* world = nullptr;
@@ -18,8 +19,9 @@ private:
     std::string worldPath;
 
 public:
-    Application(const std::string& worldPath);
+    Application(const std::string& worldPath, const char* windowTitle);
     ~Application();
+    void SerializeApp(const std::string& filename);
 
     void Run();
     void Quit();

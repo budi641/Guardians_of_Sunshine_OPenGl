@@ -24,6 +24,7 @@ protected:
     TransformComponent* transform = new TransformComponent();;
 
 
+
 public:
     Entity(const std::string& entityName);
     ~Entity();

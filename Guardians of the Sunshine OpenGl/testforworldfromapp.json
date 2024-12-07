@@ -1,0 +1,166 @@
+{
+    "RenderManager": {
+        "Camera": {
+            "aspectRatio": 1.7777777910232544,
+            "farPlane": 100.0,
+            "fov": 45.0,
+            "nearPlane": 0.10000000149011612,
+            "orthoHeight": 10.0,
+            "pitch": 0.0,
+            "position": [
+                0.0,
+                0.0,
+                4.0
+            ],
+            "target": [
+                -4.371138828673793e-08,
+                0.0,
+                -1.0
+            ],
+            "type": "Perspective",
+            "up": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "yaw": -90.0
+        },
+        "Light": {
+            "color": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "direction": [
+                -3.0,
+                -3.0,
+                0.0
+            ],
+            "intensity": 5.0
+        },
+        "Shader": {
+            "fragmentSource": "Fragment_Shader.glsl",
+            "vertexSource": "Vertex_Shader.glsl"
+        },
+        "Skybox": {
+            "faces": [
+                "right.jpg",
+                "left.jpg",
+                "top.jpg",
+                "bottom.jpg",
+                "front.jpg",
+                "back.jpg"
+            ],
+            "fragmentShaderPath": "SkySphere_Fragment.glsl",
+            "vertexShaderPath": "SkySphere_Vertex.glsl"
+        },
+        "enableBackFaceCulling": false,
+        "enableDepthTest": true,
+        "height": 720,
+        "width": 1280
+    },
+    "ShouldRun": false,
+    "World": {
+        "entities": [
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "components": [
+                            {
+                                "position": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "rotation": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "type": "TransformComponent"
+                            }
+                        ],
+                        "enabled": true,
+                        "name": "Player2"
+                    }
+                ],
+                "components": [
+                    {
+                        "position": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "rotation": [
+                            -0.6865736246109009,
+                            0.4638861119747162,
+                            0.4638861119747162
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "type": "TransformComponent"
+                    },
+                    {
+                        "ambient": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "diffuse": [
+                            0.30000001192092896,
+                            0.30000001192092896,
+                            0.30000001192092896
+                        ],
+                        "diffuseTexturePath": "container2.png",
+                        "modelPath": "path to model",
+                        "shininess": 0.4000000059604645,
+                        "specular": [
+                            0.20000000298023224,
+                            0.20000000298023224,
+                            0.20000000298023224
+                        ],
+                        "specularTexturePath": "container2_specular.png",
+                        "type": "MeshRenderer Component"
+                    }
+                ],
+                "enabled": true,
+                "name": "Player"
+            },
+            {
+                "children": [],
+                "components": [
+                    {
+                        "position": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "rotation": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "type": "TransformComponent"
+                    }
+                ],
+                "enabled": true,
+                "name": "Player2"
+            }
+        ]
+    },
+    "WorldPath": "testforworldfromapp.json"
+}

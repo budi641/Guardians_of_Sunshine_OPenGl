@@ -3,6 +3,8 @@
 #include <glm/glm.hpp>              
 #include <glm/gtc/matrix_transform.hpp> 
 #include <glm/gtc/constants.hpp>     
+#include<json/json.h>
+using json = nlohmann::json;
 
 Camera::Camera(CameraType type, float width, float height, float fov, float nearPlane, float farPlane, float orthoHeight)
     : type(type), aspectRatio(width / height), fov(fov), nearPlane(nearPlane), farPlane(farPlane), orthoHeight(orthoHeight),
@@ -24,6 +26,8 @@ glm::mat4 Camera::GetViewMatrix() const {
 glm::mat4 Camera::GetProjectionMatrix() const {
     return projectionMatrix;
 }
+
+
 
 void Camera::SetAspectRatio(float width, float height) {
     aspectRatio = width / height;
@@ -49,6 +53,35 @@ void Camera::SetYaw(float newYaw) {
     yaw = newYaw;
     if (yaw > 180.0f) yaw -= 360.0f;
     if (yaw < -180.0f) yaw += 360.0f;
+void Camera::Serialize(nlohmann::json& jsonData)
+{
+    jsonData["type"] = (type == CameraType::Perspective) ? "Perspective" : "Orthographic";
+
+    // Serialize aspect ratio
+    jsonData["aspectRatio"] = aspectRatio;
+
+    // Serialize fov (field of view)
+    jsonData["fov"] = fov;
+
+    // Serialize near and far planes
+    jsonData["nearPlane"] = nearPlane;
+    jsonData["farPlane"] = farPlane;
+
+    // Serialize orthographic height (used for orthographic cameras)
+    jsonData["orthoHeight"] = orthoHeight;
+
+    // Serialize position, target, and up (glm::vec3 to arrays)
+    jsonData["position"] = { position.x, position.y, position.z };
+    jsonData["target"] = { target.x, target.y, target.z };
+    jsonData["up"] = { up.x, up.y, up.z };
+
+    // Serialize yaw and pitch
+    jsonData["yaw"] = yaw;
+    jsonData["pitch"] = pitch;
+}
+
+void Camera::SetYaw(float newYaw) {
+    yaw = newYaw;
     UpdateCameraVectors();
 }
 
@@ -114,6 +147,8 @@ std::tuple<glm::vec3, glm::vec3, glm::vec3> Camera::UpdateCameraVectors() {
     glm::vec3 right;
     glm::vec3 up;
     glm::vec3 worldUp = { 0,1,0 };
+void Camera::UpdateCameraVectors() {
+    glm::vec3 front;
     front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
     front.y = sin(glm::radians(pitch));
     front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
@@ -131,3 +166,5 @@ std::tuple<glm::vec3, glm::vec3, glm::vec3> Camera::UpdateCameraVectors() {
     return std::make_tuple(front, right , up);
 }
 
+    target = glm::normalize(front);
+}
