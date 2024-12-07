@@ -7,12 +7,80 @@
       "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Fragment_Shader.glsl||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\SkySphere_Vertex.glsl||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:SkySphere_Vertex.glsl||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\SkySphere_Fragment.glsl||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:SkySphere_Fragment.glsl||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Application.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Application.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\RenderManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:RenderManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Skybox.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Skybox.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\MeshRenderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:MeshRenderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\wolrd.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:wolrd.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\World.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:World.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Skybox.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Skybox.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\RenderManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:RenderManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Shader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Shader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\TransformComponent.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:TransformComponent.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Material.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Material.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Material.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -27,22 +95,6 @@
       "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Shader.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\RenderManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:RenderManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\USERS\\ACTAC\\ONEDRIVE\\DOCUMENTS\\GUARDIANS_OF_SUNSHINE_OPENGL\\GUARDIANS OF THE SUNSHINE OPENGL\\LIBRARIES\\INCLUDE\\STB\\STB_IMAGE.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:LIBRARIES\\INCLUDE\\STB\\STB_IMAGE.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Vertex.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Vertex.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -51,12 +103,12 @@
       "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Vertex_Shader.glsl||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Skybox.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Skybox.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Libraries\\include\\stb\\stb_image.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Libraries\\include\\stb\\stb_image.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Shader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Shader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Timer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4827888F-87E4-4CC3-B282-BFE3DDBB820F}|Guardians of the Sunshine OpenGl.vcxproj|solutionrelative:Timer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,162 +118,120 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 10,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "RenderManager.h",
-              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\RenderManager.h",
-              "RelativeDocumentMoniker": "RenderManager.h",
-              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\RenderManager.h",
-              "RelativeToolTip": "RenderManager.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-05T14:27:28.011Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "stb_image.h",
-              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Libraries\\include\\stb\\stb_image.h",
-              "RelativeDocumentMoniker": "Libraries\\include\\stb\\stb_image.h",
-              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Libraries\\include\\stb\\stb_image.h",
-              "RelativeToolTip": "Libraries\\include\\stb\\stb_image.h",
-              "ViewState": "AQIAAKACAAAAAAAAAAASwLoCAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-05T14:27:11.56Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Shader.h",
-              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Shader.h",
-              "RelativeDocumentMoniker": "Shader.h",
-              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Shader.h",
-              "RelativeToolTip": "Shader.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-05T14:03:24.637Z",
-              "EditorCaption": ""
+              "Title": "RenderManager.cpp",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\RenderManager.cpp",
+              "RelativeDocumentMoniker": "RenderManager.cpp",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\RenderManager.cpp",
+              "RelativeToolTip": "RenderManager.cpp",
+              "ViewState": "AQIAADkAAAAAAAAAAAAAADcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-06T15:58:42.143Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "Skybox.h",
-              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Skybox.h",
-              "RelativeDocumentMoniker": "Skybox.h",
-              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Skybox.h",
-              "RelativeToolTip": "Skybox.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-05T14:03:23.487Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Vertex.h",
-              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Vertex.h",
-              "RelativeDocumentMoniker": "Vertex.h",
-              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Vertex.h",
-              "RelativeToolTip": "Vertex.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-05T14:01:08.935Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Material.h",
-              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Material.h",
-              "RelativeDocumentMoniker": "Material.h",
-              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Material.h",
-              "RelativeToolTip": "Material.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-05T13:56:26.961Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Light.h",
-              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Light.h",
-              "RelativeDocumentMoniker": "Light.h",
-              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Light.h",
-              "RelativeToolTip": "Light.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-05T13:50:17.561Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Material.cpp",
-              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Material.cpp",
-              "RelativeDocumentMoniker": "Material.cpp",
-              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Material.cpp",
-              "RelativeToolTip": "Material.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-05T13:32:02.245Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Source.cpp",
-              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Source.cpp",
-              "RelativeDocumentMoniker": "Source.cpp",
-              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Source.cpp",
-              "RelativeToolTip": "Source.cpp",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAAEMAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-05T13:23:16.248Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Mesh.h",
-              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Mesh.h",
-              "RelativeDocumentMoniker": "Mesh.h",
-              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Mesh.h",
-              "RelativeToolTip": "Mesh.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-05T12:51:47.872Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Mesh.cpp",
               "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Mesh.cpp",
               "RelativeDocumentMoniker": "Mesh.cpp",
               "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Mesh.cpp",
               "RelativeToolTip": "Mesh.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAABAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABwAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-05T12:35:37.697Z",
+              "WhenOpened": "2024-12-05T12:35:37.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Mesh.h",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Mesh.h",
+              "RelativeDocumentMoniker": "Mesh.h",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Mesh.h",
+              "RelativeToolTip": "Mesh.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T12:51:47.872Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Application.h",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Application.h",
+              "RelativeDocumentMoniker": "Application.h",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Application.h",
+              "RelativeToolTip": "Application.h",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABIAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-06T15:52:59.266Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Source.cpp",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Source.cpp",
+              "RelativeDocumentMoniker": "Source.cpp",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Source.cpp",
+              "RelativeToolTip": "Source.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-05T13:23:16.248Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Camera.cpp",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Camera.cpp",
+              "RelativeDocumentMoniker": "Camera.cpp",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Camera.cpp",
+              "RelativeToolTip": "Camera.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-06T15:54:29.658Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MeshRenderer.cpp",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\MeshRenderer.cpp",
+              "RelativeDocumentMoniker": "MeshRenderer.cpp",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\MeshRenderer.cpp",
+              "RelativeToolTip": "MeshRenderer.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADMAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-06T16:15:35.221Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SkySphere_Vertex.glsl",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\SkySphere_Vertex.glsl",
+              "RelativeDocumentMoniker": "SkySphere_Vertex.glsl",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\SkySphere_Vertex.glsl",
+              "RelativeToolTip": "SkySphere_Vertex.glsl",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-06T17:32:20.016Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Vertex_Shader.glsl",
-              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Vertex_Shader.glsl",
-              "RelativeDocumentMoniker": "Vertex_Shader.glsl",
-              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Vertex_Shader.glsl",
-              "RelativeToolTip": "Vertex_Shader.glsl",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAqAAAA",
+              "DocumentIndex": 2,
+              "Title": "SkySphere_Fragment.glsl",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\SkySphere_Fragment.glsl",
+              "RelativeDocumentMoniker": "SkySphere_Fragment.glsl",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\SkySphere_Fragment.glsl",
+              "RelativeToolTip": "SkySphere_Fragment.glsl",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-12-05T12:12:56.757Z",
+              "WhenOpened": "2024-12-06T17:32:42.767Z",
               "EditorCaption": ""
             },
             {
@@ -232,23 +242,214 @@
               "RelativeDocumentMoniker": "Fragment_Shader.glsl",
               "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Fragment_Shader.glsl",
               "RelativeToolTip": "Fragment_Shader.glsl",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAZAAAA",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAABsAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2024-12-05T11:25:11.383Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 6,
+              "Title": "Skybox.cpp",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Skybox.cpp",
+              "RelativeDocumentMoniker": "Skybox.cpp",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Skybox.cpp",
+              "RelativeToolTip": "Skybox.cpp",
+              "ViewState": "AQIAADwAAAAAAAAAAAAWwFQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-06T17:30:47.84Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "wolrd.json",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\wolrd.json",
+              "RelativeDocumentMoniker": "wolrd.json",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\wolrd.json",
+              "RelativeToolTip": "wolrd.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-06T17:44:45.846Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Application.cpp",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Application.cpp",
+              "RelativeDocumentMoniker": "Application.cpp",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Application.cpp",
+              "RelativeToolTip": "Application.cpp",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAAC4AAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-06T15:50:37.856Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Timer.h",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Timer.h",
+              "RelativeDocumentMoniker": "Timer.h",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Timer.h",
+              "RelativeToolTip": "Timer.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-06T15:53:02.379Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Skybox.h",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Skybox.h",
+              "RelativeDocumentMoniker": "Skybox.h",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Skybox.h",
+              "RelativeToolTip": "Skybox.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T14:03:23.487Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "RenderManager.h",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\RenderManager.h",
+              "RelativeDocumentMoniker": "RenderManager.h",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\RenderManager.h",
+              "RelativeToolTip": "RenderManager.h",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABwAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T14:27:28.011Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "World.cpp",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\World.cpp",
+              "RelativeDocumentMoniker": "World.cpp",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\World.cpp",
+              "RelativeToolTip": "World.cpp",
+              "ViewState": "AQIAAE8AAAAAAAAAAAAWwHUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-06T16:40:21.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "Shader.cpp",
               "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Shader.cpp",
               "RelativeDocumentMoniker": "Shader.cpp",
               "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Shader.cpp",
               "RelativeToolTip": "Shader.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-05T13:29:16.722Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Material.cpp",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Material.cpp",
+              "RelativeDocumentMoniker": "Material.cpp",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Material.cpp",
+              "RelativeToolTip": "Material.cpp",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAwAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-05T13:32:02.245Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "TransformComponent.cpp",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\TransformComponent.cpp",
+              "RelativeDocumentMoniker": "TransformComponent.cpp",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\TransformComponent.cpp",
+              "RelativeToolTip": "TransformComponent.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-05T13:29:16.722Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-06T16:44:26.364Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Camera.h",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Camera.h",
+              "RelativeDocumentMoniker": "Camera.h",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Camera.h",
+              "RelativeToolTip": "Camera.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-06T15:54:01.845Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "stb_image.h",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Libraries\\include\\stb\\stb_image.h",
+              "RelativeDocumentMoniker": "Libraries\\include\\stb\\stb_image.h",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Libraries\\include\\stb\\stb_image.h",
+              "RelativeToolTip": "Libraries\\include\\stb\\stb_image.h",
+              "ViewState": "AQIAAKACAAAAAAAAAAASwLoCAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T14:27:11.56Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Light.h",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Light.h",
+              "RelativeDocumentMoniker": "Light.h",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Light.h",
+              "RelativeToolTip": "Light.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T13:50:17.561Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Material.h",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Material.h",
+              "RelativeDocumentMoniker": "Material.h",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Material.h",
+              "RelativeToolTip": "Material.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T13:56:26.961Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Vertex.h",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Vertex.h",
+              "RelativeDocumentMoniker": "Vertex.h",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Vertex.h",
+              "RelativeToolTip": "Vertex.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T14:01:08.935Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Shader.h",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Shader.h",
+              "RelativeDocumentMoniker": "Shader.h",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Shader.h",
+              "RelativeToolTip": "Shader.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-05T14:03:24.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Vertex_Shader.glsl",
+              "DocumentMoniker": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Vertex_Shader.glsl",
+              "RelativeDocumentMoniker": "Vertex_Shader.glsl",
+              "ToolTip": "C:\\Users\\actac\\OneDrive\\Documents\\Guardians_of_Sunshine_OPenGl\\Guardians of the Sunshine OpenGl\\Vertex_Shader.glsl",
+              "RelativeToolTip": "Vertex_Shader.glsl",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-12-05T12:12:56.757Z"
             }
           ]
         }

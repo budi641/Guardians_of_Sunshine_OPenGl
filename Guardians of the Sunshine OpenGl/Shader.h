@@ -5,17 +5,17 @@
 
 class Shader {
 private:
-    unsigned int programID;  // OpenGL program ID
-    std::unordered_map<std::string, int> uniformLocationCache;  // Cache for uniform locations
+    unsigned int programID; 
+    std::unordered_map<std::string, int> uniformLocationCache;  
 
-    int GetUniformLocation(const std::string& name);  // Retrieve uniform location
+    int GetUniformLocation(const std::string& name);  
 
 public:
     Shader(const std::string& vertexSource, const std::string& fragmentSource);
     ~Shader();
 
-    void Bind() const;    // Use the shader program
-    void Unbind() const;  // Stop using the shader program
+    void Bind() const;    
+    void Unbind() const;  
 
     void SetUniform(const std::string& name, int value);
     void SetUniform(const std::string& name, float value);

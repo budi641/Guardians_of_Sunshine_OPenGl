@@ -11,7 +11,7 @@ Material::Material(const std::string& diffusePath, const std::string& specularPa
 
 GLuint Material::loadTexture(const std::string& path) {
     int width, height, channels;
-    stbi_set_flip_vertically_on_load(true); // Flip images as OpenGL expects
+    stbi_set_flip_vertically_on_load(true); 
     unsigned char* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
     if (data) {
         GLuint texture;

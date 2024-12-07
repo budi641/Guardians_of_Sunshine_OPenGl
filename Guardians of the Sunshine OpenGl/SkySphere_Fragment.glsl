@@ -1,13 +1,11 @@
 #version 330 core
+out vec4 FragColor;
 
-in vec3 TexCoords;  // Input texture coordinates from the vertex shader
+in vec3 TexCoords;
 
-out vec4 FragColor;  // Output color of the fragment
-
-uniform samplerCube skybox;  // The cubemap texture
+uniform samplerCube skybox;
 
 void main()
-{
-    // Sample the cubemap texture using the texture coordinates
+{  
     FragColor = texture(skybox, TexCoords);
 }

@@ -34,14 +34,8 @@
     <Filter Include="Engine\Rendering\Source">
       <UniqueIdentifier>{8c216861-8080-4d44-bd8f-443d82328061}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Utilities">
-      <UniqueIdentifier>{25995665-dfd3-4ceb-bcd1-169250e8cdd1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Core\Components">
       <UniqueIdentifier>{c85ce355-870b-49ae-a210-dc559c29798c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Core\Components\Head Files">
-      <UniqueIdentifier>{a6b45870-7af8-49af-84c2-99a04cd5e005}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Core\Components\Source">
       <UniqueIdentifier>{34e316be-8af9-4f58-90cf-54d49a8d7302}</UniqueIdentifier>
@@ -55,11 +49,14 @@
     <Filter Include="Assets\Textures">
       <UniqueIdentifier>{dfe8243e-8cf9-4af1-b67f-9289ede94e57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Utilities">
+      <UniqueIdentifier>{25995665-dfd3-4ceb-bcd1-169250e8cdd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Core\Components\Header Files">
+      <UniqueIdentifier>{a6b45870-7af8-49af-84c2-99a04cd5e005}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -96,8 +93,11 @@
     <ClCompile Include="RenderManager.cpp">
       <Filter>Engine\Rendering\Source</Filter>
     </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
-      <Filter>Engine\Core\Source</Filter>
+    <ClCompile Include="MeshRenderer.cpp">
+      <Filter>Engine\Core\Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -129,7 +129,7 @@
       <Filter>Engine\Rendering\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TransformComponent.h">
-      <Filter>Engine\Core\Components\Head Files</Filter>
+      <Filter>Engine\Core\Components\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RenderManager.h">
       <Filter>Engine\Rendering\Header Files</Filter>
@@ -140,8 +140,8 @@
     <ClInclude Include="Light.h">
       <Filter>Engine\Rendering\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InputHandler.h">
-      <Filter>Engine\Core\Header Files</Filter>
+    <ClInclude Include="MeshRenderer.h">
+      <Filter>Engine\Core\Components\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +149,12 @@
       <Filter>Assets\Shaders</Filter>
     </None>
     <None Include="Fragment_Shader.glsl">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="SkySphere_Fragment.glsl">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="SkySphere_Vertex.glsl">
       <Filter>Assets\Shaders</Filter>
     </None>
   </ItemGroup>

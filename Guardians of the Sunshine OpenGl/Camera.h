@@ -44,9 +44,10 @@ private:
     float aspectRatio;
     float fov;           // For Perspective camera
     float def_fov;
+    float fov;       
     float nearPlane;
     float farPlane;
-    float orthoHeight;   // For Orthographic camera
+    float orthoHeight; 
 
     glm::vec3 position;
     glm::vec3 target;
@@ -62,4 +63,8 @@ private:
     
     
     
+
+    float yaw = 0;
+    float pitch = 0;
+    void UpdateCameraVectors();
 };
