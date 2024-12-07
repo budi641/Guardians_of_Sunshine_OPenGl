@@ -99,10 +99,10 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Engine\Core\Source</Filter>
     </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
-      <Filter>Engine\Core\Source</Filter>
-    </ClCompile>
     <ClCompile Include="RenderManager.cpp">
+      <Filter>Engine\Rendering\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
       <Filter>Engine\Core\Source</Filter>
     </ClCompile>
   </ItemGroup>

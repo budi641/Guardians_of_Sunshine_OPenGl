@@ -97,6 +97,9 @@ void RenderManager::SetDepthTest(bool enable) {
 void RenderManager::SetBackFaceCulling(bool enable) {
     if (enable) {
         glEnable(GL_CULL_FACE);
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+        glFrontFace(GL_CCW);
     }
     else {
         glDisable(GL_CULL_FACE);

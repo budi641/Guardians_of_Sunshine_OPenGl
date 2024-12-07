@@ -26,7 +26,7 @@ void Application::Run()
         glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
     entity->AddComponent(meshComp);
 
-    renderer->SetBackFaceCulling(false);
+    renderer->SetBackFaceCulling(true);
 
     renderer->SetDepthTest(true);
 
