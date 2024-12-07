@@ -6,7 +6,7 @@ struct Light {
     vec3 direction;
 };
 
-struct Material {
+struct Material{
     sampler2D diffuseTex;
     sampler2D specularTex;
     vec3 ambient;
