@@ -83,6 +83,12 @@ glm::mat4 World::GetWorldMatrix(Entity* entity){
     return worldMatrix;
 }
 
+glm::vec3 World::GetWorldPosition(Entity* entity)
+{
+
+    return glm::vec3(GetWorldMatrix(entity)[3][0], GetWorldMatrix(entity)[3][1], GetWorldMatrix(entity)[3][2]);
+}
+
 void World::Update(float deltaTime) {
     for (auto entity : entities) {
         entity->Update(deltaTime);
@@ -104,14 +110,26 @@ void World::SERIALIZE(const std::string& name)
 }
 void World::RenderWorld(RenderManager* Renderer) 
 {
+    SortEntitiesByDistance(Renderer);
+
     for (auto entity : entities) 
     {
         entity->RenderEntity(Renderer);
-    
     }
 }
 
-std::vector<Entity*> World::GetAllEntities()
+void World::SortEntitiesByDistance(RenderManager* renderer)
 {
-    return entities;
+    glm::vec3 cameraPos = renderer->camera->GetPosition();
+    
+    std::sort(entities.begin(), entities.end(), [this, &cameraPos](Entity* a, Entity* b) {
+        glm::vec3 posA = this->GetWorldPosition(a);  
+        glm::vec3 posB = this->GetWorldPosition(b);  
+        float distA = glm::dot(posA - cameraPos, posA - cameraPos);  
+        float distB = glm::dot(posB - cameraPos, posB - cameraPos);  
+        return distA > distB;  
+        });
+
 }
+
+

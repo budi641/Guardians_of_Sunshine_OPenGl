@@ -22,19 +22,32 @@ void Application::Run()
     }
 
     auto* entity = new Entity("Player");
+
     auto* meshComp = new MeshRenderer("path to model", "container2.png", "container2_specular.png",
         glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
+
     entity->AddComponent(meshComp);
+    world->AddEntity(entity);
+    entity->GetTransformComponent()->SetPosition(glm::vec3(0, 0, 2));
+
+
+
+    auto* entity3 = new Entity("Player3");
+
+    auto* meshComp3 = new MeshRenderer("path to model", "container2.png", "container2_specular.png",
+        glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
+
+    entity3->AddComponent(meshComp3);
+    world->AddEntity(entity3);
+    entity3->GetTransformComponent()->SetPosition(glm::vec3(0, 0, -2));
 
     renderer->SetBackFaceCulling(true);
 
     renderer->SetDepthTest(true);
 
 
-    world->AddEntity(entity);
-    entity->GetTransformComponent()->SetScale(glm::vec3(1));
 
-    entity->GetTransformComponent()->SetPosition(glm::vec3(0,0,0));
+    entity->GetTransformComponent()->SetPosition(glm::vec3(0,0,1));
 
     renderer->shader = new Shader("Vertex_Shader.glsl", "Fragment_Shader.glsl");
 
@@ -56,7 +69,6 @@ void Application::Run()
         float deltaTime = timer.GetDeltaTime();
         float currentTime = timer.GetCurrentTime();
 
-
         inputHandler.handleInput(renderer->window);
         inputHandler.updateCameraMovement(renderer->window, *renderer->camera);
 
@@ -65,9 +77,14 @@ void Application::Run()
 
         entity->GetTransformComponent()->SetRotation(glm::vec3(0, 1*currentTime, 1*currentTime));
 
-
         glfwSwapBuffers(renderer->window);
         glfwPollEvents();
+
+        GLenum error = glGetError();
+        if (error != GL_NO_ERROR) {
+            std::cerr << "OpenGL Error: " << error << std::endl;
+        }
+
 
     }
 

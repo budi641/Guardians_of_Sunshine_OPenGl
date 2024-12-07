@@ -62,6 +62,8 @@ MeshRenderer::MeshRenderer(const std::string& modelPath,
 
     mesh = new Mesh(vertices, indices, new Material(diffuseTexturePath, specularTexturePath, ambient, diffuse, specular, shininess));
 
+    mesh->material->alpha = 0.5;
+
 }
 
 
