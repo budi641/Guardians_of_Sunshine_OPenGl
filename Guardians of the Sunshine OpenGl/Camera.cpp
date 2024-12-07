@@ -1,5 +1,8 @@
 #include "Camera.h"
 #include <iostream>
+#include <glm/glm.hpp>              
+#include <glm/gtc/matrix_transform.hpp> 
+#include <glm/gtc/constants.hpp>     
 
 Camera::Camera(CameraType type, float width, float height, float fov, float nearPlane, float farPlane, float orthoHeight)
     : type(type), aspectRatio(width / height), fov(fov), nearPlane(nearPlane), farPlane(farPlane), orthoHeight(orthoHeight),
@@ -108,34 +111,21 @@ glm::vec3 Camera::GetUp() {
 std::tuple<glm::vec3, glm::vec3, glm::vec3> Camera::UpdateCameraVectors() {
   
     glm::vec3 front;
+    glm::vec3 right;
+    glm::vec3 up;
+    glm::vec3 worldUp = { 0,1,0 };
     front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
     front.y = sin(glm::radians(pitch));
     front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 
+
+    target = glm::normalize(front);
+
+
+    right = glm::normalize(glm::cross(worldUp, target));
+
     
-    front = glm::normalize(front);
-
- 
-    glm::vec3 up;
-    up.x = sin(glm::radians(yaw) + glm::pi<float>() / 2.0f);
-    up.y = 0;  
-    up.z = cos(glm::radians(yaw) + glm::pi<float>() / 2.0f);
-
-    // Normalize the right vector
-    up = glm::normalize(up);
-
- 
-    glm::vec3 right;
-    right.x = -sin(glm::radians(pitch)) * sin(glm::radians(yaw));
-    //.y = cos(glm::radians(pitch));
-    right.z = sin(glm::radians(pitch)) * cos(glm::radians(yaw));
-    right.y = 0;
-
-
-    right = glm::normalize(right);
-
-   
-    target = front;
+    up = glm::normalize(glm::cross(right, target));
 
 
     return std::make_tuple(front, right , up);
