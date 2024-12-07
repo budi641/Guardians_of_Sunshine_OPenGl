@@ -44,31 +44,31 @@ void InputHandler::updateCameraMovement(GLFWwindow* window, Camera& camera) {
     
     if (inputState.forward) {
        // glm::vec3 forwardDirection = camera.UpdateCameraVectors(); // Get the forward vector from the camera function
-        camera.SetPosition(camera.GetPosition() + std::get<0>(vectors) * movement_factor); // Move the camera in the forward direction
+        camera.SetPosition(camera.GetPosition() - std::get<0>(vectors) * movement_factor); // Move the camera in the forward direction
     }
 
 
     if (inputState.back) {
         //glm::vec3 forwardDirection = camera.UpdateCameraVectors(); // Get the forward vector from the camera function
-        camera.SetPosition(camera.GetPosition() - std::get<0>(vectors) * movement_factor); // Move the camera in the forward direction
+        camera.SetPosition(camera.GetPosition() + std::get<0>(vectors) * movement_factor); // Move the camera in the forward direction
     }
    // if (inputState.forward) camera.SetPosition({ camera.UpdateCameraVectors().x, camera.UpdateCameraVectors().y,camera.UpdateCameraVectors().z- movement_factor/2.0 });
 
     if (inputState.left)
     {
-        camera.SetPosition(camera.GetPosition() - std::get<1>(vectors) * movement_factor);
+        camera.SetPosition(camera.GetPosition() + std::get<1>(vectors) * movement_factor);
     }
     if (inputState.right)
     {
-        camera.SetPosition(camera.GetPosition() + std::get<1>(vectors) * movement_factor);
+        camera.SetPosition(camera.GetPosition() - std::get<1>(vectors) * movement_factor);
     }
     if (inputState.up)
     {
-        camera.SetPosition(camera.GetPosition() + std::get<2>(vectors) * movement_factor);
+        camera.SetPosition(camera.GetPosition() - std::get<2>(vectors) * movement_factor);
     }
     if (inputState.down)
     {
-        camera.SetPosition(camera.GetPosition() - std::get<2>(vectors) * movement_factor);
+        camera.SetPosition(camera.GetPosition() + std::get<2>(vectors) * movement_factor);
     }
     
 
