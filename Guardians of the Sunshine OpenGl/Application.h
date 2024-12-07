@@ -15,7 +15,7 @@ private:
     std::string worldPath;
 
 public:
-    Application(const std::string& worldPath);
+    Application(const std::string& worldPath, const char* windowTitle);
     ~Application();
     void SerializeApp(const std::string& filename);
 
