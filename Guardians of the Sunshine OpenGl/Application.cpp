@@ -13,33 +13,46 @@ Application::~Application()
     delete world;
 }
 
-void Application::Run() 
+void Application::Run()
 {
     renderer = new RenderManager(1280, 720, "Test App");
-    if (!renderer->window) 
+    if (!renderer->window)
     {
         return;
     }
 
     auto* entity = new Entity("Player");
-    auto* meshComp = new MeshRenderer("path to model", "container2.png", "container2_specular.png",
-        glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
+
+    // Create the mesh component
+    std::vector<Vertex> vertices;
+    std::vector<GLuint> indices;
+
+    // Use the loadModel function to load the mesh from the file
+    Mesh* mesh = new Mesh(vertices, indices, nullptr);  // nullptr for the material, to be filled later
+
+    if (!mesh->loadMesh("C:/Users/safia/Downloads/bottle-3d-model/source/7UP.txt", vertices, indices)) {
+        std::cerr << "Failed to load model!" << std::endl;
+        return;
+    }
+
+    
+    Material* material = new Material("Assets/Textures");
+    material->loadAllTextures();
+
+    auto* meshComp = new MeshRenderer(mesh, material);
     entity->AddComponent(meshComp);
 
     renderer->SetBackFaceCulling(true);
-
     renderer->SetDepthTest(true);
-
 
     world->AddEntity(entity);
     entity->GetTransformComponent()->SetScale(glm::vec3(1));
-
-    entity->GetTransformComponent()->SetPosition(glm::vec3(0,0,0));
+    entity->GetTransformComponent()->SetPosition(glm::vec3(0, 0, 0));
 
     renderer->shader = new Shader("Vertex_Shader.glsl", "Fragment_Shader.glsl");
 
     std::vector<std::string> skyCubeMap = {
-    "right.jpg", "left.jpg", "top.jpg", "bottom.jpg", "front.jpg", "back.jpg"
+        "right.jpg", "left.jpg", "top.jpg", "bottom.jpg", "front.jpg", "back.jpg"
     };
     renderer->skybox = new Skybox(skyCubeMap, "SkySphere_Vertex.glsl", "SkySphere_Fragment.glsl");
 
@@ -48,14 +61,11 @@ void Application::Run()
 
     renderer->light = new Light(glm::vec3(1.0f, 1.0f, 1.0f), 5.0f, glm::vec3(-3.0f, -3.0f, 0.0f));
 
-
-
-    while (!glfwWindowShouldClose(renderer->window) && shouldRun) 
+    while (!glfwWindowShouldClose(renderer->window) && shouldRun)
     {
         timer.Update();
         float deltaTime = timer.GetDeltaTime();
         float currentTime = timer.GetCurrentTime();
-
 
         inputHandler.handleInput(renderer->window);
         inputHandler.updateCameraMovement(renderer->window, *renderer->camera);
@@ -63,12 +73,10 @@ void Application::Run()
         renderer->Render();
         world->Render(renderer);
 
-        entity->GetTransformComponent()->SetRotation(glm::vec3(0, 1*currentTime, 1*currentTime));
-
+        entity->GetTransformComponent()->SetRotation(glm::vec3(0, 1 * currentTime, 1 * currentTime));
 
         glfwSwapBuffers(renderer->window);
         glfwPollEvents();
-
     }
 
     Quit();
@@ -80,3 +88,5 @@ void Application::Quit()
     shouldRun = false;
     glfwTerminate(); 
 }
+
+

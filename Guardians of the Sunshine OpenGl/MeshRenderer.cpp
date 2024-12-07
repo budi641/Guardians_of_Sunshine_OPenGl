@@ -2,65 +2,11 @@
 #include <iostream>
 #include <iomanip>
 
-MeshRenderer::MeshRenderer(const std::string& modelPath,
-    const std::string& diffuseTexturePath,
-    const std::string& specularTexturePath,
-    const glm::vec3& ambient,
-    const glm::vec3& diffuse,
-    const glm::vec3& specular,
-    float shininess)
+MeshRenderer::MeshRenderer(Mesh* mesh, Material* material)
 {
-    name = "Mesh renderer";
 
-    this->modelPath = modelPath;
-
-    std::vector<Vertex> vertices = {
-
-        {{-0.5f, -0.5f,  0.5f}, {}, {0.0f,  0.0f,  1.0f}, {0.0f, 0.0f}}, 
-        {{ 0.5f, -0.5f,  0.5f}, {}, {0.0f,  0.0f,  1.0f}, {1.0f, 0.0f}}, 
-        {{ 0.5f,  0.5f,  0.5f}, {}, {0.0f,  0.0f,  1.0f}, {1.0f, 1.0f}}, 
-        {{-0.5f,  0.5f,  0.5f}, {}, {0.0f,  0.0f,  1.0f}, {0.0f, 1.0f}}, 
-
-        {{ 0.5f, -0.5f, -0.5f}, {}, {0.0f,  0.0f, -1.0f}, {0.0f, 0.0f}}, 
-        {{-0.5f, -0.5f, -0.5f}, {}, {0.0f,  0.0f, -1.0f}, {1.0f, 0.0f}}, 
-        {{-0.5f,  0.5f, -0.5f}, {}, {0.0f,  0.0f, -1.0f}, {1.0f, 1.0f}}, 
-        {{ 0.5f,  0.5f, -0.5f}, {}, {0.0f,  0.0f, -1.0f}, {0.0f, 1.0f}}, 
-
-  
-        {{-0.5f, -0.5f, -0.5f}, {}, {-1.0f,  0.0f,  0.0f}, {0.0f, 0.0f}}, 
-        {{-0.5f, -0.5f,  0.5f}, {}, {-1.0f,  0.0f,  0.0f}, {1.0f, 0.0f}}, 
-        {{-0.5f,  0.5f,  0.5f}, {}, {-1.0f,  0.0f,  0.0f}, {1.0f, 1.0f}}, 
-        {{-0.5f,  0.5f, -0.5f}, {}, {-1.0f,  0.0f,  0.0f}, {0.0f, 1.0f}}, 
-
-   
-        {{ 0.5f, -0.5f,  0.5f}, {}, {1.0f,  0.0f,  0.0f}, {0.0f, 0.0f}}, 
-        {{ 0.5f, -0.5f, -0.5f}, {}, {1.0f,  0.0f,  0.0f}, {1.0f, 0.0f}}, 
-        {{ 0.5f,  0.5f, -0.5f}, {}, {1.0f,  0.0f,  0.0f}, {1.0f, 1.0f}}, 
-        {{ 0.5f,  0.5f,  0.5f}, {}, {1.0f,  0.0f,  0.0f}, {0.0f, 1.0f}}, 
-
-
-        {{-0.5f,  0.5f,  0.5f}, {}, {0.0f,  1.0f,  0.0f}, {0.0f, 0.0f}}, 
-        {{ 0.5f,  0.5f,  0.5f}, {}, {0.0f,  1.0f,  0.0f}, {1.0f, 0.0f}}, 
-        {{ 0.5f,  0.5f, -0.5f}, {}, {0.0f,  1.0f,  0.0f}, {1.0f, 1.0f}}, 
-        {{-0.5f,  0.5f, -0.5f}, {}, {0.0f,  1.0f,  0.0f}, {0.0f, 1.0f}},
-
-
-        {{-0.5f, -0.5f, -0.5f}, {}, {0.0f, -1.0f,  0.0f}, {0.0f, 0.0f}}, 
-        {{ 0.5f, -0.5f, -0.5f}, {}, {0.0f, -1.0f,  0.0f}, {1.0f, 0.0f}}, 
-        {{ 0.5f, -0.5f,  0.5f}, {}, {0.0f, -1.0f,  0.0f}, {1.0f, 1.0f}}, 
-        {{-0.5f, -0.5f,  0.5f}, {}, {0.0f, -1.0f,  0.0f}, {0.0f, 1.0f}}, 
-    };
-
-    std::vector<unsigned int> indices = {
-        0, 1, 2, 2, 3, 0,       
-        4, 5, 6, 6, 7, 4,       
-        8, 9, 10, 10, 11, 8,    
-        12, 13, 14, 14, 15, 12, 
-        16, 17, 18, 18, 19, 16, 
-        20, 21, 22, 22, 23, 20  
-    };
-
-    mesh = new Mesh(vertices, indices, new Material(diffuseTexturePath, specularTexturePath, ambient, diffuse, specular, shininess));
+    this->mesh = mesh;
+    this->material = material;
 
 }
 

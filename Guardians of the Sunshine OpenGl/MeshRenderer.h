@@ -12,17 +12,12 @@
 class MeshRenderer : public Component {
 private:
     Mesh* mesh = nullptr;
-
+    Material* material;
     std::string modelPath;
 
 public:
-    MeshRenderer(const std::string& modelPath,
-        const std::string& diffuseTexturePath,
-        const std::string& specularTexturePath,
-        const glm::vec3& ambient,
-        const glm::vec3& diffuse,
-        const glm::vec3& specular,
-        float shininess);
+   
+    MeshRenderer(Mesh* mesh, Material* material);
 
 
     Mesh* GetMesh() const;

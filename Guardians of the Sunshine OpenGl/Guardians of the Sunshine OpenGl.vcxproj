@@ -191,6 +191,8 @@
     <None Include="Vertex_Shader.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\Downloads\bottle-3d-model\textures\_defuse.png" />
+    <Image Include="..\..\..\..\Downloads\bottle-3d-model\textures\_specular.jpg" />
     <Image Include="back.jpg" />
     <Image Include="bottom.jpg" />
     <Image Include="container2.png" />
@@ -200,6 +202,17 @@
     <Image Include="right.jpg" />
     <Image Include="texture.jpg" />
     <Image Include="top.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Downloads\bottle-3d-model\source\7UP.obj">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DeploymentContent>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

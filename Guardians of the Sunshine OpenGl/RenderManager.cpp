@@ -1,4 +1,6 @@
 #include "RenderManager.h"
+#include "Vertex.h"
+
 #include <iostream>
 
 RenderManager::RenderManager(int width, int height, const char* windowTitle)
@@ -109,3 +111,4 @@ void RenderManager::SetBackFaceCulling(bool enable) {
     }
     enableBackFaceCulling = enable;
 }
+

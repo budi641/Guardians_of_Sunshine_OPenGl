@@ -10,6 +10,8 @@
 #include "Light.h"
 #include "Skybox.h"
 
+
+
 class RenderManager {
 public:
     GLFWwindow* window = nullptr;
@@ -30,4 +32,7 @@ public:
 
     void SetDepthTest(bool enable);
     void SetBackFaceCulling(bool enable);
+
+   
+
 };
