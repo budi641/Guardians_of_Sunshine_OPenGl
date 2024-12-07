@@ -56,6 +56,10 @@ void Application::Run()
         float deltaTime = timer.GetDeltaTime();
         float currentTime = timer.GetCurrentTime();
 
+
+        inputHandler.handleInput(renderer->window);
+        inputHandler.updateCameraMovement(renderer->window, *renderer->camera);
+
         renderer->Render();
         world->Render(renderer);
 

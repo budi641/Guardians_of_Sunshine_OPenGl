@@ -44,7 +44,6 @@ private:
     float aspectRatio;
     float fov;           // For Perspective camera
     float def_fov;
-    float fov;       
     float nearPlane;
     float farPlane;
     float orthoHeight; 
@@ -56,15 +55,11 @@ private:
     glm::mat4 viewMatrix;
     glm::mat4 projectionMatrix;
     float speed = 5.0f;
-    float yaw;
-    float pitch;
-    float def_pitch;
-    float def_yaw;
-    
-    
-    
-
     float yaw = 0;
     float pitch = 0;
-    void UpdateCameraVectors();
+    float def_pitch;
+    float def_yaw;
+
+
+
 };

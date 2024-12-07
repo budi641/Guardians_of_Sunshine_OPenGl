@@ -90,14 +90,20 @@
     <ClCompile Include="TransformComponent.cpp">
       <Filter>Engine\Core\Components\Source</Filter>
     </ClCompile>
-    <ClCompile Include="RenderManager.cpp">
-      <Filter>Engine\Rendering\Source</Filter>
-    </ClCompile>
     <ClCompile Include="MeshRenderer.cpp">
       <Filter>Engine\Core\Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Engine\Core\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>Engine\Core\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>Engine\Core\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +149,12 @@
     <ClInclude Include="MeshRenderer.h">
       <Filter>Engine\Core\Components\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Engine\Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Engine\Core\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vertex_Shader.glsl">
@@ -166,6 +178,24 @@
       <Filter>Assets\Textures</Filter>
     </Image>
     <Image Include="container2_specular.png">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="back.jpg">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="bottom.jpg">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="front.jpg">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="left.jpg">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="right.jpg">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="top.jpg">
       <Filter>Assets\Textures</Filter>
     </Image>
   </ItemGroup>
