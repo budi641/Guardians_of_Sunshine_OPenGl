@@ -73,7 +73,7 @@ void World::RemoveEntity(Entity* entity) {
     }
 }
 
-glm::mat4 World::GetWorldMatrix(Entity* entity) const {
+glm::mat4 World::GetWorldMatrix(Entity* entity){
     glm::mat4 worldMatrix = entity->GetTransformComponent()->GetTransformMatrix();
 
     if (entity->GetParent() != nullptr) {
@@ -81,6 +81,12 @@ glm::mat4 World::GetWorldMatrix(Entity* entity) const {
     }
 
     return worldMatrix;
+}
+
+glm::vec3 World::GetWorldPosition(Entity* entity)
+{
+
+    return glm::vec3(GetWorldMatrix(entity)[3][0], GetWorldMatrix(entity)[3][1], GetWorldMatrix(entity)[3][2]);
 }
 
 void World::Update(float deltaTime) {
@@ -102,26 +108,28 @@ void World::SERIALIZE(const std::string& name)
         std::cout << "Error opening file for writing!" << std::endl;
     }
 }
-void World::Render(RenderManager* Renderer) 
+void World::RenderWorld(RenderManager* Renderer) 
 {
+    SortEntitiesByDistance(Renderer);
+
     for (auto entity : entities) 
     {
-        for (auto component : entity->GetMeshRenderComponents())
-        {
-            MeshRenderer* meshRenderer = dynamic_cast<MeshRenderer*>(component);
-
-   
-                meshRenderer->Render(Renderer, GetWorldMatrix(entity));
-
-
-            
-        }
-
-
+        entity->RenderEntity(Renderer);
     }
 }
 
-std::vector<Entity*> World::GetAllEntities()
+void World::SortEntitiesByDistance(RenderManager* renderer)
 {
-    return entities;
+    glm::vec3 cameraPos = renderer->camera->GetPosition();
+    
+    std::sort(entities.begin(), entities.end(), [this, &cameraPos](Entity* a, Entity* b) {
+        glm::vec3 posA = this->GetWorldPosition(a);  
+        glm::vec3 posB = this->GetWorldPosition(b);  
+        float distA = glm::dot(posA - cameraPos, posA - cameraPos);  
+        float distB = glm::dot(posB - cameraPos, posB - cameraPos);  
+        return distA > distB;  
+        });
+
 }
+
+

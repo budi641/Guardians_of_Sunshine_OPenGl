@@ -62,6 +62,7 @@ void RenderManager::SetUpOpenGL() {
         glFrontFace(GL_CCW);
     }
 
+    glDepthFunc(GL_LESS);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -83,7 +84,6 @@ void RenderManager::Render() {
     if (camera && shader) {
         camera->UpdateProjection(*shader);
     }
-
 
 }
 

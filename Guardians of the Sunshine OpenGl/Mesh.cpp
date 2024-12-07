@@ -8,6 +8,7 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Mate
 
 void Mesh::Draw(Shader& shader, const glm::mat4& modelMatrix, const glm::vec3& viewPos, const Light& light) {
 
+    shader.Bind();
 
     shader.SetUniform("material.ambient", material->ambient);
     shader.SetUniform("material.diffuse", material->diffuse);
@@ -62,6 +63,8 @@ void Mesh::setupMesh() {
 
     glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texCoord));
     glEnableVertexAttribArray(3);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     glBindVertexArray(0);
 }

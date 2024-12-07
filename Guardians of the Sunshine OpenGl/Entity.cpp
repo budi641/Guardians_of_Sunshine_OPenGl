@@ -3,6 +3,7 @@
 #include <algorithm>
 #include "TransformComponent.h"
 #include "MeshRenderer.h"
+#include "RenderManager.h"
 
 Entity::Entity(const std::string& entityName)
 {
@@ -215,4 +216,19 @@ std::vector<Component*> Entity::GetMeshRenderComponents()
     }
 
     return Meshcomponents;
+}
+
+void Entity::RenderEntity(RenderManager* renderer)
+{
+    for (Component* component : components)
+    {
+        MeshRenderer* mesh = dynamic_cast<MeshRenderer*>(component);
+
+        if (mesh)
+        {
+            mesh->Render(renderer,world->GetWorldMatrix(this));
+        }
+
+    }
+
 }

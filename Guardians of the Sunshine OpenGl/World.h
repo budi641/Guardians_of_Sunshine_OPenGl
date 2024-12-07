@@ -9,6 +9,8 @@ class World {
 private:
     std::vector<Entity*> entities;  
 
+    void SortEntitiesByDistance(RenderManager* renderer);
+
 public:
     World() = default;
     ~World();
@@ -18,15 +20,14 @@ public:
     void RemoveEntity(Entity* entity);
 
 
-    glm::mat4 GetWorldMatrix(Entity* entity) const;
+    glm::mat4 GetWorldMatrix(Entity* entity);
+    glm::vec3 GetWorldPosition(Entity* entity);
     void Serialize(nlohmann::json& jsonData) const;
     void Deserialize(const std::string& filepath);
 
     void Update(float deltaTime);
     void SERIALIZE(const std::string& name);
 
+    void RenderWorld(RenderManager* Renderer);
 
-    void Render(RenderManager* Renderer);
-
-    std::vector<Entity*> GetAllEntities();
 };
