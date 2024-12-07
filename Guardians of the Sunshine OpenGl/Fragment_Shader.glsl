@@ -51,16 +51,7 @@ void main()
     // Combine results
     vec3 result = ambient + diffuse * diffuseTex.rgb + specular * specularTex.rgb;
 
-    float a;
-
-    if(material.transparent)
-    {
-      a = material.alpha;
-    }
-    else
-    {
-      a =  diffuseTex.a;
-    }
+    float a =  material.alpha + diffuseTex.a;
     
     FragColor = vec4(result,a);
 }

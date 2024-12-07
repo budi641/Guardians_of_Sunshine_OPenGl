@@ -13,6 +13,7 @@ void Mesh::Draw(Shader& shader, const glm::mat4& modelMatrix, const glm::vec3& v
     shader.SetUniform("material.diffuse", material->diffuse);
     shader.SetUniform("material.specular", material->specular);
     shader.SetUniform("material.shininess", material->shininess);
+    shader.SetUniform("material.alpha", material->alpha);
 
     shader.SetUniform("light.color", light.color);
     shader.SetUniform("light.intensity", light.intensity);
