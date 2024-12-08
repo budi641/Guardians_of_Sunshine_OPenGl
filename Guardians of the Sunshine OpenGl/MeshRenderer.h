@@ -15,6 +15,13 @@ private:
 
     std::string modelPath;
 
+    bool LoadOBJ(
+        const std::string& filePath,
+        std::vector<Vertex>& outVertices,
+        std::vector<unsigned int>& outIndices,
+        std::string& texturePath
+    );
+
 public:
     MeshRenderer(const std::string& modelPath,
         const std::string& diffuseTexturePath,

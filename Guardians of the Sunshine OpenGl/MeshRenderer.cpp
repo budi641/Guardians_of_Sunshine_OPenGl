@@ -1,6 +1,82 @@
 #include "MeshRenderer.h"
 #include <iostream>
+#define TINYOBJLOADER_IMPLEMENTATION
+#include "tiny_obj_loader.h"
 #include <iomanip>
+
+bool MeshRenderer::LoadOBJ(const std::string& filePath, std::vector<Vertex>& outVertices, std::vector<unsigned int>& outIndices, std::string& texturePath)
+{
+    tinyobj::attrib_t attrib;
+    std::vector<tinyobj::shape_t> shapes;
+    std::vector<tinyobj::material_t> materials;
+    std::string warn, err;
+
+    // Load .obj file
+    if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, filePath.c_str())) {
+        std::cerr << "TinyObjLoader Error: " << warn << err << std::endl;
+        return false;
+    }
+
+    // Load the texture path from the first material (if any)
+    if (!materials.empty() && !materials[0].diffuse_texname.empty()) {
+        texturePath = materials[0].diffuse_texname;
+    }
+    else {
+        texturePath.clear();
+    }
+
+    // Parse shapes
+    for (const auto& shape : shapes) {
+        size_t indexOffset = 0;
+
+        for (size_t faceIndex = 0; faceIndex < shape.mesh.num_face_vertices.size(); faceIndex++) {
+            int faceVertices = shape.mesh.num_face_vertices[faceIndex];
+
+            for (int v = 0; v < faceVertices; v++) {
+                // Access index
+                tinyobj::index_t idx = shape.mesh.indices[indexOffset + v];
+
+                // Extract position
+                glm::vec3 position(
+                    attrib.vertices[3 * idx.vertex_index + 0],
+                    attrib.vertices[3 * idx.vertex_index + 1],
+                    attrib.vertices[3 * idx.vertex_index + 2]
+                );
+
+                // Extract normal
+                glm::vec3 normal(0.0f);
+                if (idx.normal_index >= 0) {
+                    normal = glm::vec3(
+                        attrib.normals[3 * idx.normal_index + 0],
+                        attrib.normals[3 * idx.normal_index + 1],
+                        attrib.normals[3 * idx.normal_index + 2]
+                    );
+                }
+
+                // Extract texcoord
+                glm::vec2 texCoord(0.0f);
+                if (idx.texcoord_index >= 0) {
+                    texCoord = glm::vec2(
+                        attrib.texcoords[2 * idx.texcoord_index + 0],
+                        attrib.texcoords[2 * idx.texcoord_index + 1]
+                    );
+                }
+
+                // Create vertex
+                Color defaultColor; // Set to white
+                Vertex vertex(position, defaultColor, normal, texCoord);
+
+                // Add vertex and index
+                outVertices.push_back(vertex);
+                outIndices.push_back(outVertices.size() - 1);
+            }
+
+            indexOffset += faceVertices;
+        }
+    }
+
+    return true;
+}
 
 MeshRenderer::MeshRenderer(const std::string& modelPath,
     const std::string& diffuseTexturePath,
@@ -60,9 +136,24 @@ MeshRenderer::MeshRenderer(const std::string& modelPath,
         20, 21, 22, 22, 23, 20  
     };
 
-    mesh = new Mesh(vertices, indices, new Material(diffuseTexturePath, specularTexturePath, ambient, diffuse, specular, shininess));
 
-    mesh->material->alpha = 0.5;
+    std::vector<Vertex> Modelvertices;
+    std::vector<unsigned int> Modelindices;
+    std::string texturePath;
+
+
+    if ((LoadOBJ(this->modelPath, Modelvertices, Modelindices, texturePath)))
+    {
+        mesh = new Mesh(Modelvertices, Modelindices, new Material(diffuseTexturePath, specularTexturePath, ambient, diffuse, specular, shininess));
+    }
+    else
+    {
+        mesh = new Mesh(vertices, indices, new Material(diffuseTexturePath, specularTexturePath, ambient, diffuse, specular, shininess));
+    }
+
+    
+
+    //mesh->material->alpha = 0.5;
 
 }
 

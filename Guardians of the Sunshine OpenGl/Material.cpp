@@ -31,6 +31,6 @@ GLuint Material::loadTexture(const std::string& path) {
     }
     else {
         stbi_image_free(data);
-        throw std::runtime_error("Failed to load texture");
+        //throw std::runtime_error("Failed to load texture");
     }
 }
