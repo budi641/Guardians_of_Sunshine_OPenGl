@@ -104,8 +104,14 @@ void RenderManager::Deserialize(const nlohmann::json& jsonData) {
     }
 
     // Deserialize Light
-    if (jsonData.contains("Light") && !jsonData["Light"].is_null()) {
-        const auto& lightData = jsonData["Light"];
+    if (jsonData.contains("RenderManager") &&
+        jsonData["RenderManager"].contains("Light") &&
+        !jsonData["RenderManager"]["Light"].is_null()) {
+
+        // Extract light data
+        const auto& lightData = jsonData["RenderManager"]["Light"];
+
+        // Parse color, intensity, and direction
         glm::vec3 color(
             lightData["color"][0],
             lightData["color"][1],
@@ -118,46 +124,70 @@ void RenderManager::Deserialize(const nlohmann::json& jsonData) {
             lightData["direction"][2]
         );
 
-        delete light; // Ensure no memory leaks
+        // Ensure no memory leaks and allocate new light
+        delete light; // Clean up any previous light instance
         light = new Light(color, intensity, direction);
     }
+    
+    std::cout << light->getcolor().x;
+    if (jsonData.contains("RenderManager") &&
+        jsonData["RenderManager"].contains("Skybox") &&
+        !jsonData["RenderManager"]["Skybox"].is_null()) {
 
-    // Deserialize Skybox
-    if (jsonData.contains("Skybox") && !jsonData["Skybox"].is_null()) {
-        const auto& skyboxData = jsonData["Skybox"];
+        // Extract Skybox data
+        const auto& skyboxData = jsonData["RenderManager"]["Skybox"];
+
+        // Parse faces, vertexShaderPath, and fragmentShaderPath
         std::vector<std::string> faces = skyboxData["faces"].get<std::vector<std::string>>();
         std::string vertexShaderPath = skyboxData["vertexShaderPath"];
         std::string fragmentShaderPath = skyboxData["fragmentShaderPath"];
 
-        delete skybox; // Ensure no memory leaks
+        // Ensure no memory leaks and allocate a new Skybox object
+        delete skybox; // Clean up any previous skybox instance
         skybox = new Skybox(faces, vertexShaderPath, fragmentShaderPath);
     }
-
     // Deserialize Camera
-    if (jsonData.contains("Camera") && !jsonData["Camera"].is_null()) {
-        const auto& cameraData = jsonData["Camera"];
+    if (jsonData.contains("RenderManager") &&
+        jsonData["RenderManager"].contains("Camera") &&
+        !jsonData["RenderManager"]["Camera"].is_null()) {
+
+        const auto& cameraData = jsonData["RenderManager"]["Camera"];
+
+        // Parse camera properties
         CameraType type = cameraData["type"] == "Perspective" ? CameraType::Perspective : CameraType::Orthographic;
         float fov = cameraData["fov"];
         float nearPlane = cameraData["nearPlane"];
         float farPlane = cameraData["farPlane"];
         float orthoHeight = cameraData["orthoHeight"];
 
-        delete camera; // Ensure no memory leaks
+        // Delete existing camera and create a new one to avoid memory leaks
+        delete camera;
         camera = new Camera(type, width, height, fov, nearPlane, farPlane, orthoHeight);
     }
 
     // Deserialize Shader
-    if (jsonData.contains("Shader") && !jsonData["Shader"].is_null()) {
-        const auto& shaderData = jsonData["Shader"];
+    if (jsonData.contains("RenderManager") &&
+        jsonData["RenderManager"].contains("Shader") &&
+        !jsonData["RenderManager"]["Shader"].is_null()) {
+
+        const auto& shaderData = jsonData["RenderManager"]["Shader"];
+
+        // Parse shader file paths
         std::string vertexSource = shaderData["vertexSource"];
         std::string fragmentSource = shaderData["fragmentSource"];
 
-        delete shader; // Ensure no memory leaks
+        // Delete existing shader and create a new one to avoid memory leaks
+        delete shader;
         shader = new Shader(vertexSource, fragmentSource);
     }
 }
 
 
+
+int RenderManager::getheight()
+{
+    return height;
+}
 
 void RenderManager::SetDepthTest(bool enable) {
     if (enable) {
