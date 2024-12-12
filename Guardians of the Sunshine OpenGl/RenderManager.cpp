@@ -81,9 +81,7 @@ void RenderManager::Render() {
         shader->Bind();
     }
 
-    if (camera && shader) {
-        camera->UpdateProjection(*shader);
-    }
+
 
 }
 

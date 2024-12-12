@@ -2,8 +2,9 @@
 #include "Component.h"
 #include <algorithm>
 #include "TransformComponent.h"
-#include "MeshRenderer.h"
+#include "MeshRendererComponent.h"
 #include "RenderManager.h"
+#include "World.h"
 
 Entity::Entity(const std::string& entityName)
 {
@@ -208,7 +209,7 @@ std::vector<Component*> Entity::GetMeshRenderComponents()
 
     for (auto component : this->components)
     {
-        if (dynamic_cast<MeshRenderer*>(component))
+        if (dynamic_cast<MeshRendererComponent*>(component))
         {
             Meshcomponents.push_back(component);
         }
@@ -222,7 +223,7 @@ void Entity::RenderEntity(RenderManager* renderer)
 {
     for (Component* component : components)
     {
-        MeshRenderer* mesh = dynamic_cast<MeshRenderer*>(component);
+        MeshRendererComponent* mesh = dynamic_cast<MeshRendererComponent*>(component);
 
         if (mesh)
         {

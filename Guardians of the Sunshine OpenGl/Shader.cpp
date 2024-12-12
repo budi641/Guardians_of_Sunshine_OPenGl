@@ -116,3 +116,8 @@ std::string Shader::GetFileContents(const std::string& filename)
     }
     throw(errno);
 }
+
+unsigned int Shader::GetProgramID()
+{
+    return programID;
+}

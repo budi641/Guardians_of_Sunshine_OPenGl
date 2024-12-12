@@ -4,7 +4,8 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include "MeshRenderer.h"
+
+
 World::~World() {
     for (auto entity : entities) {
         delete entity;

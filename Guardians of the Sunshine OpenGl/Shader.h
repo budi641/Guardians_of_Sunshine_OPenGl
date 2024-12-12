@@ -24,6 +24,7 @@ public:
     void SetUniform(const std::string& name, const unsigned int value);
 
 
+    unsigned int GetProgramID();
 
 private:
     unsigned int CompileShader(unsigned int type, const std::string& source);

@@ -8,7 +8,7 @@ class Component;
 
 class World;
 
-class MeshRenderer;
+class MeshRendererComponent;
 
 class RenderManager;
 

@@ -8,7 +8,7 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Mate
 
 void Mesh::Draw(Shader& shader, const glm::mat4& modelMatrix, const glm::vec3& viewPos, const Light& light) {
 
-    shader.Bind();
+  
 
     shader.SetUniform("material.ambient", material->ambient);
     shader.SetUniform("material.diffuse", material->diffuse);
