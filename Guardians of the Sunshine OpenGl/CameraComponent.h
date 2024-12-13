@@ -58,7 +58,8 @@ public:
     void SetDef();
     std::tuple<glm::vec3, glm::vec3, glm::vec3> UpdateCameraVectors();
 
-    //void HandleInput(float moveSpeed, float rotSpeed);
+    std::string GetComponentName() override;
+    void SetComponentName(std::string name) override;
 
     // Serialize and deserialize camera data
     void Serialize(nlohmann::json& jsonData) const override;

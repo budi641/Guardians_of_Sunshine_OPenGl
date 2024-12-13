@@ -21,15 +21,6 @@ Entity* Component::GetParentEntity() const
     return parent;
 }
 
-std::string Component::GetComponentName()
-{
-    return this->name;
-}
-
-void Component::SetComponentName(std::string name)
-{
-    this->name = name;
-}
 
 void Component::SetIsEnabled(bool enabled)
 {

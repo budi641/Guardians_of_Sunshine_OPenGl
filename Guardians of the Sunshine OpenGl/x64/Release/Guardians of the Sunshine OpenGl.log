@@ -1,22 +1,24 @@
 ﻿  Application.cpp
-C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\Application.h(11,18): error C3646: 'inputHandler': unknown override specifier
-C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\Application.h(11,30): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\Application.cpp(71,94): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\Application.cpp(71,77): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\Application.cpp(84,9): error C2065: 'inputHandler': undeclared identifier
-C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\Application.cpp(85,9): error C2065: 'inputHandler': undeclared identifier
+C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\Application.cpp(72,94): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\Application.cpp(72,77): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  CameraComponent.cpp
+  Entity.cpp
   InputComponent.cpp
-C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\InputComponent.cpp(82,26): warning C4244: '-=': conversion from 'double' to 'T', possible loss of data
+C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\InputComponent.cpp(78,26): warning C4244: '-=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\InputComponent.cpp(83,26): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\InputComponent.cpp(79,26): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-  InputHandler.cpp
-  Source.cpp
-C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\Application.h(11,18): error C3646: 'inputHandler': unknown override specifier
-C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\Application.h(11,30): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  TransformComponent.cpp
+LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+  27 of 2932 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    14 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Guardians of the Sunshine OpenGl.vcxproj -> C:\Users\safia\Documents\GitHub\Guardians_of_Sunshine_OPenGl\Guardians of the Sunshine OpenGl\x64\Release\Guardians of the Sunshine OpenGl.exe

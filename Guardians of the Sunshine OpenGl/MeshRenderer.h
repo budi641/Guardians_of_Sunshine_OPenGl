@@ -49,6 +49,9 @@ public:
 
     void Render(RenderManager* Renderer, glm::mat4 modelMatrix);
 
+    std::string GetComponentName();
+
+    void SetComponentName(std::string name);
 
     void Serialize(nlohmann::json& jsonData) const override;
     void Deserialize(const nlohmann::json& jsonData) override;

@@ -24,9 +24,9 @@ public:
 
     Entity* GetParentEntity() const; 
 
-    std::string GetComponentName();
+    virtual std::string GetComponentName()=0;
 
-    void SetComponentName(std::string name);
+    virtual void SetComponentName(std::string name)=0;
 
     void SetIsEnabled(bool enabled);
 

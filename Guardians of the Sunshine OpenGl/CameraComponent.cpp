@@ -12,10 +12,7 @@ CameraComponent::CameraComponent(CameraType type, float width, float height, flo
     def_position = position;
     def_yaw = yaw;
     def_fov = fov;
-
 }
-
-std::tuple<glm::vec3, glm::vec3, glm::vec3> UpdateCameraVectors();
 
 glm::mat4 CameraComponent::GetViewMatrix() const {
     return glm::lookAt(position, position + target, up);
@@ -51,8 +48,7 @@ void CameraComponent::SetYaw(float newYaw) {
     UpdateCameraVectors();
 }
 
-float CameraComponent::GetYaw()
-{
+float CameraComponent::GetYaw() {
     return yaw;
 }
 
@@ -63,8 +59,7 @@ void CameraComponent::SetPitch(float newPitch) {
     UpdateCameraVectors();
 }
 
-float CameraComponent::GetPitch()
-{
+float CameraComponent::GetPitch() {
     return pitch;
 }
 
@@ -104,17 +99,14 @@ std::tuple<glm::vec3, glm::vec3, glm::vec3> CameraComponent::UpdateCameraVectors
     glm::vec3 right = glm::normalize(glm::cross(up, target));
     up = glm::normalize(glm::cross(target, right));
 
-    // Now return the tuple
     return std::make_tuple(front, right, up);
 }
 
-std::string Component::GetComponentName()
-{
+std::string CameraComponent::GetComponentName() {
     return this->name;
 }
 
-void Component::SetComponentName(std::string name)
-{
+void CameraComponent::SetComponentName(std::string name) {
     this->name = name;
 }
 
@@ -132,7 +124,6 @@ void CameraComponent::Serialize(nlohmann::json& jsonData) const {
     jsonData["pitch"] = pitch;
 }
 
-void CameraComponent::Deserialize(const nlohmann::json& jsonData)
-{
-    //this is a place holder untill we impliment the function
+void CameraComponent::Deserialize(const nlohmann::json& jsonData) {
+    //IT.IS.EMPTY
 }

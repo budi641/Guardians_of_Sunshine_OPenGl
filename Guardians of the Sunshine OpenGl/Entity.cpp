@@ -9,12 +9,10 @@ Entity::Entity(const std::string& entityName)
 {
     name = entityName;
     AddComponent(transform);
-
 }
 
 Entity::~Entity()
 {
-
     for (auto component : components)
     {
         delete component;
@@ -24,8 +22,8 @@ Entity::~Entity()
     {
         delete child;
     }
-
 }
+
 void Entity::Serialize(nlohmann::json& jsonData) const {
     jsonData["name"] = name;
     jsonData["enabled"] = isEnabled;
@@ -34,7 +32,7 @@ void Entity::Serialize(nlohmann::json& jsonData) const {
     jsonData["components"] = nlohmann::json::array();
     for (const Component* component : components) {
         nlohmann::json componentData;
-        component->Serialize(componentData);  // Assuming components have Serialize function
+        component->Serialize(componentData);
         jsonData["components"].push_back(componentData);
     }
 
@@ -42,11 +40,12 @@ void Entity::Serialize(nlohmann::json& jsonData) const {
     jsonData["children"] = nlohmann::json::array();
     for (const Entity* child : children) {
         nlohmann::json childData;
-        child->Serialize(childData); 
+        child->Serialize(childData);
         jsonData["children"].push_back(childData);
     }
 }
-void Entity::AddComponent(Component * component)
+
+void Entity::AddComponent(Component* component)
 {
     if (component != nullptr)
     {
@@ -55,37 +54,33 @@ void Entity::AddComponent(Component * component)
         component->SetParentEntity(this);
     }
 }
+
 void Entity::Deserialize(const nlohmann::json& jsonData) {
-    // Set the name from the JSON data, with a fallback to "Unnamed Entity"
     name = jsonData.value("name", "Unnamed Entity");
 
-    // Deserialize the components
     if (jsonData.contains("components")) {
         for (const auto& componentJson : jsonData["components"]) {
             std::string type = componentJson.value("type", "");
 
-            // Handle specific components, like TransformComponent
             if (type == "TransformComponent") {
                 if (!transform) {
                     transform = new TransformComponent();
                     AddComponent(transform);
                 }
-                transform->Deserialize(componentJson);  // Deserialize the specific component
+                transform->Deserialize(componentJson);
             }
-            // Add more components here if necessary (for example, RenderComponent, PhysicsComponent, etc.)
         }
     }
 
-    // Deserialize children entities
     if (jsonData.contains("children")) {
         for (const auto& childJson : jsonData["children"]) {
-            // Create a new child entity and recursively deserialize it
-            Entity* child = new Entity(childJson.value("name", "Unnamed Entity")); // Pass name to constructor
-            child->Deserialize(childJson); // Deserialize the child entity
-            AddChild(child); // Add child to this entity
+            Entity* child = new Entity(childJson.value("name", "Unnamed Entity"));
+            child->Deserialize(childJson);
+            AddChild(child);
         }
     }
 }
+
 void Entity::RemoveComponent(Component* component)
 {
     auto it = std::find(components.begin(), components.end(), component);
@@ -109,14 +104,12 @@ Component* Entity::GetComponent(const std::string& componentName) const
 
 void Entity::SetParent(Entity* newParent)
 {
-   
     if (parent != nullptr)
     {
         parent->RemoveChild(this);
     }
 
     parent = newParent;
-
 
     if (parent != nullptr)
     {
@@ -156,12 +149,10 @@ void Entity::SetEnabled(bool enabled)
 {
     isEnabled = enabled;
 
-
     for (auto component : components)
     {
         component->SetIsEnabled(enabled);
     }
-
 
     for (auto child : children)
     {
@@ -182,7 +173,7 @@ void Entity::Update(float deltaTime)
     {
         if (component->GetIsEnabled())
         {
-            component->Update(deltaTime);  
+            component->Update(deltaTime);
         }
     }
 
@@ -212,7 +203,6 @@ std::vector<Component*> Entity::GetMeshRenderComponents()
         {
             Meshcomponents.push_back(component);
         }
-
     }
 
     return Meshcomponents;
@@ -226,9 +216,7 @@ void Entity::RenderEntity(RenderManager* renderer)
 
         if (mesh)
         {
-            mesh->Render(renderer,world->GetWorldMatrix(this));
+            mesh->Render(renderer, world->GetWorldMatrix(this));
         }
-
     }
-
 }

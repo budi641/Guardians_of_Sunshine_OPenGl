@@ -213,6 +213,16 @@ void MeshRenderer::Render(RenderManager* Renderer, glm::mat4 modelMatrix)
     mesh->Draw(*Renderer->shader, modelMatrix, Renderer->camera->GetPosition(), *Renderer->light);
 }
 
+std::string MeshRenderer::GetComponentName()
+{
+    return this->name;
+}
+
+void MeshRenderer::SetComponentName(std::string name)
+{
+    this->name = name;
+}
+
 void MeshRenderer::Serialize(nlohmann::json& jsonData) const {
 
 }

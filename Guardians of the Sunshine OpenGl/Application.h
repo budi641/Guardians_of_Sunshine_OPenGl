@@ -2,13 +2,12 @@
 #include "World.h"
 #include "RenderManager.h"
 #include "Timer.h"
-#include "InputHandler.h"
+#include "InputComponent.h"
 
 class Application {
 private:
     World* world = nullptr;
     RenderManager* renderer = nullptr;
-    InputHandler inputHandler;
     bool shouldRun = true;
 
     Timer timer;

@@ -12,6 +12,9 @@ private:
     glm::vec3 scale;
     glm::vec3 position;
 
+    glm::vec3 forward = glm::vec3(0.0f, 0.0f, -1.0f);
+    glm::vec3 right = glm::vec3(1.0f, 0.0f, 0.0f);
+    glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 
 public:
     TransformComponent(const glm::vec3& initPosition = glm::vec3(0.0f),
@@ -29,12 +32,19 @@ public:
     glm::vec3 GetPosition() const;
     glm::vec3 GetRotation() const;
     glm::vec3 GetScale() const;
+
+    std::string GetComponentName();
+    void SetComponentName(std::string name);
+
+
     void Serialize(nlohmann::json& jsonData) const override {
         jsonData["type"] = "TransformComponent";
         jsonData["position"] = { position.x, position.y, position.z };
         jsonData["rotation"] = { rotation.x, rotation.y, rotation.z };
         jsonData["scale"] = { scale.x, scale.y, scale.z };
     }    void Deserialize(const nlohmann::json& jsonData) override;
+
+    std::tuple<glm::vec3, glm::vec3, glm::vec3> UpdateVectors();
 
 };
 
