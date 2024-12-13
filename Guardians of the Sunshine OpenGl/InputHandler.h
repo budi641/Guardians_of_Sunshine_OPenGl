@@ -1,4 +1,4 @@
-#include <glm/glm.hpp>
+/*#include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
 #include "CameraComponent.h"
 
@@ -29,4 +29,4 @@ public:
     void handleInput(GLFWwindow* window);
     void updateCameraMovement(GLFWwindow* window, CameraComponent& camera);
     void updateCameraRotation(GLFWwindow* window, CameraComponent& camera);
-};
+};*/

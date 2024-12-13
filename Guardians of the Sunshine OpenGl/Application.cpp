@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "MeshRenderer.h"
 #include "CameraComponent.h"
+#include "InputComponent.h"
 #include <iostream>
 
 Application::Application(const std::string& path) : worldPath(path) 
@@ -47,7 +48,12 @@ void Application::Run()
         100.0f,                     
         0.0f                        
     );
+    camera.SetComponentName("camera");
+    InputComponent input(renderer->window);
+    input.SetComponentName("input");
 
+    entity3->AddComponent(&camera);
+    entity3->AddComponent(&input);
     entity3->AddComponent(meshComp3);
     world->AddEntity(entity3);
     entity3->GetTransformComponent()->SetPosition(glm::vec3(0, 0, 3));
@@ -80,8 +86,8 @@ void Application::Run()
         float deltaTime = timer.GetDeltaTime();
         float currentTime = timer.GetCurrentTime();
 
-        inputHandler.handleInput(renderer->window);
-        inputHandler.updateCameraMovement(renderer->window, *renderer->camera);
+        input.handleInput();
+        entity->GetComponent(input.GetComponentName())->
 
         renderer->Render();
         world->RenderWorld(renderer);

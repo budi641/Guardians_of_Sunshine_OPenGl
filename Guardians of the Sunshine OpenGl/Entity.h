@@ -21,7 +21,7 @@ protected:
     std::vector<Entity*> children;  
     Entity* parent = nullptr;  
     bool isEnabled = true;
-    TransformComponent* transform = new TransformComponent();;
+    TransformComponent* transform = new TransformComponent();
 
 
 public:

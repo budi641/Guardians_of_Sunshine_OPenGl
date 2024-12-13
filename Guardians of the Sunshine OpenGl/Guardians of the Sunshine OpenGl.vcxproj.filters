@@ -105,6 +105,9 @@
     <ClCompile Include="CameraComponent.cpp">
       <Filter>Engine\Core\Components\Source</Filter>
     </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>Engine\Core\Components\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -149,10 +152,13 @@
     <ClInclude Include="Timer.h">
       <Filter>Engine\Core\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Engine\Core\Components\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="InputHandler.h">
       <Filter>Engine\Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CameraComponent.h">
+    <ClInclude Include="InputComponent.h">
       <Filter>Engine\Core\Components\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

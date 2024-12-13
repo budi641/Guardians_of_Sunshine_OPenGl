@@ -108,6 +108,16 @@ std::tuple<glm::vec3, glm::vec3, glm::vec3> CameraComponent::UpdateCameraVectors
     return std::make_tuple(front, right, up);
 }
 
+std::string Component::GetComponentName()
+{
+    return this->name;
+}
+
+void Component::SetComponentName(std::string name)
+{
+    this->name = name;
+}
+
 void CameraComponent::Serialize(nlohmann::json& jsonData) const {
     jsonData["type"] = (type == CameraType::Perspective) ? "Perspective" : "Orthographic";
     jsonData["aspectRatio"] = aspectRatio;
