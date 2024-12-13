@@ -6,10 +6,10 @@
 #include <string>
 #include <vector>
 #include "Shader.h"
-#include "Camera.h"
+
 #include "Light.h"
 #include "Skybox.h"
-
+#include "CameraComponent.h"
 class RenderManager {
 public:
     GLFWwindow* window = nullptr;
@@ -19,7 +19,7 @@ public:
 
     Light* light = nullptr;
     Skybox* skybox = nullptr;
-    Camera* camera = nullptr;
+    CameraComponent* camera = nullptr;
     Shader* shader = nullptr;
 
     RenderManager(int width, int height, const char* windowTitle);

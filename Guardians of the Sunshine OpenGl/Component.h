@@ -18,8 +18,10 @@ public:
     virtual ~Component();
    
     virtual void Update(float deltaTime); 
+
     virtual void Serialize(nlohmann::json& jsonData) const = 0;
     virtual void Deserialize(const nlohmann::json& jsonData) = 0;
+
     Entity* GetParentEntity() const; 
 
     std::string GetComponentName();

@@ -30,7 +30,7 @@ void InputHandler::handleInput(GLFWwindow* window) {
 
 }
 
-void InputHandler::updateCameraMovement(GLFWwindow* window, Camera& camera) {
+void InputHandler::updateCameraMovement(GLFWwindow* window, CameraComponent& camera) {
     
     std::tuple<glm::vec3, glm::vec3, glm::vec3> vectors = camera.UpdateCameraVectors();
 
@@ -97,7 +97,7 @@ void InputHandler::updateCameraMovement(GLFWwindow* window, Camera& camera) {
 
 
 
-void InputHandler::updateCameraRotation(GLFWwindow* window, Camera& camera) {
+void InputHandler::updateCameraRotation(GLFWwindow* window, CameraComponent& camera) {
     // Set the mouse cursor to be hidden and locked to the center of the window
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 

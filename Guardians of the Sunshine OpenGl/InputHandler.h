@@ -1,6 +1,6 @@
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
-#include "Camera.h"
+#include "CameraComponent.h"
 
 class InputHandler {
 
@@ -27,6 +27,6 @@ public:
 
     InputHandler();
     void handleInput(GLFWwindow* window);
-    void updateCameraMovement(GLFWwindow* window, Camera& camera);
-    void updateCameraRotation(GLFWwindow* window, Camera& camera);
+    void updateCameraMovement(GLFWwindow* window, CameraComponent& camera);
+    void updateCameraRotation(GLFWwindow* window, CameraComponent& camera);
 };

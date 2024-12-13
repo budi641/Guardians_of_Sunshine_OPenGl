@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "MeshRenderer.h"
+#include "CameraComponent.h"
 #include <iostream>
 
 Application::Application(const std::string& path) : worldPath(path) 
@@ -37,6 +38,16 @@ void Application::Run()
     auto* meshComp3 = new MeshRenderer("finn1.obj", "finn_texture.png", "",
         glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
 
+    CameraComponent camera(
+        CameraType::Perspective, 
+        1920.0f,                  
+        1080.0f,                   
+        45.0f,                     
+        0.1f,                      
+        100.0f,                     
+        0.0f                        
+    );
+
     entity3->AddComponent(meshComp3);
     world->AddEntity(entity3);
     entity3->GetTransformComponent()->SetPosition(glm::vec3(0, 0, 3));
@@ -56,7 +67,7 @@ void Application::Run()
     };
     renderer->skybox = new Skybox(skyCubeMap, "SkySphere_Vertex.glsl", "SkySphere_Fragment.glsl");
 
-    renderer->camera = new Camera(CameraType::Perspective, renderer->width, renderer->height);
+    renderer->camera = new CameraComponent(CameraType::Perspective, renderer->width, renderer->height);
     renderer->camera->SetPosition(glm::vec3(0, 0, 4));
 
     renderer->light = new Light(glm::vec3(1.0f, 1.0f, 1.0f), 5.0f, glm::vec3(-3.0f, -3.0f, 0.0f));
