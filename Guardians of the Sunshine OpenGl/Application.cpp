@@ -2,7 +2,6 @@
 #include "StaticMeshComponent.h"
 #include "SkeletalMeshComponent.h"
 #include <iostream>
-#include "BoxColliderComponent.h"
 #include "ColliderComponent.h"
 
 
@@ -33,29 +32,22 @@ void Application::Run()
     Material* boxMaterial = new Material("container2.png", "container2_specular.png", glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
     auto* meshComp = new StaticMeshComponent("", boxMaterial);
     entity->AddComponent(meshComp);
-    entity->GetTransformComponent()->SetPosition(glm::vec3(0, 35, 0));
+    entity->GetTransformComponent()->SetPosition(glm::vec3(0, 0, 0));
     entity->GetTransformComponent()->SetScale(glm::vec3(3));
     world->AddEntity(entity);
 
-    ColliderComponent* boxCollider = new ColliderComponent(2,4);
-    entity->AddComponent(boxCollider);
-    boxCollider->rigidBody->setIsDebugEnabled(true);
-    boxCollider->rigidBody->setMass(5);
-    boxCollider->rigidBody->setAngularLockAxisFactor(reactphysics3d::Vector3(1,1,1));
-    boxCollider->collider->getMaterial().setBounciness(1);
-    boxCollider->collider->getMaterial().setFrictionCoefficient(1);
+
     
         
 
     Entity* floor = new Entity("floor");
     auto* meshFloor = new StaticMeshComponent("", boxMaterial);
     floor->AddComponent(meshFloor);
-    floor->GetTransformComponent()->SetPosition(glm::vec3(0, -5, 0));
+    floor->GetTransformComponent()->SetPosition(glm::vec3(0, -2, 0));
     floor->GetTransformComponent()->SetScale(glm::vec3(50,0.5 , 50));
     world->AddEntity(floor);
-    BoxColliderComponent* floorCollider = new BoxColliderComponent();
+    ColliderComponent* floorCollider = new ColliderComponent(50,0.5,50);
     floor->AddComponent(floorCollider);
-    floorCollider->SetUp();
     floorCollider->rigidBody->setType(reactphysics3d::BodyType::STATIC);
     floorCollider->rigidBody->setIsDebugEnabled(true);
 
@@ -85,7 +77,18 @@ void Application::Run()
    auto* meshComp3 = new StaticMeshComponent("finn1.obj", finnMaterial);
     entity3->AddComponent(meshComp3);
     world->AddEntity(entity3);
-    entity3->GetTransformComponent()->SetPosition(glm::vec3(5, 0, 4));
+    entity3->GetTransformComponent()->SetPosition(glm::vec3(5, 25, 4));
+    ColliderComponent* boxCollider = new ColliderComponent(1.5, 3.5);
+    entity3->AddComponent(boxCollider);
+    //boxCollider->rigidBody->setType(reactphysics3d::BodyType::STATIC);
+    reactphysics3d::Transform capsulTransform = reactphysics3d::Transform();
+    capsulTransform.setPosition(reactphysics3d::Vector3(0, 3, 0));
+    boxCollider->collider->setLocalToBodyTransform(capsulTransform);
+    boxCollider->rigidBody->setIsDebugEnabled(true);
+    boxCollider->rigidBody->setMass(5);
+    boxCollider->rigidBody->setAngularLockAxisFactor(reactphysics3d::Vector3(1, 1, 1));
+    boxCollider->collider->getMaterial().setBounciness(1);
+    boxCollider->collider->getMaterial().setFrictionCoefficient(1);
     
 
     renderer->SetBackFaceCulling(true);

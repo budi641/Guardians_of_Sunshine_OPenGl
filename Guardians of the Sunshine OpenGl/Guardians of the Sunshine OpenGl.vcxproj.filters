@@ -141,9 +141,6 @@
     <ClCompile Include="PhysicsManager.cpp">
       <Filter>Engine\Physics\Source</Filter>
     </ClCompile>
-    <ClCompile Include="BoxColliderComponent.cpp">
-      <Filter>Engine\Physics\Source</Filter>
-    </ClCompile>
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -231,9 +228,6 @@
       <Filter>Engine\Core\Components\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsManager.h">
-      <Filter>Engine\Physics\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BoxColliderComponent.h">
       <Filter>Engine\Physics\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ColliderComponent.h">

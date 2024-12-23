@@ -84,6 +84,7 @@ void TransformComponent::UpdatePhysicsTransform(reactphysics3d::Transform transf
 
 }
 
+
 glm::vec3 TransformComponent::GetPosition() const
 {
     return position;

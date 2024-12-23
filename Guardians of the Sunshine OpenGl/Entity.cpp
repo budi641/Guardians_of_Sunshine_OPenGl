@@ -238,7 +238,7 @@ reactphysics3d::Transform Entity::GetEntityPhysicsTransform()
 {
     glm::vec3 position = transform->GetPosition();
     glm::quat rotation = glm::quat(glm::radians(transform->GetRotation())); 
-    reactphysics3d::Vector3 rpPosition(position.x/5000, position.y/5000, position.z/5000);
+    reactphysics3d::Vector3 rpPosition(position.x/10000, position.y/10000, position.z/10000);
     reactphysics3d::Quaternion rpRotation(rotation.x, rotation.y, rotation.z, rotation.w);
     reactphysics3d::Transform rptransform(rpPosition, rpRotation);
 

@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "reactphysics3d/reactphysics3d.h"
 
+
 enum class ColliderShape
 {
     Box,
@@ -10,7 +11,6 @@ enum class ColliderShape
     ConvexMesh,
     Plane
 };
-
 
 class ColliderComponent :
     public Component
