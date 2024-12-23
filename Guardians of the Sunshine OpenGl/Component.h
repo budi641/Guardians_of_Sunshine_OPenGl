@@ -28,6 +28,8 @@ public:
 
     void SetIsEnabled(bool enabled);
 
+    virtual void OnAdd();
+
     bool GetIsEnabled() const;
 
     void SetParentEntity(Entity* parent);

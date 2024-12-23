@@ -36,6 +36,10 @@ void Component::SetIsEnabled(bool enabled)
     this->isEnabled = enabled;
 }
 
+void Component::OnAdd()
+{
+}
+
 bool Component::GetIsEnabled() const
 {
     return this->isEnabled;

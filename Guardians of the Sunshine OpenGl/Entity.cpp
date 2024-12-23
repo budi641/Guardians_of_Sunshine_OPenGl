@@ -54,6 +54,7 @@ void Entity::AddComponent(Component * component)
         components.push_back(component);
         component->SetIsEnabled(isEnabled);
         component->SetParentEntity(this);
+        component->OnAdd();
     }
 }
 void Entity::Deserialize(const nlohmann::json& jsonData) {

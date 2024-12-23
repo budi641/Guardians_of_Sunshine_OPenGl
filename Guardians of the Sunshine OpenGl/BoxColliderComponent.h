@@ -3,7 +3,6 @@
 #include <reactphysics3d/reactphysics3d.h>
 
 
-
 class BoxColliderComponent :
     public Component
 {

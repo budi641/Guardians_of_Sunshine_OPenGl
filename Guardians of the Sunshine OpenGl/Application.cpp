@@ -3,6 +3,7 @@
 #include "SkeletalMeshComponent.h"
 #include <iostream>
 #include "BoxColliderComponent.h"
+#include "ColliderComponent.h"
 
 
 Application::Application(const std::string& path) : worldPath(path) 
@@ -35,14 +36,14 @@ void Application::Run()
     entity->GetTransformComponent()->SetPosition(glm::vec3(0, 35, 0));
     entity->GetTransformComponent()->SetScale(glm::vec3(3));
     world->AddEntity(entity);
-    BoxColliderComponent* boxCollider = new BoxColliderComponent();
+
+    ColliderComponent* boxCollider = new ColliderComponent(2,4);
     entity->AddComponent(boxCollider);
-    boxCollider->SetUp();
     boxCollider->rigidBody->setIsDebugEnabled(true);
-    boxCollider->rigidBody->setMass(2);
+    boxCollider->rigidBody->setMass(5);
     boxCollider->rigidBody->setAngularLockAxisFactor(reactphysics3d::Vector3(1,1,1));
-    boxCollider->collider->getMaterial().setBounciness(0);
-    boxCollider->collider->getMaterial().setFrictionCoefficient(0);
+    boxCollider->collider->getMaterial().setBounciness(1);
+    boxCollider->collider->getMaterial().setFrictionCoefficient(1);
     
         
 
