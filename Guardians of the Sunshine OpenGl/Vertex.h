@@ -1,5 +1,6 @@
 #pragma once
 #include <glm/glm.hpp>
+#include <reactphysics3d/reactphysics3d.h>
 
 #define MAX_BONE_INFLUENCE 4
 
@@ -10,7 +11,17 @@ struct Color {
         : r(red), g(green), b(blue), a(alpha) {}
 };
 
+struct DebugVertex
+{
+    reactphysics3d::Vector3 point;
 
+    DebugVertex(reactphysics3d::Vector3 point)
+    {
+        this->point = point;
+
+    }
+
+};
 
 
 

@@ -3,6 +3,7 @@
 #include <vector>
 #include "TransformComponent.h"
 #include <json/json.h>
+#include <reactphysics3d/reactphysics3d.h>
 
 class Component;
 
@@ -53,6 +54,8 @@ public:
     void RenderEntity(RenderManager* renderer);
 
     World* world;
+
+    reactphysics3d::Transform GetEntityPhysicsTransform();
     
 
 

@@ -11,7 +11,7 @@ enum class CameraType {
 class Camera {
 public:
     Camera(CameraType type, float width, float height, float fov = 45.0f,
-        float nearPlane = 0.1f, float farPlane = 100.0f, float orthoHeight = 10.0f);
+        float nearPlane = 0.1f, float farPlane = 500.0f, float orthoHeight = 10.0f);
 
     glm::mat4 GetViewMatrix() const;
     glm::mat4 GetProjectionMatrix() const;

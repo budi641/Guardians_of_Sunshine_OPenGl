@@ -64,6 +64,15 @@
     <Filter Include="Engine\Rendering\Animation\Source">
       <UniqueIdentifier>{4bdc6af8-368c-47a2-85a2-fe1d6cbb6337}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Physics">
+      <UniqueIdentifier>{b45e726e-a4d1-4691-83ee-9055f3e5f336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Physics\Header Files">
+      <UniqueIdentifier>{f88ef666-d8bf-4c2a-a83e-f5ea0c403e88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Physics\Source">
+      <UniqueIdentifier>{f1b5b575-ea7f-4f59-a739-16b8a762cd3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -134,6 +143,12 @@
     </ClCompile>
     <ClCompile Include="SkeletalMeshComponent.cpp">
       <Filter>Engine\Core\Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>Engine\Physics\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxColliderComponent.cpp">
+      <Filter>Engine\Physics\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +227,12 @@
     <ClInclude Include="SkeletalMeshComponent.h">
       <Filter>Engine\Core\Components\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsManager.h">
+      <Filter>Engine\Physics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxColliderComponent.h">
+      <Filter>Engine\Physics\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vertex_Shader.glsl">
@@ -230,6 +251,12 @@
       <Filter>Assets\Shaders</Filter>
     </None>
     <None Include="animation_fragment.glsl">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="debug.vs">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="debug.fs">
       <Filter>Assets\Shaders</Filter>
     </None>
   </ItemGroup>

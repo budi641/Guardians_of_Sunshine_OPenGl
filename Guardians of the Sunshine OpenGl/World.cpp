@@ -4,7 +4,13 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include "PhysicsManager.h"
 
+
+World::World()
+{
+    physicsHandler = new PhysicsManager();
+}
 
 World::~World() {
     for (auto entity : entities) {
@@ -91,6 +97,10 @@ glm::vec3 World::GetWorldPosition(Entity* entity)
 }
 
 void World::Update(float deltaTime) {
+    const float timeStep = 1.0f / 60.0f;
+
+    physicsHandler->Update(timeStep);
+
     for (auto entity : entities) {
         entity->Update(deltaTime);
     }

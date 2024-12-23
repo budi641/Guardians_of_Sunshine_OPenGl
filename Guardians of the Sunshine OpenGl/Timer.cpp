@@ -1,4 +1,5 @@
 #include "Timer.h"
+#include <iostream>
 
 Timer::Timer() : deltaTime(0.0f) {
     lastTime = std::chrono::high_resolution_clock::now();
@@ -9,6 +10,8 @@ void Timer::Update() {
     std::chrono::duration<float> elapsedTime = currentTime - lastTime;
     deltaTime = elapsedTime.count();
     lastTime = currentTime;
+
+   // std::cout << deltaTime << std::endl;
 }
 
 float Timer::GetDeltaTime() const {

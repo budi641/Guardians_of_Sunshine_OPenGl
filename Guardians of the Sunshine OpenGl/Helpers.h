@@ -5,6 +5,8 @@
 #include<assimp/matrix4x4.h>
 #include<glm/glm.hpp>
 #include<glm/gtc/quaternion.hpp>
+#include <reactphysics3d/reactphysics3d.h>
+#include"Entity.h"
 
 
 class AssimpGLMHelpers
@@ -32,3 +34,4 @@ public:
 		return glm::quat(pOrientation.w, pOrientation.x, pOrientation.y, pOrientation.z);
 	}
 };
+

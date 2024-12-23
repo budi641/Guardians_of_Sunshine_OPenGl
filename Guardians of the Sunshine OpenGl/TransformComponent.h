@@ -4,6 +4,7 @@
 #include <json/json.h>
 #include <glm/gtc/matrix_transform.hpp>  
 #include <glm/gtc/quaternion.hpp>  
+#include <reactphysics3d/reactphysics3d.h>
 
 class TransformComponent : public Component
 {
@@ -25,6 +26,7 @@ public:
     void SetPosition(const glm::vec3& newPosition);
     void SetRotation(const glm::vec3& newRotation);
     void SetScale(const glm::vec3& newScale);
+    void UpdatePhysicsTransform(reactphysics3d::Transform);
 
     glm::vec3 GetPosition() const;
     glm::vec3 GetRotation() const;

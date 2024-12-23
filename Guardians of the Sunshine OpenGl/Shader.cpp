@@ -4,7 +4,8 @@
 #include <sstream>
 #include <glad/glad.h>  
 
-Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource) {
+Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource) 
+{
    
     std::string vertexCode = GetFileContents(vertexSource);
     std::string fragmentCode = GetFileContents(fragmentSource);

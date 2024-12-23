@@ -2,6 +2,8 @@
 #include "StaticMeshComponent.h"
 #include "SkeletalMeshComponent.h"
 #include <iostream>
+#include "BoxColliderComponent.h"
+
 
 Application::Application(const std::string& path) : worldPath(path) 
 {
@@ -21,19 +23,46 @@ void Application::Run()
     {
         return;
     }
+    renderer->camera = new Camera(CameraType::Perspective, renderer->width, renderer->height);
+    renderer->camera->SetPosition(glm::vec3(0, 7, 10));
+
+
 
     auto* entity = new Entity("Player");
-
     Material* boxMaterial = new Material("container2.png", "container2_specular.png", glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
     auto* meshComp = new StaticMeshComponent("", boxMaterial);
     entity->AddComponent(meshComp);
+    entity->GetTransformComponent()->SetPosition(glm::vec3(0, 35, 0));
+    entity->GetTransformComponent()->SetScale(glm::vec3(3));
     world->AddEntity(entity);
-    entity->GetTransformComponent()->SetPosition(glm::vec3(0, 0, 2));
+    BoxColliderComponent* boxCollider = new BoxColliderComponent();
+    entity->AddComponent(boxCollider);
+    boxCollider->SetUp();
+    boxCollider->rigidBody->setIsDebugEnabled(true);
+    boxCollider->rigidBody->setMass(2);
+    boxCollider->rigidBody->setAngularLockAxisFactor(reactphysics3d::Vector3(1,1,1));
+    boxCollider->collider->getMaterial().setBounciness(0);
+    boxCollider->collider->getMaterial().setFrictionCoefficient(0);
+    
+        
+
+    Entity* floor = new Entity("floor");
+    auto* meshFloor = new StaticMeshComponent("", boxMaterial);
+    floor->AddComponent(meshFloor);
+    floor->GetTransformComponent()->SetPosition(glm::vec3(0, -5, 0));
+    floor->GetTransformComponent()->SetScale(glm::vec3(50,0.5 , 50));
+    world->AddEntity(floor);
+    BoxColliderComponent* floorCollider = new BoxColliderComponent();
+    floor->AddComponent(floorCollider);
+    floorCollider->SetUp();
+    floorCollider->rigidBody->setType(reactphysics3d::BodyType::STATIC);
+    floorCollider->rigidBody->setIsDebugEnabled(true);
+
+
 
 
     Material* mat = new Material("", "", glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
     mat->materialShader = new Shader("animation_vertex.glsl", "animation_fragment.glsl");
-
     auto* entity2 = new Entity("Player2");
     auto* sKmesh = new SkeletalMeshComponent("Brutal To Happy Walking/Brutal To Happy Walking.dae", mat);
     entity2->AddComponent(sKmesh);
@@ -50,7 +79,6 @@ void Application::Run()
 
 
 
-
     auto* entity3 = new Entity("Player3");
     Material* finnMaterial = new Material("finn_texture.png", "",glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
    auto* meshComp3 = new StaticMeshComponent("finn1.obj", finnMaterial);
@@ -60,7 +88,6 @@ void Application::Run()
     
 
     renderer->SetBackFaceCulling(true);
-
     renderer->SetDepthTest(true);
 
 
@@ -74,11 +101,11 @@ void Application::Run()
     };
     renderer->skybox = new Skybox(skyCubeMap, "SkySphere_Vertex.glsl", "SkySphere_Fragment.glsl");
 
-    renderer->camera = new Camera(CameraType::Perspective, renderer->width, renderer->height);
-    renderer->camera->SetPosition(glm::vec3(0, 0, 4));
+
 
     renderer->light = new Light(glm::vec3(1.0f, 1.0f, 1.0f), 5.0f, glm::vec3(-3.0f, -3.0f, 0.0f));
 
+    world->physicsHandler->EnableDebuging();
 
 
     while (!glfwWindowShouldClose(renderer->window) && shouldRun) 
@@ -92,22 +119,7 @@ void Application::Run()
 
         world->Update(deltaTime);
 
-        renderer->Render();
-        world->RenderWorld(renderer);
-
-        entity->GetTransformComponent()->SetRotation(glm::vec3(0, 1*currentTime, 1*currentTime));
-
-        entity3->GetTransformComponent()->SetRotation(glm::vec3(0,30 * currentTime,0));
-
-        glfwSwapBuffers(renderer->window);
-        glfwPollEvents();
-
-        GLenum error = glGetError();
-        if (error != GL_NO_ERROR) {
-            std::cerr << "OpenGL Error: " << error << std::endl;
-            std::clearerr;
-        }
-
+        renderer->Render(world);
 
     }
 

@@ -224,7 +224,6 @@ void Entity::RenderEntity(RenderManager* renderer)
     for (Component* component : components)
     {
         MeshRendererComponent* mesh = dynamic_cast<MeshRendererComponent*>(component);
-
         if (mesh)
         {
             mesh->Render(renderer,world->GetWorldMatrix(this));
@@ -232,4 +231,15 @@ void Entity::RenderEntity(RenderManager* renderer)
 
     }
 
+}
+
+reactphysics3d::Transform Entity::GetEntityPhysicsTransform()
+{
+    glm::vec3 position = transform->GetPosition();
+    glm::quat rotation = glm::quat(glm::radians(transform->GetRotation())); 
+    reactphysics3d::Vector3 rpPosition(position.x/5000, position.y/5000, position.z/5000);
+    reactphysics3d::Quaternion rpRotation(rotation.x, rotation.y, rotation.z, rotation.w);
+    reactphysics3d::Transform rptransform(rpPosition, rpRotation);
+
+    return rptransform;
 }

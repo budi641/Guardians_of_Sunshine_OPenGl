@@ -9,6 +9,7 @@
 #include "Camera.h"
 #include "Light.h"
 #include "Skybox.h"
+#include "World.h"
 
 class RenderManager {
 public:
@@ -26,7 +27,7 @@ public:
     ~RenderManager();
 
     void SetUpOpenGL();
-    void Render();
+    void Render(World* world);
 
     void SetDepthTest(bool enable);
     void SetBackFaceCulling(bool enable);

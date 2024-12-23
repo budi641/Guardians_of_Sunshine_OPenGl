@@ -71,6 +71,19 @@ void TransformComponent::SetScale(const glm::vec3& newScale)
     scale = newScale;
 }
 
+void TransformComponent::UpdatePhysicsTransform(reactphysics3d::Transform transform)
+{
+    position = glm::vec3(transform.getPosition().x,
+        transform.getPosition().y,
+        transform.getPosition().z);
+
+    rotation = glm::quat(transform.getOrientation().w,
+        transform.getOrientation().x,
+        transform.getOrientation().y,
+        transform.getOrientation().z);
+
+}
+
 glm::vec3 TransformComponent::GetPosition() const
 {
     return position;
@@ -79,7 +92,7 @@ glm::vec3 TransformComponent::GetPosition() const
 glm::vec3 TransformComponent::GetRotation() const
 {
 
-    return glm::degrees(glm::eulerAngles(rotation)); 
+    return glm::radians(glm::eulerAngles(rotation)); 
 }
 
 glm::vec3 TransformComponent::GetScale() const

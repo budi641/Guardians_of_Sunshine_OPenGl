@@ -1,5 +1,6 @@
 #include "RenderManager.h"
 #include <iostream>
+#include"PhysicsManager.h"
 
 RenderManager::RenderManager(int width, int height, const char* windowTitle)
     : width(width), height(height) {
@@ -70,7 +71,7 @@ void RenderManager::SetUpOpenGL() {
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // Default background color
 }
 
-void RenderManager::Render() {
+void RenderManager::Render(World* world) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (skybox && camera) {
@@ -81,7 +82,18 @@ void RenderManager::Render() {
         shader->Bind();
     }
 
+    world->RenderWorld(this);
 
+    world->physicsHandler->UpdateDebugRendering(this);
+
+    glfwSwapBuffers(window);
+    glfwPollEvents();
+
+    GLenum error = glGetError();
+    if (error != GL_NO_ERROR) {
+        std::cerr << "OpenGL Error: " << error << std::endl;
+        std::clearerr;
+    }
 
 }
 

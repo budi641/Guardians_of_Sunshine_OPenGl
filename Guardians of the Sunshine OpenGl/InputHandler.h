@@ -20,7 +20,7 @@ private:
     };
 
     InputState inputState;
-    float sprint_val = 0.05f;
+    float sprint_val = 0.1f;
     float movement_val = 0.05f;
 
 public:

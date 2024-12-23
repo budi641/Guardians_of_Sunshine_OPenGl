@@ -3,6 +3,7 @@
 #include "RenderManager.h"
 #include "Timer.h"
 #include "InputHandler.h"
+#include "PhysicsManager.h"
 
 class Application {
 private:

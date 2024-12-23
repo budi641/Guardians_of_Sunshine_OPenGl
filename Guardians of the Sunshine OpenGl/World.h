@@ -5,6 +5,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "RenderManager.h"
 
+class PhysicsManager;
+
+
 class World {
 private:
     std::vector<Entity*> entities;  
@@ -12,8 +15,11 @@ private:
     void SortEntitiesByDistance(RenderManager* renderer);
 
 public:
-    World() = default;
+    World();
     ~World();
+
+    PhysicsManager* physicsHandler = nullptr;
+
     const std::vector<Entity*>& GetEntities() const { return entities; }
 
     void AddEntity(Entity* entity);
@@ -29,5 +35,6 @@ public:
     void SERIALIZE(const std::string& name);
 
     void RenderWorld(RenderManager* Renderer);
+
 
 };
