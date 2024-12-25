@@ -160,6 +160,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="SkeletalMesh.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="TestInputComponent.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="World.cpp" />
@@ -188,6 +190,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Helpers.h" />
+    <ClInclude Include="InputComponent.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Material.h" />
@@ -201,6 +204,7 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SkeletalMesh.h" />
     <ClInclude Include="Skybox.h" />
+    <ClInclude Include="TestInputComponent.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="Vertex.h" />

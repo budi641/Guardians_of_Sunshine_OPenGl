@@ -2,26 +2,26 @@
 
 InputComponent::InputComponent()
 {
-        keyStates = {
-    {GLFW_KEY_A, GLFW_RELEASE}, {GLFW_KEY_B, GLFW_RELEASE}, {GLFW_KEY_C, GLFW_RELEASE},
-    {GLFW_KEY_D, GLFW_RELEASE}, {GLFW_KEY_E, GLFW_RELEASE}, {GLFW_KEY_F, GLFW_RELEASE},
-    {GLFW_KEY_G, GLFW_RELEASE}, {GLFW_KEY_H, GLFW_RELEASE}, {GLFW_KEY_I, GLFW_RELEASE},
-    {GLFW_KEY_J, GLFW_RELEASE}, {GLFW_KEY_K, GLFW_RELEASE}, {GLFW_KEY_L, GLFW_RELEASE},
-    {GLFW_KEY_M, GLFW_RELEASE}, {GLFW_KEY_N, GLFW_RELEASE}, {GLFW_KEY_O, GLFW_RELEASE},
-    {GLFW_KEY_P, GLFW_RELEASE}, {GLFW_KEY_Q, GLFW_RELEASE}, {GLFW_KEY_R, GLFW_RELEASE},
-    {GLFW_KEY_S, GLFW_RELEASE}, {GLFW_KEY_T, GLFW_RELEASE}, {GLFW_KEY_U, GLFW_RELEASE},
-    {GLFW_KEY_V, GLFW_RELEASE}, {GLFW_KEY_W, GLFW_RELEASE}, {GLFW_KEY_X, GLFW_RELEASE},
-    {GLFW_KEY_Y, GLFW_RELEASE}, {GLFW_KEY_Z, GLFW_RELEASE},
+    keyStates = {
+{GLFW_KEY_A, GLFW_RELEASE}, {GLFW_KEY_B, GLFW_RELEASE}, {GLFW_KEY_C, GLFW_RELEASE},
+{GLFW_KEY_D, GLFW_RELEASE}, {GLFW_KEY_E, GLFW_RELEASE}, {GLFW_KEY_F, GLFW_RELEASE},
+{GLFW_KEY_G, GLFW_RELEASE}, {GLFW_KEY_H, GLFW_RELEASE}, {GLFW_KEY_I, GLFW_RELEASE},
+{GLFW_KEY_J, GLFW_RELEASE}, {GLFW_KEY_K, GLFW_RELEASE}, {GLFW_KEY_L, GLFW_RELEASE},
+{GLFW_KEY_M, GLFW_RELEASE}, {GLFW_KEY_N, GLFW_RELEASE}, {GLFW_KEY_O, GLFW_RELEASE},
+{GLFW_KEY_P, GLFW_RELEASE}, {GLFW_KEY_Q, GLFW_RELEASE}, {GLFW_KEY_R, GLFW_RELEASE},
+{GLFW_KEY_S, GLFW_RELEASE}, {GLFW_KEY_T, GLFW_RELEASE}, {GLFW_KEY_U, GLFW_RELEASE},
+{GLFW_KEY_V, GLFW_RELEASE}, {GLFW_KEY_W, GLFW_RELEASE}, {GLFW_KEY_X, GLFW_RELEASE},
+{GLFW_KEY_Y, GLFW_RELEASE}, {GLFW_KEY_Z, GLFW_RELEASE},
 
-    {GLFW_KEY_0, GLFW_RELEASE}, {GLFW_KEY_1, GLFW_RELEASE}, {GLFW_KEY_2, GLFW_RELEASE},
-    {GLFW_KEY_3, GLFW_RELEASE}, {GLFW_KEY_4, GLFW_RELEASE}, {GLFW_KEY_5, GLFW_RELEASE},
-    {GLFW_KEY_6, GLFW_RELEASE}, {GLFW_KEY_7, GLFW_RELEASE}, {GLFW_KEY_8, GLFW_RELEASE},
-    {GLFW_KEY_9, GLFW_RELEASE},
+{GLFW_KEY_0, GLFW_RELEASE}, {GLFW_KEY_1, GLFW_RELEASE}, {GLFW_KEY_2, GLFW_RELEASE},
+{GLFW_KEY_3, GLFW_RELEASE}, {GLFW_KEY_4, GLFW_RELEASE}, {GLFW_KEY_5, GLFW_RELEASE},
+{GLFW_KEY_6, GLFW_RELEASE}, {GLFW_KEY_7, GLFW_RELEASE}, {GLFW_KEY_8, GLFW_RELEASE},
+{GLFW_KEY_9, GLFW_RELEASE},
 
-    {GLFW_KEY_SPACE, GLFW_RELEASE},
-    {GLFW_KEY_ESCAPE, GLFW_RELEASE},
-    {GLFW_KEY_LEFT_SHIFT, GLFW_RELEASE},
-    {GLFW_KEY_RIGHT_SHIFT, GLFW_RELEASE},
+{GLFW_KEY_SPACE, GLFW_RELEASE},
+{GLFW_KEY_ESCAPE, GLFW_RELEASE},
+{GLFW_KEY_LEFT_SHIFT, GLFW_RELEASE},
+{GLFW_KEY_RIGHT_SHIFT, GLFW_RELEASE},
     };
 }
 
@@ -62,7 +62,7 @@ void InputComponent::OnAdd()
     {
         //window = parent->world->renderer->window;
     }
-    
+
 }
 
 void InputComponent::GetMousePosition(double& xPos, double& yPos) const
@@ -92,6 +92,9 @@ void InputComponent::Update(float deltaTime)
         else if (currentState == GLFW_RELEASE && state == GLFW_PRESS) {
             CallKeyReleased(key);
         }
+        else if (currentState == GLFW_PRESS) {
+            CallKeyHeld(key);
+        }
         state = currentState;
     }
 }
@@ -103,9 +106,6 @@ void InputComponent::Serialize(nlohmann::json& jsonData) const
 void InputComponent::Deserialize(const nlohmann::json& jsonData)
 {
 }
-
-
-
 
 void InputComponent::CallKeyPressed(int key) {
     switch (key) {
@@ -201,3 +201,49 @@ void InputComponent::CallKeyReleased(int key) {
     }
 }
 
+void InputComponent::CallKeyHeld(int key) {
+    switch (key) {
+    case GLFW_KEY_A: On_A_KeyHeld(); break;
+    case GLFW_KEY_B: On_B_KeyHeld(); break;
+    case GLFW_KEY_C: On_C_KeyHeld(); break;
+    case GLFW_KEY_D: On_D_KeyHeld(); break;
+    case GLFW_KEY_E: On_E_KeyHeld(); break;
+    case GLFW_KEY_F: On_F_KeyHeld(); break;
+    case GLFW_KEY_G: On_G_KeyHeld(); break;
+    case GLFW_KEY_H: On_H_KeyHeld(); break;
+    case GLFW_KEY_I: On_I_KeyHeld(); break;
+    case GLFW_KEY_J: On_J_KeyHeld(); break;
+    case GLFW_KEY_K: On_K_KeyHeld(); break;
+    case GLFW_KEY_L: On_L_KeyHeld(); break;
+    case GLFW_KEY_M: On_M_KeyHeld(); break;
+    case GLFW_KEY_N: On_N_KeyHeld(); break;
+    case GLFW_KEY_O: On_O_KeyHeld(); break;
+    case GLFW_KEY_P: On_P_KeyHeld(); break;
+    case GLFW_KEY_Q: On_Q_KeyHeld(); break;
+    case GLFW_KEY_R: On_R_KeyHeld(); break;
+    case GLFW_KEY_S: On_S_KeyHeld(); break;
+    case GLFW_KEY_T: On_T_KeyHeld(); break;
+    case GLFW_KEY_U: On_U_KeyHeld(); break;
+    case GLFW_KEY_V: On_V_KeyHeld(); break;
+    case GLFW_KEY_W: On_W_KeyHeld(); break;
+    case GLFW_KEY_X: On_X_KeyHeld(); break;
+    case GLFW_KEY_Y: On_Y_KeyHeld(); break;
+    case GLFW_KEY_Z: On_Z_KeyHeld(); break;
+
+    case GLFW_KEY_0: On_0_KeyHeld(); break;
+    case GLFW_KEY_1: On_1_KeyHeld(); break;
+    case GLFW_KEY_2: On_2_KeyHeld(); break;
+    case GLFW_KEY_3: On_3_KeyHeld(); break;
+    case GLFW_KEY_4: On_4_KeyHeld(); break;
+    case GLFW_KEY_5: On_5_KeyHeld(); break;
+    case GLFW_KEY_6: On_6_KeyHeld(); break;
+    case GLFW_KEY_7: On_7_KeyHeld(); break;
+    case GLFW_KEY_8: On_8_KeyHeld(); break;
+    case GLFW_KEY_9: On_9_KeyHeld(); break;
+
+    case GLFW_KEY_SPACE: On_Space_KeyHeld(); break;
+    case GLFW_KEY_ESCAPE: On_Esc_KeyHeld(); break;
+    case GLFW_KEY_LEFT_SHIFT: On_Shift_Left_KeyHeld(); break;
+    case GLFW_KEY_RIGHT_SHIFT: On_Shift_Right_KeyHeld(); break;
+    }
+}

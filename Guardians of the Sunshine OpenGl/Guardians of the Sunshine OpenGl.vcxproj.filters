@@ -150,6 +150,12 @@
     <ClCompile Include="ColliderComponent.cpp">
       <Filter>Engine\Core\Components\Source</Filter>
     </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>Engine\Core\Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TestInputComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -232,6 +238,12 @@
     </ClInclude>
     <ClInclude Include="ColliderComponent.h">
       <Filter>Engine\Core\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>Engine\Core\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestInputComponent.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
