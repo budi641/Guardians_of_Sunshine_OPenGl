@@ -20,6 +20,8 @@ public:
 
     PhysicsManager* physicsHandler = nullptr;
 
+    RenderManager* renderer = nullptr;
+
     const std::vector<Entity*>& GetEntities() const { return entities; }
 
     void AddEntity(Entity* entity);

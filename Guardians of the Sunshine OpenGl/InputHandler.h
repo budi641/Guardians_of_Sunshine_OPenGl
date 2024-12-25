@@ -26,6 +26,7 @@ private:
 public:
 
     InputHandler();
+   
     void handleInput(GLFWwindow* window);
     void updateCameraMovement(GLFWwindow* window, Camera& camera);
     void updateCameraRotation(GLFWwindow* window, Camera& camera);

@@ -3,6 +3,7 @@
 #include "SkeletalMeshComponent.h"
 #include <iostream>
 #include "ColliderComponent.h"
+#include "TestInputComponent.h"
 
 
 Application::Application(const std::string& path) : worldPath(path) 
@@ -36,6 +37,12 @@ void Application::Run()
     entity->GetTransformComponent()->SetScale(glm::vec3(3));
     world->AddEntity(entity);
 
+    TestInputComponent* input = new TestInputComponent();
+
+    input->SetWindow(renderer->window);
+
+    entity->AddComponent(input);
+
 
     
         
@@ -64,10 +71,11 @@ void Application::Run()
 
 
     auto* entity4 = new Entity("Player2");
-    auto* sKmesh2 = new SkeletalMeshComponent("boy/Swing Dancing.dae", mat);
+    auto* sKmesh2 = new SkeletalMeshComponent("finn/finn_idle.dae", mat);
     entity4->AddComponent(sKmesh2);
     world->AddEntity(entity4);
     entity4->GetTransformComponent()->SetPosition(glm::vec3(0, 0, -3));
+    entity4->GetTransformComponent()->SetScale(glm::vec3(50));
 
 
 

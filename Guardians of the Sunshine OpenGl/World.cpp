@@ -131,6 +131,7 @@ void World::RenderWorld(RenderManager* Renderer)
 
 void World::SortEntitiesByDistance(RenderManager* renderer)
 {
+    this->renderer = renderer;
     glm::vec3 cameraPos = renderer->camera->GetPosition();
     
     std::sort(entities.begin(), entities.end(), [this, &cameraPos](Entity* a, Entity* b) {
