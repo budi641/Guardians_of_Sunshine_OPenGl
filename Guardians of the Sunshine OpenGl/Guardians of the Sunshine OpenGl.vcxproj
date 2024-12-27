@@ -156,15 +156,16 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Bone.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="ColliderComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="InputComponent.cpp" />
-    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshRendererComponent.cpp" />
+    <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="SkeletalMeshComponent.cpp" />
     <ClCompile Include="StaticMeshComponent.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="TestInputComponent.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="World.cpp" />
@@ -186,16 +188,17 @@
     <ClInclude Include="Bone.h" />
     <ClInclude Include="BoneInfo.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="InputComponent.h" />
-    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshRendererComponent.h" />
+    <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="SkeletalMeshComponent.h" />
     <ClInclude Include="StaticMeshComponent.h" />
@@ -205,6 +208,7 @@
     <ClInclude Include="SkeletalMesh.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="TestInputComponent.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="Vertex.h" />
@@ -216,8 +220,12 @@
     <None Include="debug.fs" />
     <None Include="debug.vs" />
     <None Include="Fragment_Shader.glsl" />
+    <None Include="Main_Fragment_Shader.glsl" />
+    <None Include="Main_Vertex_Shader.glsl" />
     <None Include="SkySphere_Fragment.glsl" />
     <None Include="SkySphere_Vertex.glsl" />
+    <None Include="Unlit_Fragment_Shader.glsl" />
+    <None Include="Unlit_Vertex_Shader.glsl" />
     <None Include="Vertex_Shader.glsl" />
   </ItemGroup>
   <ItemGroup>

@@ -2,41 +2,19 @@
 #include "Shader.h"
 
 Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* material)
-    : vertices(vertices), indices(indices), material(material) {
+    : vertices(vertices), indices(indices){
     setupMesh();
 }
 
-void Mesh::Draw(Shader& shader, const glm::mat4& modelMatrix, const glm::vec3& viewPos, const Light& light) {
-
-  
-
-    shader.SetUniform("material.ambient", material->ambient);
-    shader.SetUniform("material.diffuse", material->diffuse);
-    shader.SetUniform("material.specular", material->specular);
-    shader.SetUniform("material.shininess", material->shininess);
-    shader.SetUniform("material.alpha", material->alpha);
-
-    shader.SetUniform("light.color", light.color);
-    shader.SetUniform("light.intensity", light.intensity);
-    shader.SetUniform("light.direction", light.direction);
-
-    shader.SetUniform("viewPos", viewPos);
+void Mesh::Draw(Shader& shader, const glm::mat4& modelMatrix) {
+ 
 
     shader.SetUniform("model", modelMatrix);
-
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, material->diffuseTex);
-    shader.SetUniform("material.diffuseTex", 0);
-
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, material->specularTex);
-    shader.SetUniform("material.specularTex", 1);
 
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 
-    shader.Unbind();
 }
 
 void Mesh::setupMesh() {

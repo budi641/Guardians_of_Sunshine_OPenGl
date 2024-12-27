@@ -21,7 +21,7 @@ public:
     PhysicsManager* physicsHandler = nullptr;
 
     RenderManager* renderer = nullptr;
-
+    
     const std::vector<Entity*>& GetEntities() const { return entities; }
 
     void AddEntity(Entity* entity);
@@ -30,6 +30,7 @@ public:
 
     glm::mat4 GetWorldMatrix(Entity* entity);
     glm::vec3 GetWorldPosition(Entity* entity);
+    glm::quat GetWorldRotationQuat(Entity* entity);
     void Serialize(nlohmann::json& jsonData) const;
     void Deserialize(const std::string& filepath);
 

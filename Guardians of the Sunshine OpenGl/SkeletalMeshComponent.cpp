@@ -18,18 +18,17 @@ Model* SkeletalMeshComponent::GetModel() const
 
 void SkeletalMeshComponent::Render(RenderManager* Renderer, glm::mat4 modelMatrix)
 {
+	meshMaterial->Bind(Renderer->shader);
 
-	if (meshMaterial->materialShader)
+	if (meshMaterial->shader)
 	{
-		
-		meshMaterial->materialShader->Bind();
-		Renderer->camera->UpdateProjection(*meshMaterial->materialShader);
+		Renderer->camera->UpdateProjection(*meshMaterial->shader);
 		auto transforms = animator->GetFinalBoneMatrices();
 		for (int i = 0; i < transforms.size(); ++i)
 		{
-			meshMaterial->materialShader->SetUniform("finalBonesMatrices[" + std::to_string(i) + "]", transforms[i]);
+			meshMaterial->shader->SetUniform("finalBonesMatrices[" + std::to_string(i) + "]", transforms[i]);
 		}
-		model->Draw(*meshMaterial->materialShader, modelMatrix);
+		model->Draw(*meshMaterial->shader, modelMatrix);
 	}
 	else
 	{

@@ -96,6 +96,16 @@ glm::vec3 World::GetWorldPosition(Entity* entity)
     return glm::vec3(GetWorldMatrix(entity)[3][0], GetWorldMatrix(entity)[3][1], GetWorldMatrix(entity)[3][2]);
 }
 
+
+glm::quat World::GetWorldRotationQuat(Entity* entity) {
+    glm::mat4 worldMatrix = GetWorldMatrix(entity);
+    glm::mat3 rotationMatrix(worldMatrix);
+
+    glm::quat worldRotation = glm::quat_cast(rotationMatrix);
+
+    return worldRotation;
+}
+
 void World::Update(float deltaTime) {
     const float timeStep = 1.0f / 60.0f;
 

@@ -31,6 +31,14 @@ public:
     glm::vec3 GetPosition() const;
     glm::vec3 GetRotation() const;
     glm::vec3 GetScale() const;
+
+    glm::vec3 GetUpVector() const;
+    glm::vec3 GetFrontVector() const;
+    glm::vec3 GetRightVector() const;
+
+
+    glm::quat GetRotationQuat();
+
     void Serialize(nlohmann::json& jsonData) const override {
         jsonData["type"] = "TransformComponent";
         jsonData["position"] = { position.x, position.y, position.z };

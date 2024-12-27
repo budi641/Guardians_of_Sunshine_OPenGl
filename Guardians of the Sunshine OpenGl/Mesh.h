@@ -12,13 +12,12 @@ public:
    
     std::vector<Vertex> vertices; 
     std::vector<unsigned int> indices;  
-    Material* material;  
 
     GLuint VAO, VBO, EBO;
 
     Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, Material* material);
 
-    void Draw(Shader& shader, const glm::mat4& modelMatrix, const glm::vec3& viewPos, const Light& light);
+    void Draw(Shader& shader, const glm::mat4& modelMatrix);
 
 private:
 

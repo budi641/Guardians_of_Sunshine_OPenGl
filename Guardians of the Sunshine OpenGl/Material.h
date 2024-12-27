@@ -1,22 +1,24 @@
 #pragma once
+
 #include <glm/glm.hpp>
-#include <string>
-#include <stb/stb_image.h>
-#include <glad/glad.h>
 #include "Shader.h"
+#include "Texture.h"
 
 class Material {
 public:
-    GLuint diffuseTex;
-    GLuint specularTex;
-    glm::vec3 ambient;
-    glm::vec3 diffuse;
-    glm::vec3 specular;
-    float shininess;
-    float alpha = 1;
+    Texture* diffuseTexture = nullptr;
+    Texture* specularTexture = nullptr;
+    Texture* normalTexture = nullptr;
 
-    Shader* materialShader = nullptr;
+    float alpha = 1.0f;
+    float shininess = 32.0f;
 
-    Material(const std::string& diffusePath, const std::string& specularPath, glm::vec3 ambient, glm::vec3 diffuse, glm::vec3 specular, float shininess);
-    GLuint loadTexture(const std::string& path);
+    Shader* shader = nullptr;
+
+    Material(float shininess = 0, float alpha = 1.0f,
+        const std::string& diffusePath = "", const std::string& specularPath = "",
+        const std::string& normalPath = "");
+
+    void Bind(Shader* defaultShader);
+    void Unbind() const;
 };

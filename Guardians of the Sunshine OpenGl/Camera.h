@@ -2,6 +2,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "Shader.h"
+#include "Entity.h"
 
 enum class CameraType {
     Perspective,
@@ -35,31 +36,38 @@ public:
 
     void SetPosition(glm::vec3 position);
 
-    void SetDef();
+    void UpdateCameraVectors();
 
-    std::tuple<glm::vec3, glm::vec3, glm::vec3> UpdateCameraVectors();
+    void AttachToEntity(Entity* entity, const glm::vec3& offset);
+    void DetachFromEntity();
+    void UpdateWithEntity();
+
+    glm::vec3 front;
+    glm::vec3 right;
+
+    Entity* attachedEntity = nullptr;
 
 private:
     CameraType type;
+
     float aspectRatio;
-    float fov;           // For Perspective camera
-    float def_fov;
+    float fov;           
     float nearPlane;
     float farPlane;
     float orthoHeight; 
 
+    glm::vec3 worldUp = { 0,-1,0 };
+
     glm::vec3 position;
     glm::vec3 target;
     glm::vec3 up;
-    glm::vec3 def_position;
     glm::mat4 viewMatrix;
     glm::mat4 projectionMatrix;
-    float speed = 5.0f;
+
     float yaw = 0;
     float pitch = 0;
-    float def_pitch;
-    float def_yaw;
 
 
+    glm::vec3 offset;
 
 };

@@ -110,7 +110,6 @@ void PhysicsManager::UpdateDebugRendering(RenderManager* renderer)
     glDrawArrays(GL_LINES, 0, vertices.size());
     glBindVertexArray(0);
 
-    debugShader->Unbind();
 
 }
 

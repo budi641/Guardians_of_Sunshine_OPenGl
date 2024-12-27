@@ -18,10 +18,19 @@ public:
 
     void GetMousePosition(double& xPos, double& yPos) const;
 
-    void Update(float deltaTime) override;
+    virtual void Update(float deltaTime) override;
 
     void Serialize(nlohmann::json& jsonData) const override;
     void Deserialize(const nlohmann::json& jsonData) override;
+
+    void UpdateMouseDelta();
+
+    void LockCursorToWindow();
+    void UnlockCursor();
+
+    double GetMouseDeltaX();
+    double GetMouseDeltaY();
+
 
     virtual void On_A_KeyPressed() {}
     virtual void On_A_KeyReleased() {}
@@ -146,11 +155,31 @@ public:
     virtual void On_Shift_Right_KeyReleased() {}
     virtual void On_Shift_Right_KeyHeld() {}
 
+    virtual void On_MouseLeftClickPressed() {}
+    virtual void On_MouseLeftClickReleased() {}
+    virtual void On_MouseLeftClickHeld() {}
+    virtual void On_MouseRightClickPressed() {}
+    virtual void On_MouseRightClickReleased() {}
+    virtual void On_MouseRightClickHeld() {}
+
+    double deltaX;
+    double deltaY;
+
+
 protected:
     GLFWwindow* window;
 
 private:
     std::unordered_map<int, int> keyStates;
+
+    double lastMouseX = 0.0; 
+    double lastMouseY = 0.0; 
+
+
+    bool firstMouseMove = true;
+
+    int mouseLeftButtonState = GLFW_RELEASE;
+    int mouseRightButtonState = GLFW_RELEASE;
 
     void CallKeyPressed(int key);
     void CallKeyReleased(int key);

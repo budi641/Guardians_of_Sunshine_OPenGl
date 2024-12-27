@@ -37,13 +37,13 @@ RenderManager::RenderManager(int width, int height, const char* windowTitle)
         });
 
     SetUpOpenGL();
+    camera = new Camera(CameraType::Perspective, width, height);
 }
 
 RenderManager::~RenderManager() {
     delete skybox;
     delete camera;
     delete shader;
-    delete light;
 
     if (window) {
         glfwDestroyWindow(window);
@@ -51,6 +51,10 @@ RenderManager::~RenderManager() {
     }
 }
 
+
+void RenderManager::AddLight(const Light& light) {
+    lights.push_back(light);
+}
 void RenderManager::SetUpOpenGL() {
     if (enableDepthTest) {
         glEnable(GL_DEPTH_TEST);
@@ -68,7 +72,7 @@ void RenderManager::SetUpOpenGL() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glViewport(0, 0, width, height);
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // Default background color
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f); 
 }
 
 void RenderManager::Render(World* world) {
@@ -82,9 +86,15 @@ void RenderManager::Render(World* world) {
         shader->Bind();
     }
 
+    SendLightsToShader();
+
+
     world->RenderWorld(this);
 
     world->physicsHandler->UpdateDebugRendering(this);
+
+    //insert framebuffers
+
 
     glfwSwapBuffers(window);
     glfwPollEvents();
@@ -118,4 +128,28 @@ void RenderManager::SetBackFaceCulling(bool enable) {
         glDisable(GL_CULL_FACE);
     }
     enableBackFaceCulling = enable;
+}
+
+void RenderManager::SendLightsToShader() {
+ 
+    const int MAX_LIGHTS = 10;
+
+    for (int i = 0; i < std::min<int>(lights.size(), MAX_LIGHTS); ++i) {
+        std::string lightName = "lights[" + std::to_string(i) + "]";
+
+        // Set light color
+        shader->SetUniform(lightName + ".color", lights[i].color);
+        // Set light intensity
+        shader->SetUniform(lightName + ".intensity", lights[i].intensity);
+        // Set light direction
+        shader->SetUniform(lightName + ".direction", lights[i].direction);
+        // Set light range (for point lights)
+        shader->SetUniform(lightName + ".range", lights[i].range);
+        // Set light cutoff (for spotlights)
+        shader->SetUniform(lightName + ".cutoff", lights[i].cutoff);
+        // Set outer cutoff (for spotlights)
+        shader->SetUniform(lightName + ".outerCutoff", lights[i].outerCutoff);
+        // Set light type
+        shader->SetUniform(lightName + ".type", static_cast<int>(lights[i].type));
+    }
 }

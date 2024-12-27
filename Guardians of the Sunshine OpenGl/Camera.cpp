@@ -3,6 +3,9 @@
 #include <glm/glm.hpp>              
 #include <glm/gtc/matrix_transform.hpp> 
 #include <glm/gtc/constants.hpp>     
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
+#include "World.h"
 
 Camera::Camera(CameraType type, float width, float height, float fov, float nearPlane, float farPlane, float orthoHeight)
     : type(type), aspectRatio(width / height), fov(fov), nearPlane(nearPlane), farPlane(farPlane), orthoHeight(orthoHeight),
@@ -10,10 +13,6 @@ Camera::Camera(CameraType type, float width, float height, float fov, float near
     yaw(-90.0f), pitch(0.0f)
 {
     UpdateCameraVectors();
-    def_pitch = pitch;
-    def_position = position;
-    def_yaw = yaw;
-    def_fov = fov;
 
 }
 
@@ -70,14 +69,32 @@ float Camera::GetPitch()
     return pitch;
 }
 
-void Camera::SetDef()
-{
-    pitch = def_pitch;
-    yaw = def_yaw;
-    position = def_position;
-    fov = def_fov;
-
+void Camera::AttachToEntity(Entity* entity, const glm::vec3& offset) {
+    attachedEntity = entity;
+    this->offset = offset;
 }
+
+void Camera::DetachFromEntity() {
+    attachedEntity = nullptr;
+}
+
+void Camera::UpdateWithEntity() {
+    if (attachedEntity) {
+    
+        glm::vec3 entityPosition = attachedEntity->world->GetWorldPosition(attachedEntity);;
+        glm::quat entityRotation = attachedEntity->GetTransformComponent()->GetRotationQuat();
+
+        position = entityPosition + glm::rotate(entityRotation, offset);
+
+        front = glm::normalize(glm::rotate(entityRotation, glm::vec3(0.0f, 0.0f, -1.0f)));
+        target = front;
+
+        up = glm::normalize(glm::rotate(entityRotation, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+        right = glm::normalize(glm::cross(front, worldUp));
+    }
+}
+
 
 
 glm::vec3 Camera::GetPosition()
@@ -93,10 +110,6 @@ void Camera::SetPosition(glm::vec3 position)
 void Camera::SetFov(float newFov) {
    
     fov = newFov;
-    if (fov > 100.0f) fov=100.0f;
-    if (fov < 1.0f) fov = 1.0f;
-
-    
 }
 
 float Camera::GetFov()
@@ -108,12 +121,9 @@ glm::vec3 Camera::GetUp() {
     return up;
 }
 
-std::tuple<glm::vec3, glm::vec3, glm::vec3> Camera::UpdateCameraVectors() {
+void Camera::UpdateCameraVectors() {
   
-    glm::vec3 front;
-    glm::vec3 right;
-    glm::vec3 up;
-    glm::vec3 worldUp = { 0,1,0 };
+
     front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
     front.y = sin(glm::radians(pitch));
     front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
@@ -127,7 +137,5 @@ std::tuple<glm::vec3, glm::vec3, glm::vec3> Camera::UpdateCameraVectors() {
     
     up = glm::normalize(glm::cross(right, target));
 
-
-    return std::make_tuple(front, right , up);
 }
 

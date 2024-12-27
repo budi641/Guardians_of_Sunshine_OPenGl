@@ -18,13 +18,17 @@ public:
     bool enableDepthTest = true;
     bool enableBackFaceCulling = false;
 
-    Light* light = nullptr;
+    std::vector<Light> lights;
     Skybox* skybox = nullptr;
     Camera* camera = nullptr;
     Shader* shader = nullptr;
 
     RenderManager(int width, int height, const char* windowTitle);
     ~RenderManager();
+
+
+    void AddLight(const Light& light);
+    void SendLightsToShader();
 
     void SetUpOpenGL();
     void Render(World* world);

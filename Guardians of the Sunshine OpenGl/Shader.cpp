@@ -21,9 +21,7 @@ void Shader::Bind() const {
     glUseProgram(programID);
 }
 
-void Shader::Unbind() const {
-    glUseProgram(0);
-}
+
 
 int Shader::GetUniformLocation(const std::string& name) {
     if (uniformLocationCache.find(name) != uniformLocationCache.end())

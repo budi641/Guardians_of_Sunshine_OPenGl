@@ -10,22 +10,23 @@
 
 #define MAX_BONE_INFLUENCE 4
 
-
-struct Texture {
-    unsigned int id;
-    std::string type;
-    std::string path;
-};
+//
+//struct Texture {
+//    unsigned int id;
+//    std::string type;
+//    std::string path;
+//};
 
 class SkeletalMesh {
 public:
     // mesh Data
     std::vector<Vertex>       vertices;
     std::vector<unsigned int> indices;
-    std::vector<Texture>      textures;
+    //std::vector<Texture>      textures;
+
     unsigned int VAO;
 
-    SkeletalMesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures);
+    SkeletalMesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices/*, std::vector<Texture> textures*/);
 
     void Draw(Shader& shader);
 

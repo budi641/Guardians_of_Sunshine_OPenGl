@@ -60,7 +60,7 @@ void InputComponent::OnAdd()
 {
     if (parent->world)
     {
-        //window = parent->world->renderer->window;
+        window = parent->world->renderer->window;
     }
 
 }
@@ -75,11 +75,28 @@ void InputComponent::GetMousePosition(double& xPos, double& yPos) const
         xPos = yPos = 0.0;
     }
 }
+void InputComponent::LockCursorToWindow() {
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+}
 
+void InputComponent::UnlockCursor() {
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+}
+
+double InputComponent::GetMouseDeltaX()
+{
+    return deltaX;
+}
+double InputComponent::GetMouseDeltaY()
+{
+    return deltaY;
+}
 
 void InputComponent::Update(float deltaTime)
 {
     if (!window) return;
+
+    UpdateMouseDelta();
 
     for (auto& keyState : keyStates) {
         int key = keyState.first;
@@ -97,7 +114,34 @@ void InputComponent::Update(float deltaTime)
         }
         state = currentState;
     }
+
+
+    int leftState = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+    if (leftState == GLFW_PRESS && mouseLeftButtonState != GLFW_PRESS) {
+        On_MouseLeftClickPressed();
+    }
+    else if (leftState == GLFW_RELEASE && mouseLeftButtonState == GLFW_PRESS) {
+        On_MouseLeftClickReleased();
+    }
+    else if (leftState == GLFW_PRESS) {
+        On_MouseLeftClickHeld();
+    }
+    mouseLeftButtonState = leftState;
+
+
+    int rightState = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT);
+    if (rightState == GLFW_PRESS && mouseRightButtonState != GLFW_PRESS) {
+        On_MouseRightClickPressed();
+    }
+    else if (rightState == GLFW_RELEASE && mouseRightButtonState == GLFW_PRESS) {
+        On_MouseRightClickReleased();
+    }
+    else if (rightState == GLFW_PRESS) {
+        On_MouseRightClickHeld();
+    }
+    mouseRightButtonState = rightState;
 }
+
 
 void InputComponent::Serialize(nlohmann::json& jsonData) const
 {
@@ -105,6 +149,28 @@ void InputComponent::Serialize(nlohmann::json& jsonData) const
 
 void InputComponent::Deserialize(const nlohmann::json& jsonData)
 {
+}
+
+void InputComponent::UpdateMouseDelta()
+{
+    double currentMouseX, currentMouseY;
+    glfwGetCursorPos(window, &currentMouseX, &currentMouseY);
+
+    if (firstMouseMove) 
+    {
+
+        lastMouseX = currentMouseX;
+        lastMouseY = currentMouseY;
+        firstMouseMove = false;
+    }
+
+    deltaX = currentMouseX - lastMouseX;
+    deltaY = currentMouseY - lastMouseY;
+
+    lastMouseX = currentMouseX;
+    lastMouseY = currentMouseY;
+
+
 }
 
 void InputComponent::CallKeyPressed(int key) {

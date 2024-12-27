@@ -4,11 +4,15 @@
 #include <iostream>
 #include "ColliderComponent.h"
 #include "TestInputComponent.h"
+#include "CameraComponent.h"
+#include "MovementComponent.h"
 
 
 Application::Application(const std::string& path) : worldPath(path) 
 {
     world = new World;
+    renderer = new RenderManager(1280, 720, "Test App");
+    world->renderer = this->renderer;
 }
 
 Application::~Application() 
@@ -19,29 +23,22 @@ Application::~Application()
 
 void Application::Run() 
 {
-    renderer = new RenderManager(1280, 720, "Test App");
+
     if (!renderer->window) 
     {
         return;
     }
-    renderer->camera = new Camera(CameraType::Perspective, renderer->width, renderer->height);
-    renderer->camera->SetPosition(glm::vec3(0, 7, 10));
 
 
 
     auto* entity = new Entity("Player");
-    Material* boxMaterial = new Material("container2.png", "container2_specular.png", glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
+    Material* boxMaterial = new Material(5,1,"container2.png", "container2_specular.png","");
     auto* meshComp = new StaticMeshComponent("", boxMaterial);
     entity->AddComponent(meshComp);
     entity->GetTransformComponent()->SetPosition(glm::vec3(0, 0, 0));
     entity->GetTransformComponent()->SetScale(glm::vec3(3));
     world->AddEntity(entity);
 
-    TestInputComponent* input = new TestInputComponent();
-
-    input->SetWindow(renderer->window);
-
-    entity->AddComponent(input);
 
 
     
@@ -51,9 +48,9 @@ void Application::Run()
     auto* meshFloor = new StaticMeshComponent("", boxMaterial);
     floor->AddComponent(meshFloor);
     floor->GetTransformComponent()->SetPosition(glm::vec3(0, -2, 0));
-    floor->GetTransformComponent()->SetScale(glm::vec3(50,0.5 , 50));
+    floor->GetTransformComponent()->SetScale(glm::vec3(500,0.5 , 500));
     world->AddEntity(floor);
-    ColliderComponent* floorCollider = new ColliderComponent(50,0.5,50);
+    ColliderComponent* floorCollider = new ColliderComponent(500,0.5,500);
     floor->AddComponent(floorCollider);
     floorCollider->rigidBody->setType(reactphysics3d::BodyType::STATIC);
     floorCollider->rigidBody->setIsDebugEnabled(true);
@@ -61,42 +58,58 @@ void Application::Run()
 
 
 
-    Material* mat = new Material("", "", glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
-    mat->materialShader = new Shader("animation_vertex.glsl", "animation_fragment.glsl");
+    Material* mat = new Material(15,1,"Brutal To Happy Walking/textures/vanguard_diffuse1.png", 
+        "Brutal To Happy Walking/textures/vanguard_specular.png",
+        "Brutal To Happy Walking/textures/vanguard_normal.png");
     auto* entity2 = new Entity("Player2");
     auto* sKmesh = new SkeletalMeshComponent("Brutal To Happy Walking/Brutal To Happy Walking.dae", mat);
     entity2->AddComponent(sKmesh);
     world->AddEntity(entity2);
-    entity2->GetTransformComponent()->SetPosition(glm::vec3(-2, 0, 3));
+    entity2->GetTransformComponent()->SetPosition(glm::vec3(-4, -2, 3));
 
 
-    auto* entity4 = new Entity("Player2");
-    auto* sKmesh2 = new SkeletalMeshComponent("finn/finn_idle.dae", mat);
-    entity4->AddComponent(sKmesh2);
-    world->AddEntity(entity4);
-    entity4->GetTransformComponent()->SetPosition(glm::vec3(0, 0, -3));
-    entity4->GetTransformComponent()->SetScale(glm::vec3(50));
+    entity2->GetTransformComponent()->SetScale(glm::vec3(4));
+
 
 
 
 
     auto* entity3 = new Entity("Player3");
-    Material* finnMaterial = new Material("finn_texture.png", "",glm::vec3(0.0f), glm::vec3(0.3f), glm::vec3(0.2f), 0.4f);
+    Material* finnMaterial = new Material(0,1,"finn_texture.png","","");
    auto* meshComp3 = new StaticMeshComponent("finn1.obj", finnMaterial);
     entity3->AddComponent(meshComp3);
     world->AddEntity(entity3);
-    entity3->GetTransformComponent()->SetPosition(glm::vec3(5, 25, 4));
+    entity3->GetTransformComponent()->SetPosition(glm::vec3(5, 2, 4));
+    entity3->GetTransformComponent()->SetRotation(glm::vec3(0, 0, 0));
     ColliderComponent* boxCollider = new ColliderComponent(1.5, 3.5);
     entity3->AddComponent(boxCollider);
-    //boxCollider->rigidBody->setType(reactphysics3d::BodyType::STATIC);
+    //boxCollider->rigidBody->setType(reactphysics3d::BodyType::KINEMATIC);
     reactphysics3d::Transform capsulTransform = reactphysics3d::Transform();
     capsulTransform.setPosition(reactphysics3d::Vector3(0, 3, 0));
+
     boxCollider->collider->setLocalToBodyTransform(capsulTransform);
     boxCollider->rigidBody->setIsDebugEnabled(true);
-    boxCollider->rigidBody->setMass(5);
-    boxCollider->rigidBody->setAngularLockAxisFactor(reactphysics3d::Vector3(1, 1, 1));
-    boxCollider->collider->getMaterial().setBounciness(1);
+    boxCollider->rigidBody->setMass(1);
+    boxCollider->rigidBody->setAngularLockAxisFactor(reactphysics3d::Vector3(0, 1, 0));
+    boxCollider->collider->getMaterial().setBounciness(0);
     boxCollider->collider->getMaterial().setFrictionCoefficient(1);
+    
+
+    CameraComponent* cameraComponent = new CameraComponent(CameraType::Perspective, renderer->width, renderer->height);
+
+    MovementComponent* mov = new MovementComponent(boxCollider->rigidBody);
+
+    entity3->AddComponent(mov);
+
+    entity3->AddComponent(cameraComponent);
+
+    TestInputComponent* input = new TestInputComponent();
+
+    input->SetWindow(renderer->window);
+
+    input->LockCursorToWindow();
+
+    entity3->AddComponent(input);
     
 
     renderer->SetBackFaceCulling(true);
@@ -106,18 +119,19 @@ void Application::Run()
 
     entity->GetTransformComponent()->SetPosition(glm::vec3(0,0,1));
 
-    renderer->shader = new Shader("Vertex_Shader.glsl", "Fragment_Shader.glsl");
+    renderer->shader = new Shader("Main_Vertex_Shader.glsl", "Main_Fragment_Shader.glsl");
 
     std::vector<std::string> skyCubeMap = {
     "right.jpg", "left.jpg", "top.jpg", "bottom.jpg", "front.jpg", "back.jpg"
     };
     renderer->skybox = new Skybox(skyCubeMap, "SkySphere_Vertex.glsl", "SkySphere_Fragment.glsl");
 
+    Light light(glm::vec3(1.0f, 1.0f, 1.0f), 5.0f, glm::vec3(-3.0f, -3.0f, 0.0f));
 
-
-    renderer->light = new Light(glm::vec3(1.0f, 1.0f, 1.0f), 5.0f, glm::vec3(-3.0f, -3.0f, 0.0f));
+    renderer->AddLight(light);
 
     world->physicsHandler->EnableDebuging();
+
 
 
     while (!glfwWindowShouldClose(renderer->window) && shouldRun) 
@@ -126,8 +140,7 @@ void Application::Run()
         float deltaTime = timer.GetDeltaTime();
         float currentTime = timer.GetCurrentTime();
 
-        inputHandler.handleInput(renderer->window);
-        inputHandler.updateCameraMovement(renderer->window, *renderer->camera);
+        renderer->camera->UpdateWithEntity();
 
         world->Update(deltaTime);
 

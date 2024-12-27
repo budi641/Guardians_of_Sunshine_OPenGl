@@ -45,6 +45,17 @@ public:
     void SetEnabled(bool enabled);
     bool IsEnabled() const;
 
+    template <typename T>
+    T* GetComponentByClass() const {
+        for (Component* component : components) {
+            T* castedComponent = dynamic_cast<T*>(component);
+            if (castedComponent != nullptr) {
+                return castedComponent;
+            }
+        }
+        return nullptr;
+    }
+
     void Update(float deltaTime);
     void Serialize(nlohmann::json& jsonData) const;
     void Deserialize(const nlohmann::json& jsonData);

@@ -114,9 +114,6 @@
     <ClCompile Include="RenderManager.cpp">
       <Filter>Engine\Rendering\Source</Filter>
     </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
-      <Filter>Engine\Core\Source</Filter>
-    </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Engine\Rendering\Animation\Source</Filter>
     </ClCompile>
@@ -155,6 +152,15 @@
     </ClCompile>
     <ClCompile Include="TestInputComponent.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>Engine\Core\Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Engine\Core\Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Engine\Rendering\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -203,9 +209,6 @@
     <ClInclude Include="Timer.h">
       <Filter>Engine\Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InputHandler.h">
-      <Filter>Engine\Core\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Engine\Rendering\Animation\Header Files</Filter>
     </ClInclude>
@@ -245,6 +248,15 @@
     <ClInclude Include="TestInputComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Engine\Core\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Engine\Core\Components\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Engine\Rendering\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vertex_Shader.glsl">
@@ -269,6 +281,18 @@
       <Filter>Assets\Shaders</Filter>
     </None>
     <None Include="debug.fs">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Main_Vertex_Shader.glsl">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Main_Fragment_Shader.glsl">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Unlit_Fragment_Shader.glsl">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Unlit_Vertex_Shader.glsl">
       <Filter>Assets\Shaders</Filter>
     </None>
   </ItemGroup>

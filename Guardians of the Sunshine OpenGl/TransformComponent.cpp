@@ -1,7 +1,8 @@
 #include "TransformComponent.h"
 #include "Entity.h"
 #include <glm/gtc/matrix_transform.hpp>  
-#include <glm/gtc/quaternion.hpp>        
+#include <glm/gtc/quaternion.hpp>     
+#include <glm/gtx/quaternion.hpp>
 #include <iostream>
 #include <json/json.h>
 
@@ -99,4 +100,27 @@ glm::vec3 TransformComponent::GetRotation() const
 glm::vec3 TransformComponent::GetScale() const
 {
     return scale;
+}
+
+glm::quat TransformComponent::GetRotationQuat()
+{
+    return rotation;
+}
+
+
+glm::vec3 TransformComponent::GetUpVector() const {
+  
+    glm::vec3 up = glm::rotate(rotation, glm::vec3(0.0f, 1.0f, 0.0f));
+    return up;
+}
+
+glm::vec3 TransformComponent::GetFrontVector() const {
+    glm::vec3 front = glm::rotate(rotation, glm::vec3(0.0f, 0.0f, -1.0f));
+    return front;
+}
+
+glm::vec3 TransformComponent::GetRightVector() const {
+   
+    glm::vec3 right = glm::rotate(rotation, glm::vec3(1.0f, 0.0f, 0.0f));
+    return right;
 }

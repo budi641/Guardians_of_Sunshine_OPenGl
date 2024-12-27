@@ -160,17 +160,17 @@ Mesh* StaticMeshComponent::GetMesh() const {
 
 void StaticMeshComponent::Render(RenderManager* Renderer, glm::mat4 modelMatrix)
 {
-    if (meshMaterial->materialShader)
+    meshMaterial->Bind(Renderer->shader);
+    if (meshMaterial->shader)
     {
-        meshMaterial->materialShader->Bind();
-        Renderer->camera->UpdateProjection(*meshMaterial->materialShader);
-        staticMesh->Draw(*meshMaterial->materialShader, modelMatrix, Renderer->camera->GetPosition(), *Renderer->light);
+        Renderer->camera->UpdateProjection(*meshMaterial->shader);
+        staticMesh->Draw(*meshMaterial->shader, modelMatrix);
     }
     else
     {
         Renderer->shader->Bind();
         Renderer->camera->UpdateProjection(*Renderer->shader);
-        staticMesh->Draw(*Renderer->shader, modelMatrix, Renderer->camera->GetPosition(), *Renderer->light);
+        staticMesh->Draw(*Renderer->shader, modelMatrix);
 
     }
 

@@ -20,7 +20,7 @@
 class Model
 {
 public:
-	std::vector<Texture> textures_loaded;
+	//std::vector<Texture> textures_loaded;
 	std::vector<SkeletalMesh> meshes;
 	std::string directory;
 	bool gammaCorrection;
@@ -53,6 +53,6 @@ private:
 
 	unsigned int TextureFromFile(const char* path, const std::string& directory, bool gamma = false);
 
-	std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
+	/*std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);*/
 
 };
