@@ -14,7 +14,7 @@ void TestInputComponent::Update(float deltaTime)
 
 void TestInputComponent::On_W_KeyPressed()
 {
-	
+	parent->GetComponentByClass<MovementComponent>()->AddForwardMovement(1);
 }
 
 void TestInputComponent::On_W_KeyReleased()

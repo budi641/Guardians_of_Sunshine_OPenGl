@@ -111,6 +111,8 @@ void World::Update(float deltaTime) {
 
     physicsHandler->Update(timeStep);
 
+
+
     for (auto entity : entities) {
         entity->Update(deltaTime);
     }

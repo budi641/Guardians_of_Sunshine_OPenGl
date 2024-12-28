@@ -6,7 +6,7 @@
 Texture::Texture()
     : textureID(0), width(0), height(0), nrChannels(0),
     minFilter(GL_LINEAR), magFilter(GL_LINEAR),
-    wrapS(GL_REPEAT), wrapT(GL_REPEAT), anisotropy(1.0f) {}
+    wrapS(GL_REPEAT), wrapT(GL_REPEAT) {}
 
 Texture::~Texture() {
     if (textureID != 0) {
@@ -93,6 +93,3 @@ GLenum Texture::GetWrapT() const {
     return wrapT;
 }
 
-float Texture::GetAnisotropy() const {
-    return anisotropy;
-}

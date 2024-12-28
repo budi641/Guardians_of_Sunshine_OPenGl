@@ -4,7 +4,7 @@
 #include "tiny_obj_loader.h"
 #include <iomanip>
 
-bool StaticMeshComponent::LoadOBJ(const std::string& filePath, std::vector<Vertex>& outVertices, std::vector<unsigned int>& outIndices, std::string& texturePath)
+bool StaticMeshComponent::LoadOBJ(const std::string& filePath, std::vector<Vertex>& outVertices, std::vector<unsigned int>& outIndices)
 {
     tinyobj::attrib_t attrib;
     std::vector<tinyobj::shape_t> shapes;
@@ -17,13 +17,8 @@ bool StaticMeshComponent::LoadOBJ(const std::string& filePath, std::vector<Verte
         return false;
     }
 
-    // Load the texture path from the first material (if any)
-    if (!materials.empty() && !materials[0].diffuse_texname.empty()) {
-        texturePath = materials[0].diffuse_texname;
-    }
-    else {
-        texturePath.clear();
-    }
+    vertices.clear();
+    indices.clear();
 
     // Parse shapes
     for (const auto& shape : shapes) {
@@ -86,65 +81,16 @@ StaticMeshComponent::StaticMeshComponent(const std::string& modelPath,Material* 
 
     this->meshMaterial = material;
 
-    std::vector<Vertex> vertices = {
 
-            {{-0.5f, -0.5f,  0.5f}, {}, {0.0f,  0.0f,  1.0f}, {0.0f, 0.0f}},
-            {{ 0.5f, -0.5f,  0.5f}, {}, {0.0f,  0.0f,  1.0f}, {1.0f, 0.0f}},
-            {{ 0.5f,  0.5f,  0.5f}, {}, {0.0f,  0.0f,  1.0f}, {1.0f, 1.0f}},
-            {{-0.5f,  0.5f,  0.5f}, {}, {0.0f,  0.0f,  1.0f}, {0.0f, 1.0f}},
-
-            {{ 0.5f, -0.5f, -0.5f}, {}, {0.0f,  0.0f, -1.0f}, {0.0f, 0.0f}},
-            {{-0.5f, -0.5f, -0.5f}, {}, {0.0f,  0.0f, -1.0f}, {1.0f, 0.0f}},
-            {{-0.5f,  0.5f, -0.5f}, {}, {0.0f,  0.0f, -1.0f}, {1.0f, 1.0f}},
-            {{ 0.5f,  0.5f, -0.5f}, {}, {0.0f,  0.0f, -1.0f}, {0.0f, 1.0f}},
-
-
-            {{-0.5f, -0.5f, -0.5f}, {}, {-1.0f,  0.0f,  0.0f}, {0.0f, 0.0f}},
-            {{-0.5f, -0.5f,  0.5f}, {}, {-1.0f,  0.0f,  0.0f}, {1.0f, 0.0f}},
-            {{-0.5f,  0.5f,  0.5f}, {}, {-1.0f,  0.0f,  0.0f}, {1.0f, 1.0f}},
-            {{-0.5f,  0.5f, -0.5f}, {}, {-1.0f,  0.0f,  0.0f}, {0.0f, 1.0f}},
-
-
-            {{ 0.5f, -0.5f,  0.5f}, {}, {1.0f,  0.0f,  0.0f}, {0.0f, 0.0f}},
-            {{ 0.5f, -0.5f, -0.5f}, {}, {1.0f,  0.0f,  0.0f}, {1.0f, 0.0f}},
-            {{ 0.5f,  0.5f, -0.5f}, {}, {1.0f,  0.0f,  0.0f}, {1.0f, 1.0f}},
-            {{ 0.5f,  0.5f,  0.5f}, {}, {1.0f,  0.0f,  0.0f}, {0.0f, 1.0f}},
-
-
-            {{-0.5f,  0.5f,  0.5f}, {}, {0.0f,  1.0f,  0.0f}, {0.0f, 0.0f}},
-            {{ 0.5f,  0.5f,  0.5f}, {}, {0.0f,  1.0f,  0.0f}, {1.0f, 0.0f}},
-            {{ 0.5f,  0.5f, -0.5f}, {}, {0.0f,  1.0f,  0.0f}, {1.0f, 1.0f}},
-            {{-0.5f,  0.5f, -0.5f}, {}, {0.0f,  1.0f,  0.0f}, {0.0f, 1.0f}},
-
-
-            {{-0.5f, -0.5f, -0.5f}, {}, {0.0f, -1.0f,  0.0f}, {0.0f, 0.0f}},
-            {{ 0.5f, -0.5f, -0.5f}, {}, {0.0f, -1.0f,  0.0f}, {1.0f, 0.0f}},
-            {{ 0.5f, -0.5f,  0.5f}, {}, {0.0f, -1.0f,  0.0f}, {1.0f, 1.0f}},
-            {{-0.5f, -0.5f,  0.5f}, {}, {0.0f, -1.0f,  0.0f}, {0.0f, 1.0f}},
-    };
-
-    std::vector<unsigned int> indices = {
-        0, 1, 2, 2, 3, 0,
-        4, 5, 6, 6, 7, 4,
-        8, 9, 10, 10, 11, 8,
-        12, 13, 14, 14, 15, 12,
-        16, 17, 18, 18, 19, 16,
-        20, 21, 22, 22, 23, 20
-    };
-
-
-    std::vector<Vertex> Modelvertices;
-    std::vector<unsigned int> Modelindices;
-    std::string texturePath;
-
-
-    if ((LoadOBJ(this->modelPath, Modelvertices, Modelindices, texturePath)))
+    if (LoadOBJ(this->modelPath, vertices, indices))
     {
-        staticMesh = new Mesh(Modelvertices, Modelindices,meshMaterial);
+
+        staticMesh = new Mesh(vertices, indices,meshMaterial);
     }
     else
     {
-        staticMesh = new Mesh(vertices, indices,meshMaterial);
+        staticMesh = new Mesh(vertices, indices, meshMaterial);
+        
     }
 
 

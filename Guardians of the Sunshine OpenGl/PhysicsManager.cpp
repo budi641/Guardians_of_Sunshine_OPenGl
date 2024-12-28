@@ -3,12 +3,14 @@
 #include "TransformComponent.h"
 
 
+
 PhysicsManager::PhysicsManager()
 {
     physicsCommon = new reactphysics3d::PhysicsCommon();
     reactphysics3d::PhysicsWorld::WorldSettings settings;
     physicsWorld = physicsCommon->createPhysicsWorld(settings);
     gravityScale = 1.0f;
+
 
 }
 
@@ -20,7 +22,14 @@ PhysicsManager::~PhysicsManager()
 void PhysicsManager::Update(float deltaTime)
 {
 
-    physicsWorld->update(deltaTime);
+
+    try {
+        physicsWorld->update(deltaTime);
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Exception during PhysicsWorld update: " << e.what() << std::endl;
+    }
+    
 }
 
 void PhysicsManager::EnableDebuging()

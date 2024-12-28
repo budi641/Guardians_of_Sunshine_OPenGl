@@ -22,7 +22,6 @@ public:
     GLenum GetMagFilter() const;
     GLenum GetWrapS() const;
     GLenum GetWrapT() const;
-    float GetAnisotropy() const;
 
 private:
     GLuint textureID;
@@ -32,5 +31,5 @@ private:
     GLenum magFilter;
     GLenum wrapS;
     GLenum wrapT;
-    float anisotropy;
+
 };

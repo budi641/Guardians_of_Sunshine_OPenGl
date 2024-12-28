@@ -1,5 +1,6 @@
  #include "MovementComponent.h"
  #include "Entity.h"
+#include <cmath>
 
 
 MovementComponent::MovementComponent(reactphysics3d::RigidBody* body)
@@ -17,37 +18,72 @@ void MovementComponent::Update(float deltaTime) {
             rigidBody->setLinearVelocity(velocity);
         }
 
-
+        if (world)
+        {
+            world->setEventListener(groundListener);
+        }
+        
+        UpdateRotationFromDirection();
+        
     }
+
+    
+
+    if (Direction.x > 1)Direction.x = 1;
+    if (Direction.x < -1)Direction.x = -1;
+    if (Direction.y > 1)Direction.y = 1;
+    if (Direction.y < -1)Direction.y = -1;
+
+    if (Direction.z > 1)Direction.z= 1;
+    if (Direction.z < -1)Direction.z = -1;
+
+
+
+   std::cout << Direction.x <<" "<<Direction.y<<" "<<Direction.z<< std::endl;
 }
 
 
 void MovementComponent::OnAdd()
 {
     world = parent->world->physicsHandler->physicsWorld;
+
+    groundListener = new GroundCollisionListener(inAir);
+
 }
 
 void MovementComponent::AddForwardMovement(float scale)
 {
-    if (rigidBody && !inAir) {
+    reactphysics3d::Vector3 addDirection(0, 0, scale);
+    Direction += addDirection;
+    Move();
+
+}
+
+void MovementComponent::Move()
+{
+    if (rigidBody && !inAir) 
+    {
         reactphysics3d::Vector3 forward = reactphysics3d::Vector3(parent->GetTransformComponent()->GetFrontVector().x,
             parent->GetTransformComponent()->GetFrontVector().y,
             parent->GetTransformComponent()->GetFrontVector().z);
 
-        rigidBody->applyWorldForceAtCenterOfMass(forward * -scale * speed);
+        reactphysics3d::Vector3 right = reactphysics3d::Vector3(parent->GetTransformComponent()->GetRightVector().x,
+            parent->GetTransformComponent()->GetRightVector().y,
+            parent->GetTransformComponent()->GetRightVector().z);
+
+        rigidBody->applyWorldForceAtCenterOfMass(-forward * speed );
     }
 }
 
 void MovementComponent::AddRightMovement(float scale)
 {
-    if (rigidBody && !inAir) {
-        reactphysics3d::Vector3 right = reactphysics3d::Vector3(parent->GetTransformComponent()->GetRightVector().x,
-            parent->GetTransformComponent()->GetRightVector().y,
-            parent->GetTransformComponent()->GetRightVector().z);
+    reactphysics3d::Vector3 addDirection(-scale, 0, 0);
+    Direction += addDirection;
 
-        rigidBody->applyWorldForceAtCenterOfMass(right * -scale * speed);
-    }
+    Move();
 }
+
+
 
 void MovementComponent::Jump()
 {
@@ -59,12 +95,44 @@ void MovementComponent::Jump()
 
 void MovementComponent::StopMovement()
 {
-    if (rigidBody) 
+    if (rigidBody && !inAir)
     {
         rigidBody->setLinearVelocity(reactphysics3d::Vector3(0.0f, 0.0f, 0.0f));
         rigidBody->setAngularVelocity(reactphysics3d::Vector3(0.0f, 0.0f, 0.0f));
+
+        Direction = reactphysics3d::Vector3(0, 0, 0);
     }
 
+
+}
+
+
+void MovementComponent::UpdateRotationFromDirection()
+{
+    if (rigidBody && !inAir)
+    {
+        
+        reactphysics3d::Vector3 direction = Direction;
+
+        if (direction.x == 0.0f && direction.z == 0.0f)
+            return;
+
+        reactphysics3d::Vector3 normalizedDirection = direction;
+        normalizedDirection.y = 0.0f; 
+        normalizedDirection = normalizedDirection.getUnit();  
+
+        float angle = std::atan2(normalizedDirection.x, normalizedDirection.z); 
+
+        reactphysics3d::Quaternion rotation;
+
+        rotation.setAllValues(0.0f, std::sin(angle / 2.0f), 0.0f, std::cos(angle / 2.0f));
+
+        reactphysics3d::Transform currentTransform = rigidBody->getTransform();
+
+        currentTransform.setOrientation(rotation);
+
+        rigidBody->setTransform(currentTransform);
+    }
 }
 
 

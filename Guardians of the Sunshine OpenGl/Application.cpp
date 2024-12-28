@@ -6,6 +6,7 @@
 #include "TestInputComponent.h"
 #include "CameraComponent.h"
 #include "MovementComponent.h"
+#include "Collision.h"
 
 
 Application::Application(const std::string& path) : worldPath(path) 
@@ -47,7 +48,7 @@ void Application::Run()
     Entity* floor = new Entity("floor");
     auto* meshFloor = new StaticMeshComponent("", boxMaterial);
     floor->AddComponent(meshFloor);
-    floor->GetTransformComponent()->SetPosition(glm::vec3(0, -2, 0));
+    floor->GetTransformComponent()->SetPosition(glm::vec3(0, -5, 0));
     floor->GetTransformComponent()->SetScale(glm::vec3(100,0.5 , 100));
     world->AddEntity(floor);
     ColliderComponent* floorCollider = new ColliderComponent(100,0.5,100);
@@ -66,9 +67,20 @@ void Application::Run()
     entity2->AddComponent(sKmesh);
     world->AddEntity(entity2);
     entity2->GetTransformComponent()->SetPosition(glm::vec3(-4, -2, 3));
-
-
     entity2->GetTransformComponent()->SetScale(glm::vec3(4));
+
+
+
+    Material* Finmat = new Material(5, 1, "finn/textures/finColor.png",
+        "finn/textures/finSpecular.png",
+        "finn/textures/finNormal.png");
+    auto* Finn = new Entity("Finn");
+    auto* finnmesh = new SkeletalMeshComponent("finn/fin.dae", Finmat);
+    Finn->AddComponent(finnmesh);
+    world->AddEntity(Finn);
+    Finn->GetTransformComponent()->SetPosition(glm::vec3(0, 2, 0));
+    Finn->GetTransformComponent()->SetScale(glm::vec3(1));
+    Finn->GetTransformComponent()->SetRotation(glm::vec3(0,90,0));
 
     renderer->postProcessShader = new Shader("PPVert.glsl","NoPP.glsl");
 
@@ -79,7 +91,7 @@ void Application::Run()
    auto* meshComp3 = new StaticMeshComponent("finn1.obj", finnMaterial);
     entity3->AddComponent(meshComp3);
     world->AddEntity(entity3);
-    entity3->GetTransformComponent()->SetPosition(glm::vec3(5, 2, 4));
+    entity3->GetTransformComponent()->SetPosition(glm::vec3(5, -1, 4));
     entity3->GetTransformComponent()->SetRotation(glm::vec3(0, 0, 0));
     ColliderComponent* boxCollider = new ColliderComponent(1.5, 3.5);
     entity3->AddComponent(boxCollider);
@@ -93,7 +105,6 @@ void Application::Run()
     boxCollider->rigidBody->setAngularLockAxisFactor(reactphysics3d::Vector3(0, 1, 0));
     boxCollider->collider->getMaterial().setBounciness(0);
     boxCollider->collider->getMaterial().setFrictionCoefficient(1);
-    
 
     CameraComponent* cameraComponent = new CameraComponent(CameraType::Perspective, renderer->width, renderer->height);
 
@@ -154,9 +165,9 @@ void Application::Run()
     //renderer->AddLight(pointLight);
     //renderer->AddLight(spotlight);
 
-    world->physicsHandler->EnableDebuging();
+    //world->physicsHandler->EnableDebuging();
 
-
+    
 
     while (!glfwWindowShouldClose(renderer->window) && shouldRun) 
     {

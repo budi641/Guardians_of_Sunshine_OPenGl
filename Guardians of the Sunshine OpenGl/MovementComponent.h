@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "World.h"
 #include "PhysicsManager.h"
+#include "Collision.h"
 
 class MovementComponent :
     public Component
@@ -22,12 +23,16 @@ public:
 
     void Jump();
 
+    void Move();
+
     void StopMovement();
+
+    void UpdateRotationFromDirection();
 
     void Serialize(nlohmann::json& jsonData) const override {};
     void Deserialize(const nlohmann::json& jsonData) override {};
+ 
 
-    void RotateRigidBodyTowardsVelocity();
 
 private:
 
@@ -35,16 +40,19 @@ private:
 
     reactphysics3d::PhysicsWorld* world;
 
-    reactphysics3d::Quaternion EulerToQuaternion(float pitch, float yaw, float roll);
+    GroundCollisionListener* groundListener = nullptr;
+
+    reactphysics3d::Vector3 Direction = reactphysics3d::Vector3(0, 0, 0);
+
 
 
     bool inAir = false;
 
-    float speed = 50;
+    float speed = 30;
 
-    float maxSpeed= 50;
+    float maxSpeed= 30;
 
-    float jumpHeight = 200;
+    float jumpHeight = 750;
 
 };
 

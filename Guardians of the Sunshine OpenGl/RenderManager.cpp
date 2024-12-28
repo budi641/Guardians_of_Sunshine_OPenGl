@@ -119,6 +119,7 @@ void RenderManager::Render(World* world)
 
     SendLightsToShader();
     world->RenderWorld(this);
+    world->physicsHandler->UpdateDebugRendering(this);
 
     if (postProcessShader)
     {

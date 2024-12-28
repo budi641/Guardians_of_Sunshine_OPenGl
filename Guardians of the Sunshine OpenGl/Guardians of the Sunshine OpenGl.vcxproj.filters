@@ -162,6 +162,9 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Engine\Rendering\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Engine\Physics\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -256,6 +259,9 @@
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Engine\Rendering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Engine\Physics\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
