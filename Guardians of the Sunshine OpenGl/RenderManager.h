@@ -14,9 +14,15 @@
 class RenderManager {
 public:
     GLFWwindow* window = nullptr;
-    int width, height;  // Changed to int for consistency with GLFW
+    int width, height;
     bool enableDepthTest = true;
     bool enableBackFaceCulling = false;
+
+    Shader* postProcessShader = nullptr;
+    GLuint framebuffer, texture, rbo;
+    GLuint quadVAO = 0, quadVBO = 0;
+
+    void SetupQuad();
 
     std::vector<Light> lights;
     Skybox* skybox = nullptr;
@@ -35,4 +41,6 @@ public:
 
     void SetDepthTest(bool enable);
     void SetBackFaceCulling(bool enable);
+
+    void SetUpPostProcessing();
 };

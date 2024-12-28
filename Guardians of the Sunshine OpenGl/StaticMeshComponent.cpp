@@ -174,7 +174,7 @@ void StaticMeshComponent::Render(RenderManager* Renderer, glm::mat4 modelMatrix)
 
     }
 
-
+    meshMaterial->Unbind();
 }
 
 

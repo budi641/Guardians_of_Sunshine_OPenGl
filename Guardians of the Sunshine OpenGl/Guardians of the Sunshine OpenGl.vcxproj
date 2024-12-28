@@ -219,9 +219,11 @@
     <None Include="animation_vertex.glsl" />
     <None Include="debug.fs" />
     <None Include="debug.vs" />
-    <None Include="Fragment_Shader.glsl" />
+    <None Include="NoPP.glsl" />
     <None Include="Main_Fragment_Shader.glsl" />
     <None Include="Main_Vertex_Shader.glsl" />
+    <None Include="PPFrag.glsl" />
+    <None Include="PPVert.glsl" />
     <None Include="SkySphere_Fragment.glsl" />
     <None Include="SkySphere_Vertex.glsl" />
     <None Include="Unlit_Fragment_Shader.glsl" />

@@ -32,11 +32,11 @@ void Application::Run()
 
 
     auto* entity = new Entity("Player");
-    Material* boxMaterial = new Material(5,1,"container2.png", "container2_specular.png","");
+    Material* boxMaterial = new Material(1,1,"woodTexture/woodcolor.png", "1woodTexture/woodSpecular.png","woodTexture/woodNormal.png");
     auto* meshComp = new StaticMeshComponent("", boxMaterial);
     entity->AddComponent(meshComp);
-    entity->GetTransformComponent()->SetPosition(glm::vec3(0, 0, 0));
-    entity->GetTransformComponent()->SetScale(glm::vec3(3));
+    entity->GetTransformComponent()->SetPosition(glm::vec3(5, 3, 0));
+    entity->GetTransformComponent()->SetScale(glm::vec3(5));
     world->AddEntity(entity);
 
 
@@ -48,9 +48,9 @@ void Application::Run()
     auto* meshFloor = new StaticMeshComponent("", boxMaterial);
     floor->AddComponent(meshFloor);
     floor->GetTransformComponent()->SetPosition(glm::vec3(0, -2, 0));
-    floor->GetTransformComponent()->SetScale(glm::vec3(500,0.5 , 500));
+    floor->GetTransformComponent()->SetScale(glm::vec3(100,0.5 , 100));
     world->AddEntity(floor);
-    ColliderComponent* floorCollider = new ColliderComponent(500,0.5,500);
+    ColliderComponent* floorCollider = new ColliderComponent(100,0.5,100);
     floor->AddComponent(floorCollider);
     floorCollider->rigidBody->setType(reactphysics3d::BodyType::STATIC);
     floorCollider->rigidBody->setIsDebugEnabled(true);
@@ -58,7 +58,7 @@ void Application::Run()
 
 
 
-    Material* mat = new Material(15,1,"Brutal To Happy Walking/textures/vanguard_diffuse1.png", 
+    Material* mat = new Material(1,1,"Brutal To Happy Walking/textures/vanguard_diffuse1.png", 
         "Brutal To Happy Walking/textures/vanguard_specular.png",
         "Brutal To Happy Walking/textures/vanguard_normal.png");
     auto* entity2 = new Entity("Player2");
@@ -70,12 +70,12 @@ void Application::Run()
 
     entity2->GetTransformComponent()->SetScale(glm::vec3(4));
 
-
+    renderer->postProcessShader = new Shader("PPVert.glsl","NoPP.glsl");
 
 
 
     auto* entity3 = new Entity("Player3");
-    Material* finnMaterial = new Material(0,1,"finn_texture.png","","");
+    Material* finnMaterial = new Material(5,1,"finn_texture.png","","");
    auto* meshComp3 = new StaticMeshComponent("finn1.obj", finnMaterial);
     entity3->AddComponent(meshComp3);
     world->AddEntity(entity3);
@@ -126,9 +126,33 @@ void Application::Run()
     };
     renderer->skybox = new Skybox(skyCubeMap, "SkySphere_Vertex.glsl", "SkySphere_Fragment.glsl");
 
-    Light light(glm::vec3(1.0f, 1.0f, 1.0f), 5.0f, glm::vec3(-3.0f, -3.0f, 0.0f));
 
-    renderer->AddLight(light);
+    Light directionalLight(
+        glm::vec3(1.0f, 1.0f, 1.0f),
+        1.0f,
+        glm::vec3(1.0f, -1.0f, 0.0f)
+    );
+
+    Light pointLight(
+        glm::vec3(1.0f, 0.0f, 0.0f),
+        1.0f,
+        glm::vec3(0.0f, 5.0f, 0.0f),
+        10.0f
+    );
+
+    Light spotlight(
+        glm::vec3(0.0f, 1.0f, 0.0f),
+        1.0f,
+        glm::vec3(0.0f, 5.0f, 0.0f),
+        glm::vec3(0.0f, -1.0f, 0.0f),
+        glm::radians(12.5f),
+        glm::radians(17.5f)
+    );
+
+
+    renderer->AddLight(directionalLight);
+    //renderer->AddLight(pointLight);
+    //renderer->AddLight(spotlight);
 
     world->physicsHandler->EnableDebuging();
 

@@ -15,10 +15,21 @@ public:
 
     Shader* shader = nullptr;
 
+    GLenum blendSrcFactor = GL_SRC_ALPHA;
+    GLenum blendDstFactor = GL_ONE_MINUS_SRC_ALPHA;
+    bool enableBlend = false;
+
+
+    bool enableBackFaceCulling = true;
+    GLenum cullFace = GL_BACK;
+
     Material(float shininess = 0, float alpha = 1.0f,
         const std::string& diffusePath = "", const std::string& specularPath = "",
         const std::string& normalPath = "");
 
     void Bind(Shader* defaultShader);
     void Unbind() const;
+
+    void SetBlendMode(GLenum srcFactor, GLenum dstFactor);
+    void SetBackFaceCulling(bool enable, GLenum face = GL_BACK);
 };

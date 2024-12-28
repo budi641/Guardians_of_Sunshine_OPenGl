@@ -27,7 +27,6 @@ public:
     void AddEntity(Entity* entity);
     void RemoveEntity(Entity* entity);
 
-
     glm::mat4 GetWorldMatrix(Entity* entity);
     glm::vec3 GetWorldPosition(Entity* entity);
     glm::quat GetWorldRotationQuat(Entity* entity);

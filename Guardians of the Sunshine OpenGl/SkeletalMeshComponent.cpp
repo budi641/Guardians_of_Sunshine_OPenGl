@@ -42,7 +42,7 @@ void SkeletalMeshComponent::Render(RenderManager* Renderer, glm::mat4 modelMatri
 		model->Draw(*Renderer->shader, modelMatrix);
 
 	}
-	
+	meshMaterial->Unbind();
 		
 
 

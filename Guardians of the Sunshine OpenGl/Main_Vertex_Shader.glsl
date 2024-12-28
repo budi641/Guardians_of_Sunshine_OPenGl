@@ -19,25 +19,51 @@ const int MAX_BONE_INFLUENCE = 4;
 uniform mat4 finalBonesMatrices[MAX_BONES];
 
 out vec2 TexCoords;
+out vec3 FragPos;
+out vec3 Normal;
+out mat3 TBN;
 
 void main()
 {
     vec4 totalPosition = vec4(0.0f);
-    for(int i = 0 ; i < MAX_BONE_INFLUENCE ; i++)
+    vec3 transformedNormal = vec3(0.0f);
+    vec3 transformedTangent = vec3(0.0f);
+    vec3 transformedBitangent = vec3(0.0f);
+
+    for(int i = 0; i < MAX_BONE_INFLUENCE; i++)
     {
         if(boneIds[i] == -1) 
             continue;
-        if(boneIds[i] >=MAX_BONES) 
+
+        if(boneIds[i] >= MAX_BONES) 
         {
-            totalPosition = vec4(pos,1.0f);
+            totalPosition = vec4(pos, 1.0f);
+            transformedNormal = norm;
+            transformedTangent = tangent;
+            transformedBitangent = bitangent;
             break;
         }
-        vec4 localPosition = finalBonesMatrices[boneIds[i]] * vec4(pos,1.0f);
+
+        vec4 localPosition = finalBonesMatrices[boneIds[i]] * vec4(pos, 1.0f);
         totalPosition += localPosition * weights[i];
-        vec3 localNormal = mat3(finalBonesMatrices[boneIds[i]]) * norm;
-   }
-	
+
+        mat3 boneTransform = mat3(finalBonesMatrices[boneIds[i]]);
+        transformedNormal += boneTransform * norm * weights[i];
+        transformedTangent += boneTransform * tangent * weights[i];
+        transformedBitangent += boneTransform * bitangent * weights[i];
+    }
+
+    vec3 worldNormal = normalize(mat3(transpose(inverse(model))) * transformedNormal);
+    vec3 worldTangent = normalize(mat3(transpose(inverse(model))) * transformedTangent);
+    vec3 worldBitangent = normalize(mat3(transpose(inverse(model))) * transformedBitangent);
+
+    TBN = mat3(worldTangent, worldBitangent, worldNormal);
+
+    vec4 worldPosition = model * totalPosition;
+    FragPos = vec3(worldPosition);
+    Normal = worldNormal;
+    TexCoords = tex;
+
     mat4 viewModel = view * model;
-    gl_Position =  projection * viewModel * totalPosition;
-	TexCoords = tex;
+    gl_Position = projection * viewModel * totalPosition;
 }

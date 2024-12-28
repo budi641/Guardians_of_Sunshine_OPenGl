@@ -262,7 +262,7 @@
     <None Include="Vertex_Shader.glsl">
       <Filter>Assets\Shaders</Filter>
     </None>
-    <None Include="Fragment_Shader.glsl">
+    <None Include="NoPP.glsl">
       <Filter>Assets\Shaders</Filter>
     </None>
     <None Include="SkySphere_Fragment.glsl">
@@ -293,6 +293,12 @@
       <Filter>Assets\Shaders</Filter>
     </None>
     <None Include="Unlit_Vertex_Shader.glsl">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="PPFrag.glsl">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="PPVert.glsl">
       <Filter>Assets\Shaders</Filter>
     </None>
   </ItemGroup>

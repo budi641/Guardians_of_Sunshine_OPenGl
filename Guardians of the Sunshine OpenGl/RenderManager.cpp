@@ -2,20 +2,47 @@
 #include <iostream>
 #include"PhysicsManager.h"
 
+void RenderManager::SetupQuad()
+{
+    if (quadVAO == 0) {
+        GLfloat vertices[] = {
+
+            -1.0f,  1.0f, 0.0f,   0.0f, 1.0f, 
+            -1.0f, -1.0f, 0.0f,   0.0f, 0.0f, 
+             1.0f, -1.0f, 0.0f,   1.0f, 0.0f,  
+
+            -1.0f,  1.0f, 0.0f,   0.0f, 1.0f,  
+             1.0f, -1.0f, 0.0f,   1.0f, 0.0f,  
+             1.0f,  1.0f, 0.0f,   1.0f, 1.0f   
+        };
+
+        glGenVertexArrays(1, &quadVAO);
+        glGenBuffers(1, &quadVBO);
+        glBindVertexArray(quadVAO);
+        glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+        glEnableVertexAttribArray(1);
+        glBindVertexArray(0);
+    }
+}
+
 RenderManager::RenderManager(int width, int height, const char* windowTitle)
     : width(width), height(height) {
-    // Initialize GLFW
+
     if (!glfwInit()) {
         std::cerr << "Failed to initialize GLFW!" << std::endl;
         throw std::runtime_error("GLFW initialization failed");
     }
 
-    // Set GLFW window hints (OpenGL version and profile)
+
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    // Create the GLFW window
     window = glfwCreateWindow(width, height, windowTitle, nullptr, nullptr);
     if (!window) {
         std::cerr << "Failed to create GLFW window!" << std::endl;
@@ -33,11 +60,13 @@ RenderManager::RenderManager(int width, int height, const char* windowTitle)
     }
 
     glfwSetFramebufferSizeCallback(window, [](GLFWwindow*, int width, int height) {
-        glViewport(0, 0, width, height);
+        glViewport(0, 0,10* width, 10*height);
         });
 
     SetUpOpenGL();
     camera = new Camera(CameraType::Perspective, width, height);
+
+    SetUpPostProcessing();
 }
 
 RenderManager::~RenderManager() {
@@ -75,7 +104,9 @@ void RenderManager::SetUpOpenGL() {
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f); 
 }
 
-void RenderManager::Render(World* world) {
+void RenderManager::Render(World* world) 
+{
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (skybox && camera) {
@@ -87,25 +118,27 @@ void RenderManager::Render(World* world) {
     }
 
     SendLightsToShader();
-
-
     world->RenderWorld(this);
 
-    world->physicsHandler->UpdateDebugRendering(this);
+    if (postProcessShader)
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    //insert framebuffers
-
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        postProcessShader->Bind();
+        postProcessShader->SetUniform("screenTexture", 0);
+   
+        glBindVertexArray(quadVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+        glBindVertexArray(0);
+    }
 
     glfwSwapBuffers(window);
     glfwPollEvents();
-
-    GLenum error = glGetError();
-    if (error != GL_NO_ERROR) {
-        std::cerr << "OpenGL Error: " << error << std::endl;
-        std::clearerr;
-    }
-
 }
+
 
 void RenderManager::SetDepthTest(bool enable) {
     if (enable) {
@@ -131,25 +164,59 @@ void RenderManager::SetBackFaceCulling(bool enable) {
 }
 
 void RenderManager::SendLightsToShader() {
- 
     const int MAX_LIGHTS = 10;
+
+    int numLights = lights.size();
+
+    shader->SetUniform("numLights", numLights);
 
     for (int i = 0; i < std::min<int>(lights.size(), MAX_LIGHTS); ++i) {
         std::string lightName = "lights[" + std::to_string(i) + "]";
 
-        // Set light color
         shader->SetUniform(lightName + ".color", lights[i].color);
-        // Set light intensity
         shader->SetUniform(lightName + ".intensity", lights[i].intensity);
-        // Set light direction
-        shader->SetUniform(lightName + ".direction", lights[i].direction);
-        // Set light range (for point lights)
         shader->SetUniform(lightName + ".range", lights[i].range);
-        // Set light cutoff (for spotlights)
         shader->SetUniform(lightName + ".cutoff", lights[i].cutoff);
-        // Set outer cutoff (for spotlights)
         shader->SetUniform(lightName + ".outerCutoff", lights[i].outerCutoff);
-        // Set light type
         shader->SetUniform(lightName + ".type", static_cast<int>(lights[i].type));
+
+        if (lights[i].type == LightType::Directional) {
+            shader->SetUniform(lightName + ".direction", lights[i].direction);
+        }
+        else if (lights[i].type == LightType::Point || lights[i].type == LightType::Spotlight) {
+            shader->SetUniform(lightName + ".position", lights[i].position);
+            shader->SetUniform(lightName + ".direction", lights[i].direction);
+        }
     }
+}
+
+void RenderManager::SetUpPostProcessing()
+{
+    SetupQuad();
+
+    glGenFramebuffers(1, &framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
+
+    glGenRenderbuffers(1, &rbo);
+    glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
+
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+        std::cerr << "Framebuffer not complete!" << std::endl;
+        throw std::runtime_error("Framebuffer setup failed");
+    }
+    glBindFramebuffer(GL_FRAMEBUFFER, 0); 
+
+ 
 }
