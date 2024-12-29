@@ -15,6 +15,8 @@ public:
 
     void Update(float deltaTime) override;
 
+    void RandomMovement(float deltaTime, float interval, float movementDuration);
+
     void OnAdd() override;
 
     void AddForwardMovement(float scale);
@@ -32,7 +34,11 @@ public:
     void Serialize(nlohmann::json& jsonData) const override {};
     void Deserialize(const nlohmann::json& jsonData) override {};
  
+    bool moveRandom = false;
 
+    float speed = 30;
+
+    float maxSpeed = 30;
 
 private:
 
@@ -47,10 +53,6 @@ private:
 
 
     bool inAir = false;
-
-    float speed = 30;
-
-    float maxSpeed= 30;
 
     float jumpHeight = 750;
 

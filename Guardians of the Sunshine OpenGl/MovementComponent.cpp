@@ -1,12 +1,17 @@
  #include "MovementComponent.h"
  #include "Entity.h"
 #include <cmath>
+#include "SkeletalMeshComponent.h"
+
+#include <cstdlib> 
+#include <ctime>   
 
 
 MovementComponent::MovementComponent(reactphysics3d::RigidBody* body)
 {
-	rigidBody = body;
+    rigidBody = body;
 }
+    
 
 void MovementComponent::Update(float deltaTime) {
     if (rigidBody) {
@@ -18,9 +23,10 @@ void MovementComponent::Update(float deltaTime) {
             rigidBody->setLinearVelocity(velocity);
         }
 
+
         if (world)
         {
-            world->setEventListener(groundListener);
+           // world->setEventListener(groundListener);
         }
         
         UpdateRotationFromDirection();
@@ -37,11 +43,49 @@ void MovementComponent::Update(float deltaTime) {
     if (Direction.z > 1)Direction.z= 1;
     if (Direction.z < -1)Direction.z = -1;
 
+    if (moveRandom)
+    {
+        RandomMovement(deltaTime, 1.0f, 2.5f);
+    }
+    
 
 
-   std::cout << Direction.x <<" "<<Direction.y<<" "<<Direction.z<< std::endl;
+  // std::cout << Direction.x <<" "<<Direction.y<<" "<<Direction.z<< std::endl;
 }
 
+
+void MovementComponent::RandomMovement(float deltaTime, float interval, float movementDuration) {
+    
+
+    static float timer = 0.0f;          
+    static bool isMoving = false;       
+    static reactphysics3d::Vector3 randomDirection(0.0f, 0.0f, 0.0f);
+    timer += deltaTime;
+
+    if (timer >= interval) {
+        timer = 0.0f;      
+        isMoving = !isMoving; 
+    }
+
+    if (!isMoving) {
+        StopMovement();
+        return;
+    }
+
+    static float movementTimer = 0.0f;
+    movementTimer += deltaTime;
+
+    if (movementTimer >= movementDuration) {
+        movementTimer = 0.0f;
+
+        float randomX = static_cast<float>(std::rand()) / RAND_MAX * 2.0f - 1.0f; 
+        float randomZ = static_cast<float>(std::rand()) / RAND_MAX * 2.0f - 1.0f; 
+        randomDirection = reactphysics3d::Vector3(randomX, 0.0f, randomZ).getUnit();
+    }
+
+    Direction = randomDirection;
+    Move();
+}
 
 void MovementComponent::OnAdd()
 {
@@ -56,6 +100,8 @@ void MovementComponent::AddForwardMovement(float scale)
     reactphysics3d::Vector3 addDirection(0, 0, scale);
     Direction += addDirection;
     Move();
+
+
 
 }
 
@@ -103,6 +149,8 @@ void MovementComponent::StopMovement()
         Direction = reactphysics3d::Vector3(0, 0, 0);
     }
 
+    if (!parent->GetChildByName("Mesh")->GetComponentByClass<SkeletalMeshComponent>()) return;
+    parent->GetChildByName("Mesh")->GetComponentByClass<SkeletalMeshComponent>()->PlayIdle();
 
 }
 

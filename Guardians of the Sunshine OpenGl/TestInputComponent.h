@@ -23,8 +23,12 @@ public:
     void On_D_KeyReleased() override;
     void On_D_KeyHeld() override;
 
+
+    void On_Q_KeyPressed() override;
+
+    void On_E_KeyPressed() override;
     void On_Space_KeyPressed() override;
 
-    void On_MouseLeftClickHeld() override;
+    void On_MouseLeftClickPressed() override;
 };
 

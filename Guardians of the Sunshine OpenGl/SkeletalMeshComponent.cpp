@@ -48,6 +48,46 @@ void SkeletalMeshComponent::Render(RenderManager* Renderer, glm::mat4 modelMatri
 
 }
 
+void SkeletalMeshComponent::PlayIdle()
+{
+	if (idle)
+	{
+		animator->PlayAnimation(idle);
+	}
+}
+
+void SkeletalMeshComponent::PlayRun()
+{
+	if (Run)
+	{
+		animator->PlayAnimation(Run);
+	}
+}
+
+void SkeletalMeshComponent::PlayEmote2()
+{
+	if (emote2)
+	{
+		animator->PlayAnimation(emote2);
+	}
+}
+
+void SkeletalMeshComponent::PlayEmote1()
+{
+	if (emote1)
+	{
+		animator->PlayAnimation(emote1);
+	}
+}
+
+void SkeletalMeshComponent::PlayAttack()
+{
+	if (attack)
+	{
+		animator->PlayAnimation(attack);
+	}
+}
+
 void SkeletalMeshComponent::Update(float deltaTime)
 {
 	animator->UpdateAnimation(deltaTime);

@@ -123,5 +123,15 @@ void StaticMeshComponent::Render(RenderManager* Renderer, glm::mat4 modelMatrix)
     meshMaterial->Unbind();
 }
 
+std::vector<unsigned int> StaticMeshComponent::GetIndices()
+{
+    return indices;
+}
+
+std::vector<Vertex> StaticMeshComponent::GetVertices()
+{
+    return vertices;
+}
+
 
 

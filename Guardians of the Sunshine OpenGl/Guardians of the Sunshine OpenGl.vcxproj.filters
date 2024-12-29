@@ -165,6 +165,9 @@
     <ClCompile Include="Collision.cpp">
       <Filter>Engine\Physics\Source</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -262,6 +265,9 @@
     </ClInclude>
     <ClInclude Include="Collision.h">
       <Filter>Engine\Physics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerController.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -12,7 +12,7 @@
 Application::Application(const std::string& path) : worldPath(path) 
 {
     world = new World;
-    renderer = new RenderManager(1280, 720, "Test App");
+    renderer = new RenderManager(1600, 900, "Test App");
     world->renderer = this->renderer;
 }
 
@@ -31,116 +31,22 @@ void Application::Run()
     }
 
 
-
-    auto* entity = new Entity("Player");
-    Material* boxMaterial = new Material(1,1,"woodTexture/woodcolor.png", "1woodTexture/woodSpecular.png","woodTexture/woodNormal.png");
-    auto* meshComp = new StaticMeshComponent("", boxMaterial);
-    entity->AddComponent(meshComp);
-    entity->GetTransformComponent()->SetPosition(glm::vec3(5, 3, 0));
-    entity->GetTransformComponent()->SetScale(glm::vec3(5));
-    world->AddEntity(entity);
-
-
-
-    
-        
-
-    Entity* floor = new Entity("floor");
-    auto* meshFloor = new StaticMeshComponent("", boxMaterial);
-    floor->AddComponent(meshFloor);
-    floor->GetTransformComponent()->SetPosition(glm::vec3(0, -5, 0));
-    floor->GetTransformComponent()->SetScale(glm::vec3(100,0.5 , 100));
-    world->AddEntity(floor);
-    ColliderComponent* floorCollider = new ColliderComponent(100,0.5,100);
-    floor->AddComponent(floorCollider);
-    floorCollider->rigidBody->setType(reactphysics3d::BodyType::STATIC);
-    floorCollider->rigidBody->setIsDebugEnabled(true);
-
-
-
-
-    Material* mat = new Material(1,1,"Brutal To Happy Walking/textures/vanguard_diffuse1.png", 
-        "Brutal To Happy Walking/textures/vanguard_specular.png",
-        "Brutal To Happy Walking/textures/vanguard_normal.png");
-    auto* entity2 = new Entity("Player2");
-    auto* sKmesh = new SkeletalMeshComponent("Brutal To Happy Walking/Brutal To Happy Walking.dae", mat);
-    entity2->AddComponent(sKmesh);
-    world->AddEntity(entity2);
-    entity2->GetTransformComponent()->SetPosition(glm::vec3(-4, -2, 3));
-    entity2->GetTransformComponent()->SetScale(glm::vec3(4));
-
-
-
-    Material* Finmat = new Material(5, 1, "finn/textures/finColor.png",
-        "finn/textures/finSpecular.png",
-        "finn/textures/finNormal.png");
-    auto* Finn = new Entity("Finn");
-    auto* finnmesh = new SkeletalMeshComponent("finn/fin.dae", Finmat);
-    Finn->AddComponent(finnmesh);
-    world->AddEntity(Finn);
-    Finn->GetTransformComponent()->SetPosition(glm::vec3(0, 2, 0));
-    Finn->GetTransformComponent()->SetScale(glm::vec3(1));
-    Finn->GetTransformComponent()->SetRotation(glm::vec3(0,90,0));
-
-    renderer->postProcessShader = new Shader("PPVert.glsl","NoPP.glsl");
-
-
-
-    auto* entity3 = new Entity("Player3");
-    Material* finnMaterial = new Material(5,1,"finn_texture.png","","");
-   auto* meshComp3 = new StaticMeshComponent("finn1.obj", finnMaterial);
-    entity3->AddComponent(meshComp3);
-    world->AddEntity(entity3);
-    entity3->GetTransformComponent()->SetPosition(glm::vec3(5, -1, 4));
-    entity3->GetTransformComponent()->SetRotation(glm::vec3(0, 0, 0));
-    ColliderComponent* boxCollider = new ColliderComponent(1.5, 3.5);
-    entity3->AddComponent(boxCollider);
-    //boxCollider->rigidBody->setType(reactphysics3d::BodyType::KINEMATIC);
-    reactphysics3d::Transform capsulTransform = reactphysics3d::Transform();
-    capsulTransform.setPosition(reactphysics3d::Vector3(0, 3, 0));
-
-    boxCollider->collider->setLocalToBodyTransform(capsulTransform);
-    boxCollider->rigidBody->setIsDebugEnabled(true);
-    boxCollider->rigidBody->setMass(1);
-    boxCollider->rigidBody->setAngularLockAxisFactor(reactphysics3d::Vector3(0, 1, 0));
-    boxCollider->collider->getMaterial().setBounciness(0);
-    boxCollider->collider->getMaterial().setFrictionCoefficient(1);
-
-    CameraComponent* cameraComponent = new CameraComponent(CameraType::Perspective, renderer->width, renderer->height);
-
-    MovementComponent* mov = new MovementComponent(boxCollider->rigidBody);
-
-    entity3->AddComponent(mov);
-
-    entity3->AddComponent(cameraComponent);
-
-    TestInputComponent* input = new TestInputComponent();
-
-    input->SetWindow(renderer->window);
-
-    input->LockCursorToWindow();
-
-    entity3->AddComponent(input);
-    
-
     renderer->SetBackFaceCulling(true);
     renderer->SetDepthTest(true);
 
 
-
-    entity->GetTransformComponent()->SetPosition(glm::vec3(0,0,1));
+    renderer->postProcessShader = new Shader("PPVert.glsl", "NoPP.glsl");
 
     renderer->shader = new Shader("Main_Vertex_Shader.glsl", "Main_Fragment_Shader.glsl");
 
     std::vector<std::string> skyCubeMap = {
-    "right.jpg", "left.jpg", "top.jpg", "bottom.jpg", "front.jpg", "back.jpg"
-    };
+    "grid.png", "grid.png", "grid.png", "grid.png","grid.png", "grid.png" };
     renderer->skybox = new Skybox(skyCubeMap, "SkySphere_Vertex.glsl", "SkySphere_Fragment.glsl");
 
 
     Light directionalLight(
-        glm::vec3(1.0f, 1.0f, 1.0f),
-        1.0f,
+        glm::vec3(0.8f, 1.0f, 0.9f),
+        0.7f,
         glm::vec3(1.0f, -1.0f, 0.0f)
     );
 
@@ -164,6 +70,184 @@ void Application::Run()
     renderer->AddLight(directionalLight);
     //renderer->AddLight(pointLight);
     //renderer->AddLight(spotlight);
+
+
+
+    
+        
+    Material* terrainaterial = new Material(1,1,
+        "Textures/TerrainTexture/terrain_Material_AlbedoTransparency.png",
+        "Textures/TerrainTexture/terrain_Material_AO.png",
+        "Textures/TerrainTexture/terrain_Material_Normal.png");
+    auto* meshFloor = new StaticMeshComponent("land/terrain2.obj", terrainaterial);
+    Entity* landMesh = new Entity("landMesh");
+    landMesh->GetTransformComponent()->SetPosition(glm::vec3(20, 57.25, 0));
+    landMesh->GetTransformComponent()->SetScale(glm::vec3(15));
+    landMesh->GetTransformComponent()->SetRotation(glm::vec3(0, 180, 0));
+    landMesh->AddComponent(meshFloor);
+    Entity* land = new Entity("land");
+    land->AddChild(landMesh);
+    land->GetTransformComponent()->SetPosition(glm::vec3(0, -3, 0));
+    world->AddEntity(land);
+    ColliderComponent* landCollider = new ColliderComponent(700, 1, 700);
+    land->AddComponent(landCollider);
+    landCollider->rigidBody->setType(reactphysics3d::BodyType::STATIC);
+    landCollider->collider->setCollisionCategoryBits(CATEGORY_GROUND);
+    landCollider->collider->setCollideWithMaskBits(CATEGORY_PLAYER | CATEGORY_ENEMY);
+ 
+
+
+    CameraComponent* cameraComponent = new CameraComponent(CameraType::Perspective, renderer->width, renderer->height);
+    TestInputComponent* input = new TestInputComponent();
+    input->SetWindow(renderer->window);
+    input->LockCursorToWindow();
+
+
+    Material* Finmat = new Material(2, 1,
+        "finn/textures/finColor.png",
+        "finn/textures/finSpecular.png",
+        "finn/textures/finNormal.png");
+    SkeletalMeshComponent* finnMeshComp = new SkeletalMeshComponent("finn/fin.dae", Finmat);
+    Entity* finnMesh = new Entity("Mesh");
+    finnMesh->AddComponent(finnMeshComp);
+    finnMesh->GetTransformComponent()->SetRotation(glm::vec3(0,-90,0));
+    finnMesh->GetTransformComponent()->SetPosition(glm::vec3(0, -1, -4));
+    finnMesh->GetTransformComponent()->SetScale(glm::vec3(1));
+    Entity* Finn = new Entity("Finn");
+    Finn->AddChild(finnMesh);
+    world->AddEntity(Finn);
+    ColliderComponent* FinnCollider = new ColliderComponent(2, 4.5);
+    Finn->AddComponent(FinnCollider);
+    MovementComponent* movement = new MovementComponent(FinnCollider->rigidBody);
+    Finn->AddComponent(movement);
+    FinnCollider->rigidBody->setAngularLockAxisFactor(reactphysics3d::Vector3(0, 1, 0));
+    FinnCollider->rigidBody->setMass(1);
+    FinnCollider->collider->setCollisionCategoryBits(CATEGORY_PLAYER);
+    FinnCollider->collider->setCollideWithMaskBits(CATEGORY_GROUND | CATEGORY_ENEMY | CATEGORY_COINS);
+
+
+
+    Material* JakeMat = new Material(2, 1,
+        "Textures/JakeTextures/jake_Material_AlbedoTransparency.png",
+        "Textures/JakeTextures/jake_Material_AO.png",
+        "Textures/JakeTextures/jake_Material_Normal.png");
+    SkeletalMeshComponent* JakeMeshComp = new SkeletalMeshComponent("Models/jake/Jake_idle.dae", JakeMat);
+    Entity* JakeMesh = new Entity("Mesh");
+    JakeMesh->AddComponent(JakeMeshComp);
+    JakeMesh->GetTransformComponent()->SetRotation(glm::vec3(0, 0, 0));
+    JakeMesh->GetTransformComponent()->SetPosition(glm::vec3(0, -2.5, 0));
+    JakeMesh->GetTransformComponent()->SetScale(glm::vec3(100));
+    Entity* Jake = new Entity("Jake");
+    Jake->GetTransformComponent()->SetPosition(glm::vec3(4, 0, 0));
+    JakeMeshComp->idle = new Animation("Models/jake/Jake_idle.dae",JakeMeshComp->GetModel());
+    JakeMeshComp->Run = new Animation("Models/jake/Jake_run.dae", JakeMeshComp->GetModel());
+    JakeMeshComp->emote1 = new Animation("Models/jake/Jake_emote.dae", JakeMeshComp->GetModel());
+    JakeMeshComp->emote2 = new Animation("Models/jake/Jake_emote2.dae", JakeMeshComp->GetModel());
+    JakeMeshComp->attack = new Animation("Models/jake/Jake_attack.dae", JakeMeshComp->GetModel());
+    Jake->AddChild(JakeMesh);
+    world->AddEntity(Jake);
+    ColliderComponent* JakeCollider = new ColliderComponent(2, 1.8);
+    Jake->AddComponent(JakeCollider);
+    MovementComponent* jakemovement = new MovementComponent(JakeCollider->rigidBody);
+    Jake->AddComponent(jakemovement);
+    JakeCollider->rigidBody->setAngularLockAxisFactor(reactphysics3d::Vector3(0, 1, 0));
+    JakeCollider->rigidBody->setMass(1);
+    JakeCollider->collider->setCollisionCategoryBits(CATEGORY_PLAYER);
+    JakeCollider->collider->setCollideWithMaskBits(CATEGORY_GROUND | CATEGORY_ENEMY | CATEGORY_COINS);
+
+
+
+
+    
+    Material* BeeMat = new Material(2, 1,
+        "Textures/BeMonsterTexture/BeeMonster_Material_AlbedoTransparency.png",
+        "Textures/BeMonsterTexture/BeeMonster_Material_AO.png",
+        "Textures/BeMonsterTexture/BeeMonster_Material_Normal.png");
+    StaticMeshComponent* BeeMeshComp = new StaticMeshComponent("Models/Bee/BeeMonster.obj", BeeMat);
+    Entity* BeeMesh = new Entity("Mesh");
+    BeeMesh->AddComponent(BeeMeshComp);
+    BeeMesh->GetTransformComponent()->SetRotation(glm::vec3(0, 0, 0));
+    BeeMesh->GetTransformComponent()->SetPosition(glm::vec3(0, 2.5, 0));
+    BeeMesh->GetTransformComponent()->SetScale(glm::vec3(5));
+    Entity* Bee = new Entity("Bee");
+    Bee->GetTransformComponent()->SetPosition(glm::vec3(-8, 0, 75));
+    Bee->AddChild(BeeMesh);
+    world->AddEntity(Bee);
+    ColliderComponent* BeeCollider = new ColliderComponent(7, 9);
+    Bee->AddComponent(BeeCollider);
+    MovementComponent* Beemovement = new MovementComponent(BeeCollider->rigidBody);
+    Bee->AddComponent(Beemovement);
+    Beemovement->moveRandom = true;
+    Beemovement->speed = 50;
+    Beemovement->maxSpeed = 60;
+    BeeCollider->rigidBody->setAngularLockAxisFactor(reactphysics3d::Vector3(1, 1, 1));
+    BeeCollider->rigidBody->setMass(1);
+    BeeCollider->collider->setCollisionCategoryBits(CATEGORY_ENEMY);
+    BeeCollider->collider->setCollideWithMaskBits(CATEGORY_GROUND | CATEGORY_PLAYER);
+
+    Material* RabitMat = new Material(2, 1,
+        "Textures/rabbitMonsterTexture/rabitmonster_Material_AlbedoTransparency.png",
+        "Textures/rabbitMonsterTexture/rabitmonster_Material_AO.png",
+        "Textures/rabbitMonsterTexture/rabitmonster_Material_Normal.png");
+    StaticMeshComponent* RabitMeshComp = new StaticMeshComponent("Models/Rabbit/rabitmonster.obj", RabitMat);
+    Entity* RabitMesh = new Entity("Mesh");
+    RabitMesh->AddComponent(RabitMeshComp);
+    RabitMesh->GetTransformComponent()->SetRotation(glm::vec3(0, 0, 0));
+    RabitMesh->GetTransformComponent()->SetPosition(glm::vec3(0, -5, 5));
+    RabitMesh->GetTransformComponent()->SetScale(glm::vec3(3.5));
+    Entity* Rabit = new Entity("Rabit");
+    Rabit->GetTransformComponent()->SetPosition(glm::vec3(-30, 0, 50));
+    Rabit->AddChild(RabitMesh);
+    world->AddEntity(Rabit);
+    ColliderComponent* RabitCollider = new ColliderComponent(5.5, 7);
+    Rabit->AddComponent(RabitCollider);
+    MovementComponent* Rabitmovement = new MovementComponent(RabitCollider->rigidBody);
+    Rabit->AddComponent(Rabitmovement);
+    Rabitmovement->moveRandom = true;
+    Rabitmovement->speed = 50;
+    Rabitmovement->maxSpeed = 60;
+    RabitCollider->rigidBody->setAngularLockAxisFactor(reactphysics3d::Vector3(0, 1, 0));
+    RabitCollider->rigidBody->setMass(1);
+    RabitCollider->collider->setCollisionCategoryBits(CATEGORY_ENEMY);
+    FinnCollider->collider->setCollideWithMaskBits(CATEGORY_GROUND | CATEGORY_PLAYER);
+
+    for (int i = 0; i < 5; i++)
+    {
+        Material* CoinMat = new Material(50, 1,
+            "Textures/CoinTexture/coin_Material_AlbedoTransparency.png",
+            "Textures/CoinTexture/coin_Material_AO.png",
+            "Textures/CoinTexture/coin_Material_Normal.png");
+        StaticMeshComponent* coinMeshComp = new StaticMeshComponent("Models/coin/coin.obj", CoinMat);
+        Entity* coinMesh = new Entity("CoinMesh");
+        coinMesh->AddComponent(coinMeshComp);
+        coinMesh->GetTransformComponent()->SetRotation(glm::vec3(0, 0, 0));
+        coinMesh->GetTransformComponent()->SetPosition(glm::vec3(0, 0, 0));
+        coinMesh->GetTransformComponent()->SetScale(glm::vec3(1));
+        Entity* coin = new Entity("Coin");
+        coin->GetTransformComponent()->SetPosition(glm::vec3(5*i, 0, 25 + 4*i));
+        coin->AddChild(coinMesh);
+        world->AddEntity(coin);
+        ColliderComponent* coinCollider = new ColliderComponent(2);
+        coin->AddComponent(coinCollider);
+        coinCollider->rigidBody->setAngularLockAxisFactor(reactphysics3d::Vector3(0, 1, 0));
+        coinCollider->rigidBody->setMass(1);
+        coinCollider->collider->setCollisionCategoryBits(CATEGORY_COINS);
+        coinCollider->collider->setCollideWithMaskBits(CATEGORY_PLAYER);
+     }
+
+
+
+
+    
+    Jake->AddComponent(cameraComponent);
+    Jake->AddComponent(input);
+
+   
+
+
+    
+
+
 
     //world->physicsHandler->EnableDebuging();
 

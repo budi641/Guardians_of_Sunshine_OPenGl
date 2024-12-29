@@ -5,6 +5,7 @@
 #include <json/json.h>
 #include <reactphysics3d/reactphysics3d.h>
 
+
 class Component;
 
 class World;
@@ -34,6 +35,8 @@ public:
     Component* GetComponent(const std::string& componentName) const;
 
 
+
+
     std::string GetName();
 
     void SetParent(Entity* newParent);
@@ -55,6 +58,8 @@ public:
         }
         return nullptr;
     }
+
+    Entity* GetChildByName(const std::string& childName) const;
 
     void Update(float deltaTime);
     void Serialize(nlohmann::json& jsonData) const;

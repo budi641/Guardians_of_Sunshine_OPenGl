@@ -72,6 +72,9 @@ public:
     StaticMeshComponent(const std::string& modelPath,Material* material);
     Mesh* GetMesh() const;
     void Render(RenderManager* Renderer, glm::mat4 modelMatrix) override;
+
+    std::vector<unsigned int> GetIndices();
+    std::vector<Vertex> GetVertices();
 };
 
 

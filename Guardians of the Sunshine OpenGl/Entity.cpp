@@ -5,6 +5,7 @@
 #include "MeshRendererComponent.h"
 #include "RenderManager.h"
 #include "World.h"
+#include "Animation.h"
 
 Entity::Entity(const std::string& entityName)
 {
@@ -57,6 +58,15 @@ void Entity::AddComponent(Component * component)
         component->OnAdd();
     }
 }
+
+Entity* Entity::GetChildByName(const std::string& childName) const {
+    for (Entity* child : children) {
+        if (child->name == childName) {
+            return child;
+        }
+    }
+    return nullptr; 
+}
 void Entity::Deserialize(const nlohmann::json& jsonData) {
     // Set the name from the JSON data, with a fallback to "Unnamed Entity"
     name = jsonData.value("name", "Unnamed Entity");
@@ -93,6 +103,7 @@ void Entity::RemoveComponent(Component* component)
     auto it = std::find(components.begin(), components.end(), component);
     if (it != components.end())
     {
+        (*it)->OnRemove();
         components.erase(it);
     }
 }
@@ -180,6 +191,11 @@ bool Entity::IsEnabled() const
 void Entity::Update(float deltaTime)
 {
     if (!isEnabled) return;
+
+    if (name == "CoinMesh")
+    {
+        transform->SetRotation(glm::vec3(0,  45 * glfwGetTime(), 0));
+    }
 
     for (auto component : components)
     {

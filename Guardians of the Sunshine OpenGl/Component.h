@@ -29,6 +29,7 @@ public:
     void SetIsEnabled(bool enabled);
 
     virtual void OnAdd();
+    virtual void OnRemove() {};
 
     bool GetIsEnabled() const;
 
