@@ -90,5 +90,5 @@ void SkeletalMeshComponent::PlayAttack()
 
 void SkeletalMeshComponent::Update(float deltaTime)
 {
-	animator->UpdateAnimation(deltaTime);
+	animator->UpdateAnimation(deltaTime*0.8);
 }

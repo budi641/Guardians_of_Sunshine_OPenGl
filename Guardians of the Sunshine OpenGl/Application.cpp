@@ -32,11 +32,21 @@ void Application::Run()
     }
 
 
+    if (!SoundManager::GetInstance().Initialize()) {
+        std::cerr << "Failed to initialize sound system" << std::endl;
+        return;
+    }
+
+    unsigned int musicBuffer = SoundManager::GetInstance().LoadSound("main.wav");
+    if (musicBuffer) {
+        SoundManager::GetInstance().PlaySound(musicBuffer, 0.4f, true); 
+    }
+
     renderer->SetBackFaceCulling(true);
     renderer->SetDepthTest(true);
 
 
-    renderer->postProcessShader = new Shader("PPVert.glsl", "PPFrag.glsl");
+    renderer->postProcessShader = new Shader("PPVert.glsl", "NoPP.glsl");
 
     renderer->shader = new Shader("Main_Vertex_Shader.glsl", "Main_Fragment_Shader.glsl");
 
@@ -105,15 +115,20 @@ void Application::Run()
 
 
     Material* Finmat = new Material(2, 1,
-        "finn/textures/finColor.png",
-        "finn/textures/finSpecular.png",
-        "finn/textures/finNormal.png");
-    SkeletalMeshComponent* finnMeshComp = new SkeletalMeshComponent("finn/fin.dae", Finmat);
+        "Textures/fullfin/fullfin_Material_AlbedoTransparency.png",
+        "Textures/fullfin/fullfin_Material_AO.png",
+        "Textures/fullfin/fullfin_Material_Normal1.png");
+    SkeletalMeshComponent* finnMeshComp = new SkeletalMeshComponent("Models/finn/finn_idle.dae", Finmat);
+    finnMeshComp->idle = new Animation("Models/finn/finn_idle.dae", finnMeshComp->GetModel());
+    finnMeshComp->Run = new Animation("Models/finn/finn_run.dae", finnMeshComp->GetModel());
+    finnMeshComp->emote1 = new Animation("Models/finn/finn_emote.dae", finnMeshComp->GetModel());
+    finnMeshComp->emote2 = new Animation("Models/finn/finn_emote2.dae", finnMeshComp->GetModel());
+    finnMeshComp->attack = new Animation("Models/finn/finn_attack.dae", finnMeshComp->GetModel());
     Entity* finnMesh = new Entity("Mesh");
     finnMesh->AddComponent(finnMeshComp);
-    finnMesh->GetTransformComponent()->SetRotation(glm::vec3(0,-90,0));
-    finnMesh->GetTransformComponent()->SetPosition(glm::vec3(0, -1, -4));
-    finnMesh->GetTransformComponent()->SetScale(glm::vec3(1));
+    finnMesh->GetTransformComponent()->SetRotation(glm::vec3(0,0,0));
+    finnMesh->GetTransformComponent()->SetPosition(glm::vec3(0, -4, 0));
+    finnMesh->GetTransformComponent()->SetScale(glm::vec3(100));
     Entity* Finn = new Entity("Finn");
     Finn->AddChild(finnMesh);
     world->AddEntity(Finn);
@@ -240,8 +255,8 @@ void Application::Run()
 
 
     
-    Jake->AddComponent(cameraComponent);
-    Jake->AddComponent(input);
+    Finn->AddComponent(cameraComponent);
+    Finn->AddComponent(input);
 
    
 

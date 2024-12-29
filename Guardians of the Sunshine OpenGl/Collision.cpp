@@ -22,23 +22,22 @@ void test::onContact(const reactphysics3d::CollisionCallback::CallbackData& call
 
 void GroundCollisionListener::onContact(const reactphysics3d::CollisionCallback::CallbackData& callbackData)
 {
-    inAir = true; // Assume the body is in air unless proven otherwise
+    inAir = true; 
 
     for (uint32_t i = 0; i < callbackData.getNbContactPairs(); ++i) {
         const auto& contactPair = callbackData.getContactPair(i);
 
-        // Check contact points for this pair
+    
         for (uint32_t j = 0; j < contactPair.getNbContactPoints(); ++j) {
             const auto& contactPoint = contactPair.getContactPoint(j);
 
-            // Get the contact normal
             reactphysics3d::Vector3 normal = contactPoint.getWorldNormal();
 
         
-            // If the normal is sufficiently "upward," consider the body grounded
-            if (normal.y < -0.9f) { // Adjust the threshold based on the steepness tolerance
+           
+            if (normal.y < -0.9f) {
                 inAir = false;
-                return; // No need to check further
+                return;
             }
         }
     }
@@ -69,6 +68,11 @@ void CustomCollisionListener::onContact(const reactphysics3d::CollisionCallback:
         {
             reactphysics3d::RigidBody* coin = dynamic_cast<reactphysics3d::RigidBody*>(collider2->getBody());
          
+            unsigned int musicBuffer = SoundManager::GetInstance().LoadSound("coin.wav");
+            if (musicBuffer) {
+                SoundManager::GetInstance().PlaySound(musicBuffer, 0.35f,false);
+            }
+
             coin->applyLocalForceAtCenterOfMass(reactphysics3d::Vector3(0, 5000, 0));
             coin->applyLocalTorque(reactphysics3d::Vector3(0, 5000, 0));
      

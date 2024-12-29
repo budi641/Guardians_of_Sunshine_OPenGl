@@ -168,6 +168,9 @@
     <ClCompile Include="PlayerController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Engine\Core\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -268,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="PlayerController.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Engine\Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

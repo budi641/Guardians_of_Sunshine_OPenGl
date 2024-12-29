@@ -80,6 +80,13 @@ void World::RemoveEntity(Entity* entity) {
     }
 }
 
+Entity* World::GetEntityByName(const std::string& name) {
+    auto it = std::find_if(entities.begin(), entities.end(), [&name](Entity* entity) {
+        return entity && entity->GetName() == name;
+        });
+    return (it != entities.end()) ? *it : nullptr;
+}
+
 glm::mat4 World::GetWorldMatrix(Entity* entity){
     glm::mat4 worldMatrix = entity->GetTransformComponent()->GetTransformMatrix();
 

@@ -5,6 +5,8 @@ class TestInputComponent :
 {
 public:
 
+    bool isFinn = true;
+
     void Update(float deltaTime) override;
 
     void On_W_KeyPressed() override;
@@ -23,6 +25,7 @@ public:
     void On_D_KeyReleased() override;
     void On_D_KeyHeld() override;
 
+    void On_Shift_Left_KeyPressed();
 
     void On_Q_KeyPressed() override;
 

@@ -36,9 +36,9 @@ public:
  
     bool moveRandom = false;
 
-    float speed = 30;
+    float speed = 45;
 
-    float maxSpeed = 30;
+    float maxSpeed = 35;
 
 private:
 

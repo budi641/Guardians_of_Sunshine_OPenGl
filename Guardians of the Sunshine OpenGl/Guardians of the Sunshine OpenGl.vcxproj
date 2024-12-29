@@ -114,7 +114,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;reactphysics3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;reactphysics3d.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -146,7 +146,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;reactphysics3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mtd.lib;reactphysics3d.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -170,6 +170,7 @@
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="SkeletalMeshComponent.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="StaticMeshComponent.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="RenderManager.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="SkeletalMeshComponent.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="StaticMeshComponent.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="RenderManager.h" />
