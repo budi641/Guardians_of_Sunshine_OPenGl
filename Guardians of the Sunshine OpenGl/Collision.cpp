@@ -1,4 +1,5 @@
 #include "Collision.h"
+#include "SoundManager.h"
 
 void test::onContact(const reactphysics3d::CollisionCallback::CallbackData& callbackData)
 {
@@ -45,6 +46,9 @@ void GroundCollisionListener::onContact(const reactphysics3d::CollisionCallback:
 
 void CustomCollisionListener::onContact(const reactphysics3d::CollisionCallback::CallbackData& callbackData)
 {
+
+   
+
     for (uint32_t i = 0; i < callbackData.getNbContactPairs(); ++i) {
         const auto& contactPair = callbackData.getContactPair(i);
 
@@ -67,6 +71,7 @@ void CustomCollisionListener::onContact(const reactphysics3d::CollisionCallback:
          
             coin->applyLocalForceAtCenterOfMass(reactphysics3d::Vector3(0, 5000, 0));
             coin->applyLocalTorque(reactphysics3d::Vector3(0, 5000, 0));
+     
             std::cout << "coin" << std::endl;
         }
         else if ((category1 == CATEGORY_PLAYER && category2 == CATEGORY_GROUND) ||

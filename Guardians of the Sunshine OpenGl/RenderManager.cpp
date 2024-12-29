@@ -130,6 +130,10 @@ void RenderManager::Render(World* world)
         glBindTexture(GL_TEXTURE_2D, texture);
         postProcessShader->Bind();
         postProcessShader->SetUniform("screenTexture", 0);
+        postProcessShader->SetUniform("u_resolution", glm::vec2(width, height));
+        float time = glfwGetTime();
+        postProcessShader->SetUniform("u_time", time);
+
    
         glBindVertexArray(quadVAO);
         glDrawArrays(GL_TRIANGLES, 0, 6);

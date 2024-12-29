@@ -9,6 +9,7 @@
 #include "Collision.h"
 
 
+
 Application::Application(const std::string& path) : worldPath(path) 
 {
     world = new World;
@@ -35,7 +36,7 @@ void Application::Run()
     renderer->SetDepthTest(true);
 
 
-    renderer->postProcessShader = new Shader("PPVert.glsl", "NoPP.glsl");
+    renderer->postProcessShader = new Shader("PPVert.glsl", "PPFrag.glsl");
 
     renderer->shader = new Shader("Main_Vertex_Shader.glsl", "Main_Fragment_Shader.glsl");
 
