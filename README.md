@@ -1,12 +1,5 @@
 # Guardians_of_Sunshine_OpenGl
 
-### **Stundents**:  
-- Abdelrahman Ameen 202201835
-- Abdelrahman El-Kady 202201023
-- Ahmed Mostafa
-- Rofida Khaled  202201413
----
-
 
 ### **Game Overview**:  
 "Guardians of Sunshine" is a 3D action-adventure game where the player navigates a vibrant, interactive world inspired by the Adventure Time episode. The primary objectives are to collect coins, defeat enemies, and face challenging boss battles, all while exploring a fantastical environment.
